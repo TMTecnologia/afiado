@@ -26,6 +26,12 @@
       "type": "integer",
       "min": 0,
       "required": true
+    },
+    "pedidos": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::pedido.pedido",
+      "mappedBy": "produto"
     }
   }
 }
