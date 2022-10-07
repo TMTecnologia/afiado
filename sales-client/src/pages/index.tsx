@@ -12,6 +12,8 @@ type Produto = {
   };
 }
 
+interface ShoppingCart {[nome: string]: {id: string; quantity: number; price: number}}
+
 async function getProdutos(){
   const response = await fetch('http://localhost:1337/api/produtos')
   if (!response.ok) {
@@ -23,7 +25,7 @@ async function getProdutos(){
 const Home: NextPage = () => {
   const query = useQuery<{data: Produto[]}| undefined>(['produtos'], getProdutos);
   const [increment, setIncrement] = useState(1);
-  const [shoppingCart, setShoppingCart] = useState({} as {[nome: string]: {id: string; quantity: number; price: number}});
+  const [shoppingCart, setShoppingCart] = useState({} as ShoppingCart);
   const [showCart, setShowCart] = useState(false);
 
   const currencyFormatter = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format
@@ -41,9 +43,26 @@ const Home: NextPage = () => {
             {
               Object.keys(shoppingCart).map((productName) => {
                 const product = shoppingCart[productName]! // eslint-disable-line @typescript-eslint/no-non-null-assertion
+                function handleDelete(name: string){
+                  function filterOutKey(source: ShoppingCart, target: string){
+                    return Object.keys(source)
+                                  .filter((key) => key != target)
+                                  .reduce((obj, key) => {
+                                    return Object.assign(obj, {
+                                      [key]: source[key]
+                                    });
+                                  }, {} as ShoppingCart);
+                  }
+
+                  return () => setShoppingCart((old) => filterOutKey(old, name));
+                }
+
                 return (
                   <li key={product.id}>
-                    <button className="btn hover:bg-red-600 align-middle mr-2">
+                    <button
+                      className="btn hover:bg-red-600 align-middle mr-2"
+                      onClick={handleDelete(productName)}
+                    >
                       <picture>
                         <img src="/trash.svg" alt="Lixeira" className="w-10"/>
                       </picture>
