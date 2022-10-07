@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useState } from "react";
+import { useSession, signIn, signOut } from 'next-auth/react';
 
 type Produto = {
   id: string;
@@ -23,12 +24,49 @@ async function getProdutos(){
 }
 
 const Home: NextPage = () => {
+  const data = useSession();
+  type dataType = typeof data;
   const query = useQuery<{data: Produto[]}| undefined>(['produtos'], getProdutos);
   const [increment, setIncrement] = useState(1);
   const [shoppingCart, setShoppingCart] = useState({} as ShoppingCart);
   const [showCart, setShowCart] = useState(false);
 
   const currencyFormatter = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format
+  function isAuthenticaded({status}: dataType){
+    return status === "authenticated"
+  }
+
+  function userAvatar({data}: dataType) {
+    if (!data) return <span className="text-xl">AA</span>;
+
+    return (
+      <div className="flex flex-col align-items justify-center">
+        <picture className="flex align-items justify-center">
+            <img
+              className="rounded-full"
+              src={data.user?.image ?? ''}
+              alt={`Foto de Perfil do usuário ${data.user?.name}`}
+              width={50}
+              height={50}
+            />
+        </picture>
+        <figcaption>{data.user?.name}</figcaption>
+      </div>
+    );
+  } 
+
+  function Navbar({data}: {data: dataType}){
+    return (
+    <nav className="flex gap-2 py-10 min-w-full justify-end">
+      {
+      isAuthenticaded(data) 
+        ? <button onClick={() => signOut()}>Logout</button>
+        : <button onClick={() => signIn('google')}>Login</button>
+      }
+      {userAvatar(data)}
+    </nav>
+    );
+  }
 
   if(showCart){
     return (
@@ -39,6 +77,7 @@ const Home: NextPage = () => {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <main className="container flex flex-col items-center justify-center min-h-screen p-4 mx-auto">
+          <Navbar data={data}/>
           <ul className="grid grid-cols-1 gap-4">
             {
               Object.keys(shoppingCart).map((productName) => {
@@ -125,15 +164,16 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="container flex flex-col items-center justify-center min-h-screen p-4 mx-auto">
+        <Navbar data={data}/>
         <ul className="grid gap-5 md:gap-5 grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
           {query.data?.data.map(produto => {
             function handleAddToCart(id: string, name: string, price: number){
-              return () => setShoppingCart((old) => {
+              return () => isAuthenticaded(data) && setShoppingCart((old) => {
                 const quantity = old[name]?.quantity ?? 0;
                 return {...old, [name]: {id, quantity: quantity + increment, price}}
               })
             }
-            
+
             return (<li key={produto.id}>
               <button
                 className={`btn w-full h-40 p-auto btn-lg shadow-xl ${produto.attributes.quantidade > 0 ? '' : 'btn-disabled'}`}
@@ -151,6 +191,7 @@ const Home: NextPage = () => {
         </div>
         <button
           className="btn btn-outline btn-block"
+          disabled={!isAuthenticaded(data)}
           onClick={() => setShowCart(true)}
         >
           Carrinho
