@@ -67,7 +67,26 @@ const Home: NextPage = () => {
                         <img src="/trash.svg" alt="Lixeira" className="w-10"/>
                       </picture>
                     </button>
-                    <input className="input input-bordered input-secondary w-20 align-middle mr-2" placeholder={product.quantity.toString()} type="number" min="1" inputMode="numeric"/>
+                    <input
+                      className="input input-bordered input-secondary w-20 align-middle mr-2"
+                      placeholder={product.quantity.toString()}
+                      type="number" min="1" inputMode="numeric"
+                      onChange={(e) => {
+                        const value = Number(e.target.value.trim())
+                        if(value <= 0) return;
+                        setShoppingCart((source) => {
+                          return Object.keys(source).reduce((acc, name) => {
+                            const currProduct = source[name]! // eslint-disable-line @typescript-eslint/no-non-null-assertion
+                            return Object.assign(acc, {
+                              [name]: {
+                                ...currProduct,
+                                quantity: name != productName ? currProduct.quantity : value
+                              }
+                            });
+                          }, {} as ShoppingCart)
+                        })
+                      }}
+                    />
                     <span className="text-lg">
                       {currencyFormatter(product.price)}
                       {" "}
