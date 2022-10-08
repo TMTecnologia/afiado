@@ -29,9 +29,10 @@ const Home: NextPage = () => {
   type dataType = typeof data;
   const query = useQuery<{data: Produto[]}| undefined>(['produtos'], getProdutos);
   const [increment, setIncrement] = useState(1);
+  const [clientName, setClientName] = useState('');
   const [shoppingCart, setShoppingCart] = useState<ShoppingCart>({});
   const [showCart, setShowCart] = useState(false);
-  const { mutateAsync } = useMutation((product: CartItem) => {
+  const { mutateAsync } = useMutation(({product, operatorName}:{product: CartItem, operatorName: string}) => {
     const url = `${env.NEXT_PUBLIC_API_URL}/pedidos`
     return fetch(url, {
       method: 'POST',
@@ -43,7 +44,9 @@ const Home: NextPage = () => {
         data: {
           preco: product.price,
           quantidade: product.quantity,
-          produto: product.id
+          produto: product.id,
+          cliente: clientName,
+          operador: operatorName
         }
       })
     })
@@ -95,12 +98,15 @@ const Home: NextPage = () => {
 
   async function handleCheckout(){
     const responses = await Promise.all(Object.keys(shoppingCart).map((key) => {
-      return mutateAsync({...shoppingCart[key]} as CartItem)
+      return mutateAsync({
+        product: {...shoppingCart[key]} as CartItem,
+        operatorName: data.data?.user?.name ?? "USUÁRIO NÃO LOGADO"
+      })
     }))
-    console.log({responses})
     if(!responses.every((response) => response.ok)) return;
     setShowCart(false)
     setShoppingCart({} as ShoppingCart)
+    setClientName('')
   }
 
   function CartCount(){
@@ -188,6 +194,14 @@ const Home: NextPage = () => {
           </ul>
         </main>
         <footer className="w-screen">
+            <div className="flex justify-center items-center">
+              <input
+                type="text"
+                placeholder="Cliente"
+                className="input input-bordered w-full max-w-xs"
+                onChange={(e) => setClientName(e.target.value)}
+              />
+            </div>
             <button
               className="btn btn-outline btn-block my-4"
               onClick={() => setShowCart(false)}

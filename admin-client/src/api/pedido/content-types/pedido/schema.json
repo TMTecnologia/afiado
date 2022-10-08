@@ -36,6 +36,14 @@
       "relation": "manyToOne",
       "target": "api::produto.produto",
       "inversedBy": "pedidos"
+    },
+    "operador": {
+      "type": "string",
+      "required": true
+    },
+    "cliente": {
+      "type": "string",
+      "required": true
     }
   }
 }
