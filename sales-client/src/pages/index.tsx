@@ -17,7 +17,7 @@ interface CartItem {id: string; quantity: number; price: number}
 interface ShoppingCart {[nome: string]: CartItem}
 
 async function getProdutos(){
-  const response = await fetch('http://localhost:1337/api/produtos')
+  const response = await fetch(`${env.NEXT_PUBLIC_API_URL}/produtos`)
   if (!response.ok) {
     throw new Error('Network response was not ok')
   }
