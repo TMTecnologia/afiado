@@ -1,8 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useState } from "react";
 import { useSession, signIn, signOut } from 'next-auth/react';
+import { env } from "../env/client.mjs";
 
 type Produto = {
   id: string;
@@ -12,8 +13,8 @@ type Produto = {
     quantidade: number;
   };
 }
-
-interface ShoppingCart {[nome: string]: {id: string; quantity: number; price: number}}
+interface CartItem {id: string; quantity: number; price: number}
+interface ShoppingCart {[nome: string]: CartItem}
 
 async function getProdutos(){
   const response = await fetch('http://localhost:1337/api/produtos')
@@ -28,8 +29,25 @@ const Home: NextPage = () => {
   type dataType = typeof data;
   const query = useQuery<{data: Produto[]}| undefined>(['produtos'], getProdutos);
   const [increment, setIncrement] = useState(1);
-  const [shoppingCart, setShoppingCart] = useState({} as ShoppingCart);
+  const [shoppingCart, setShoppingCart] = useState<ShoppingCart>({});
   const [showCart, setShowCart] = useState(false);
+  const { mutateAsync } = useMutation((product: CartItem) => {
+    const url = `${env.NEXT_PUBLIC_API_URL}/pedidos`
+    return fetch(url, {
+      method: 'POST',
+      headers:{
+        Authorization: `Bearer ${env.NEXT_PUBLIC_API_TOKEN}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        data: {
+          preco: product.price,
+          quantidade: product.quantity,
+          produto: product.id
+        }
+      })
+    })
+  })
 
   const currencyFormatter = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format
   function isAuthenticaded({status}: dataType){
@@ -66,6 +84,16 @@ const Home: NextPage = () => {
       {userAvatar(data)}
     </nav>
     );
+  }
+
+  async function handleCheckout(){
+    const responses = await Promise.all(Object.keys(shoppingCart).map((key) => {
+      return mutateAsync({...shoppingCart[key]} as CartItem)
+    }))
+    console.log({responses})
+    if(!responses.every((response) => response.ok)) return;
+    setShowCart(false)
+    setShoppingCart({} as ShoppingCart)
   }
 
   if(showCart){
@@ -142,7 +170,7 @@ const Home: NextPage = () => {
           >Voltar</button>
           <button
             className="btn btn-outline btn-block"
-            onClick={() => setShowCart(true)}
+            onClick={handleCheckout}
           >
             Finalizar Compra
             <div className="badge badge-secondary rounded-full">{
