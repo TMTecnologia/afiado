@@ -243,7 +243,7 @@ const Home: NextPage = () => {
 
             return (<li key={produto.id}>
               <button
-                className={`btn w-full h-40 p-auto btn-lg shadow-xl ${produto.attributes.quantidade > 0 ? '' : 'btn-disabled'}`}
+                className='btn w-full h-40 p-auto btn-lg shadow-xl'
                 onClick={handleAddToCart(produto.id, produto.attributes.nome, produto.attributes.preco)}
               >
                 {produto.attributes.nome}

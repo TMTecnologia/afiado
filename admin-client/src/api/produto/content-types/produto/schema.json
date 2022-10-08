@@ -24,7 +24,6 @@
     },
     "quantidade": {
       "type": "integer",
-      "min": 0,
       "required": true
     },
     "pedidos": {
