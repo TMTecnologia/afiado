@@ -13,9 +13,14 @@
   },
   "dependencies": {
     "@t3-oss/env-nextjs": "^0.6.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
+    "lucide-react": "^0.279.0",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
+    "tailwind-merge": "^1.14.0",
+    "tailwindcss-animate": "^1.0.7",
     "zod": "^3.21.4"
   },
   "devDependencies": {
