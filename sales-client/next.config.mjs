@@ -6,6 +6,9 @@ await import("./src/env.mjs");
 
 /** @type {import("next").NextConfig} */
 const config = {
+  // TODO: try deploying while keeping the node server running
+  // @link https://nextjs.org/docs/app/building-your-application/deploying#nodejs-server
+  output: 'export',
   reactStrictMode: true,
 
   /**
@@ -13,10 +16,10 @@ const config = {
    *
    * @see https://github.com/vercel/next.js/issues/41980
    */
-  i18n: {
-    locales: ["en"],
-    defaultLocale: "en",
-  },
+  // i18n: {
+  //   locales: ["en"],
+  //   defaultLocale: "en",
+  // },
 };
 
 export default config;
