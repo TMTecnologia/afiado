@@ -1,13 +1,21 @@
-version: '3'
+version: '3.8'
 services:
-  postgres:
-    image: postgres
+  db:
+    image: mysql:8.0
+    cap_add:
+      - SYS_NICE
+    restart: always
+    env_file: .env
     environment:
-      POSTGRES_DB: zebstrika
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      - MYSQL_DATABASE="${DATABASE_NAME}"
+      - MYSQL_ROOT_PASSWORD="${DATABASE_PASSWORD}"
+      - MYSQL_USER="${DATABASE_USERNAME}"
+      - MYSQL_PASSWORD="${DATABASE_PASSWORD}"
+    ports:
+      - '3306:3306'
     volumes:
-      - pg-data:/var/lib/postgresql/data
-
+      - db:/var/lib/mysql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
 volumes:
-  pg-data:
+  db:
+    driver: local
