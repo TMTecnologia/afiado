@@ -10,7 +10,11 @@
   "options": {
     "draftAndPublish": true
   },
-  "pluginOptions": {},
+  "pluginOptions": {
+    "import-export-entries": {
+      "idField": "nome"
+    }
+  },
   "attributes": {
     "nome": {
       "type": "string",
@@ -20,17 +24,19 @@
     "preco": {
       "type": "decimal",
       "required": true,
-      "min": 0.01
-    },
-    "quantidade": {
-      "type": "integer",
-      "required": true
+      "min": 0
     },
     "pedidos": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::pedido.pedido",
       "mappedBy": "produto"
+    },
+    "categoria": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::categoria.categoria",
+      "inversedBy": "produtos"
     }
   }
 }
