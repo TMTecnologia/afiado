@@ -9,7 +9,9 @@
     "build": "next build",
     "dev": "next dev",
     "lint": "next lint",
-    "start": "next start"
+    "start": "next start",
+    "prettier:check": "bun run prettier -c src/**/*.ts src/**/*.tsx",
+    "prettier:fix": "bun run prettier -w src/**/*.ts src/**/*.tsx"
   },
   "dependencies": {
     "@t3-oss/env-nextjs": "^0.6.0",
