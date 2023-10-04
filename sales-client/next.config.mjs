@@ -20,6 +20,9 @@ const config = {
   //   locales: ["en"],
   //   defaultLocale: "en",
   // },
+  experimental: {
+    swcPlugins: [['@swc-jotai/react-refresh', {}]]
+  }
 };
 
 export default config;
