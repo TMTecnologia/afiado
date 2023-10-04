@@ -4,12 +4,11 @@ const config = {
   parserOptions: {
     project: true,
   },
-  plugins: ["@typescript-eslint", "@tanstack/query"],
+  plugins: ["@typescript-eslint"],
   extends: [
     "next/core-web-vitals",
     "plugin:@typescript-eslint/recommended-type-checked",
     "plugin:@typescript-eslint/stylistic-type-checked",
-    "plugin:@tanstack/eslint-plugin-query/recommended",
   ],
   rules: {
     // These opinionated rules are enabled in stylistic-type-checked above.
