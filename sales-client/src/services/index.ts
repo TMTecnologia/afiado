@@ -27,8 +27,10 @@ export async function getCategories() {
     API_URL.origin,
   );
 
+  categoriesRoute.searchParams.append("sort", "nome");
   categoriesRoute.searchParams.append("populate[0]", "produtos");
   categoriesRoute.searchParams.append("fields[0]", "nome");
+  categoriesRoute.searchParams.append("populate[produtos][sort]", "nome");
   categoriesRoute.searchParams.append("populate[produtos][fields][0]", "nome");
   categoriesRoute.searchParams.append("populate[produtos][fields][1]", "preco");
 
