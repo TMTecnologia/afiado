@@ -43,13 +43,15 @@ export async function getCategories() {
     .then((response) =>
       (response as StrapiGetCategories).data.map(({ id, attributes }) => ({
         id,
-        nome: attributes.nome,
-        produtos: attributes.produtos.data.map(({ id, attributes }) => ({
+        name: attributes.nome,
+        products: attributes.produtos.data.map(({ id, attributes }) => ({
           id,
-          ...attributes,
+          name: attributes.nome,
+          price: attributes.preco
         })),
       })),
-    );
+    )
+    .catch((error) => console.error(error));
 
   return categories;
 }
