@@ -1,0 +1,30 @@
+{
+    "kind": "collectionType",
+    "collectionName": "categorias",
+    "info": {
+        "singularName": "categoria",
+        "pluralName": "categorias",
+        "displayName": "Categoria",
+        "description": ""
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "pluginOptions": {
+        "import-export-entries": {
+            "idField": "nome"
+        }
+    },
+    "attributes": {
+        "nome": {
+            "type": "string",
+            "required": true
+        },
+        "produtos": {
+            "type": "relation",
+            "relation": "oneToMany",
+            "target": "api::produto.produto",
+            "mappedBy": "categoria"
+        }
+    }
+}

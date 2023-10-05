@@ -1,0 +1,42 @@
+{
+    "kind": "collectionType",
+    "collectionName": "produtos",
+    "info": {
+        "singularName": "produto",
+        "pluralName": "produtos",
+        "displayName": "Produto",
+        "description": ""
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "pluginOptions": {
+        "import-export-entries": {
+            "idField": "nome"
+        }
+    },
+    "attributes": {
+        "nome": {
+            "type": "string",
+            "required": true,
+            "unique": true
+        },
+        "preco": {
+            "type": "decimal",
+            "required": true,
+            "min": 0
+        },
+        "pedidos": {
+            "type": "relation",
+            "relation": "oneToMany",
+            "target": "api::pedido.pedido",
+            "mappedBy": "produto"
+        },
+        "categoria": {
+            "type": "relation",
+            "relation": "manyToOne",
+            "target": "api::categoria.categoria",
+            "inversedBy": "produtos"
+        }
+    }
+}

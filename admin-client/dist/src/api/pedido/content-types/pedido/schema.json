@@ -1,0 +1,65 @@
+{
+    "kind": "collectionType",
+    "collectionName": "pedidos",
+    "info": {
+        "singularName": "pedido",
+        "pluralName": "pedidos",
+        "displayName": "Pedido",
+        "description": ""
+    },
+    "options": {
+        "draftAndPublish": false
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "valor": {
+            "type": "decimal",
+            "min": 0,
+            "required": false
+        },
+        "quantidade": {
+            "type": "integer",
+            "min": 1,
+            "required": true,
+            "default": 1
+        },
+        "tipo": {
+            "type": "enumeration",
+            "enum": [
+                "compra",
+                "venda"
+            ],
+            "required": true,
+            "default": "venda"
+        },
+        "produto": {
+            "type": "relation",
+            "relation": "manyToOne",
+            "target": "api::produto.produto",
+            "inversedBy": "pedidos"
+        },
+        "operador": {
+            "type": "string",
+            "required": true
+        },
+        "cliente": {
+            "type": "string",
+            "regex": "[0-9]+",
+            "required": true,
+            "maxLength": 11,
+            "minLength": 11,
+            "private": true
+        },
+        "pagamento": {
+            "type": "enumeration",
+            "enum": [
+                "fiado",
+                "pix",
+                "dinheiro",
+                "cartão de crédito",
+                "cartão de débito"
+            ],
+            "required": true
+        }
+    }
+}
