@@ -4,7 +4,7 @@ import { Tabs, TabsList, TabsTrigger } from "~/components/ui/tabs";
 import { useSetAtom } from "jotai";
 import { incrementAtom } from "~/lib/atoms";
 
-export const IncrementSelector = () => {
+export const IncrementSelect = () => {
   const setIncrement = useSetAtom(incrementAtom)
 
   return (

@@ -16,7 +16,7 @@ interface ListProductsByCategoryProps {
   data: Awaited<ReturnType<typeof getCategories>>
 }
 
-export default function ListProductsByCategory({ data: categories }: ListProductsByCategoryProps) {
+export function ListProductsByCategory({ data: categories }: ListProductsByCategoryProps) {
   const updateCart = useSetAtom(writeOnlyCart);
   const increment = useAtomValue(incrementAtom)
   const handleClick = useCallback(
@@ -39,13 +39,13 @@ export default function ListProductsByCategory({ data: categories }: ListProduct
             <AccordionTrigger className="text-2xl">{categoryName}</AccordionTrigger>
             <AccordionContent>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-                {products.map(({ id, name }) => (
+                {products.map((props) => (
                   <Button
-                    key={id}
+                    key={props.id}
                     className="text-xl min-h-[8rem] lg:min-w-[16rem] hover:opacity-50 active:opacity-25"
-                    onClick={handleClick({ id, name })}
+                    onClick={handleClick(props)}
                   >
-                    {name}
+                    {props.name}
                   </Button>
                 ))}
               </div>

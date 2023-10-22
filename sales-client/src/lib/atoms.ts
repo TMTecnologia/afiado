@@ -5,8 +5,9 @@ export const incrementAtom = atom(1);
 type Cart = Record<
   number,
   {
-    name: string;
-    amount: number;
+    name: string
+    amount: number
+    price: number
   }
 >;
 
@@ -21,16 +22,17 @@ export const writeOnlyCart = atom(
   (
     get,
     set,
-    update: { id: number, increment: number } & Pick<Cart[number], 'name'>,
+    update: { id: number, increment: number } & Pick<Cart[number], 'name' | 'price'>,
   ) => {
     const previousCart = get(shoppingCart);
-    const previousAmount: number =
+    const previousAmount =
       previousCart[update.id]?.amount ?? 0;
     set(shoppingCart, {
       ...previousCart,
       [update.id]: {
         name: update.name,
         amount: previousAmount + update.increment,
+        price: update.price
       },
     });
   },
