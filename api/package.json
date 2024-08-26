@@ -1,7 +1,6 @@
 {
   "name": "afiado-api",
   "module": "index.ts",
-  "type": "module",
   "devDependencies": {
     "@types/express": "^4.17.21",
     "bun-types": "latest",
