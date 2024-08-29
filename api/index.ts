@@ -1,13 +1,27 @@
-import express from 'express'
+import * as trpcExpress from '@trpc/server/adapters/express';
+import express from 'express';
+import { createContext, publicProcedure, router } from './trpc';
 
-const app = express()
-const port = 3000
+const DEFAULT_LISTEN_PORT = 3000
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+const appRouter = router({
+  hello: publicProcedure.query(() => 'Hello World using Bun & TRPC & Express'),
+  ping: publicProcedure.query(() => 'Pong'),
+});
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+const app = express();
+
+app.use(
+  '/trpc',
+  trpcExpress.createExpressMiddleware({
+    router: appRouter,
+    createContext,
+  }),
+);
+
+app.listen(DEFAULT_LISTEN_PORT, () => {
+  console.log(`Example app listening on port ${DEFAULT_LISTEN_PORT}`)
+});
+
+export type AppRouter = typeof appRouter;
 
