@@ -1,6 +1,6 @@
 import * as trpcExpress from '@trpc/server/adapters/express';
 import express from 'express';
-import { createContext, publicProcedure, router } from './trpc';
+import { createContext, publicProcedure, router } from '@afiado/router';
 
 const DEFAULT_LISTEN_PORT = 3000
 

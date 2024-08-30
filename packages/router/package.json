@@ -1,20 +1,17 @@
 {
-  "name": "@afiado/api",
+  "name": "@afiado/router",
   "version": "0.1.0",
-  "module": "index.ts",
-  "scripts": {
-    "start": "bun index.ts"
-  },
+  "files": [
+    "src"
+  ],
+  "main": "./src/index.ts",
   "devDependencies": {
     "@types/express": "^4.17.21",
     "bun-types": "latest",
     "typescript": "^5.5.4"
   },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
-  },
   "dependencies": {
-    "@afiado/router": "workspace:*",
+    "@trpc/server": "~10.45.2",
     "express": "^4.19.2"
   }
 }
