@@ -1,5 +1,5 @@
 {
-  "name": "afiado-api",
+  "name": "@afiado/api",
   "version": "0.1.0",
   "module": "index.ts",
   "scripts": {
