@@ -6,12 +6,11 @@
   ],
   "main": "./src/index.ts",
   "devDependencies": {
-    "@types/express": "^4.17.21",
-    "bun-types": "latest",
-    "typescript": "^5.5.4"
+    "@types/express": "~4.17.21",
+    "typescript": " ~5.5.4"
   },
   "dependencies": {
     "@trpc/server": "~10.45.2",
-    "express": "^4.19.2"
+    "express": "~4.19.2"
   }
 }
