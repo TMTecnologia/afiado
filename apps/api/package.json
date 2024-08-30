@@ -1,5 +1,6 @@
 {
   "name": "afiado-api",
+  "version": "0.1.0",
   "module": "index.ts",
   "scripts": {
     "start": "bun index.ts"
