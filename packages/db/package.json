@@ -1,7 +1,10 @@
 {
   "name": "@afiado/db",
   "version": "0.1.0",
-  "main": "index.ts",
+  "files": [
+    "src"
+  ],
+  "main": "./src/index.ts",
   "dependencies": {
     "@libsql/client": "~0.10.0",
     "drizzle-orm": "~0.33.0"
