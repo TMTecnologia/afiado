@@ -1,13 +1,18 @@
 import { initTRPC } from '@trpc/server';
 import * as trpcExpress from '@trpc/server/adapters/express';
+import { createDatabaseClient } from '@afiado/db'
+
 
 export const createContext = async ({
   req,
   res,
 }: trpcExpress.CreateExpressContextOptions) => {
+  const db = createDatabaseClient()
+
   return {
     req,
     res,
+    db,
   };
 };
 

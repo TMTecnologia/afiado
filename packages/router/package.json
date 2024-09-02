@@ -10,6 +10,7 @@
     "typescript": " ~5.5.4"
   },
   "dependencies": {
+    "@afiado/db": "workspace:*",
     "@trpc/server": "~10.45.2",
     "express": "~4.19.2"
   }
