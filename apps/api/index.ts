@@ -1,13 +1,8 @@
 import * as trpcExpress from '@trpc/server/adapters/express';
 import express from 'express';
-import { createContext, publicProcedure, router } from '@afiado/router';
+import { createContext, appRouter } from '@afiado/router';
 
 const DEFAULT_LISTEN_PORT = 3000
-
-const appRouter = router({
-  hello: publicProcedure.query(() => 'Hello World using Bun & TRPC & Express'),
-  ping: publicProcedure.query(() => 'Pong'),
-});
 
 const app = express();
 
