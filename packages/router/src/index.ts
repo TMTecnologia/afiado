@@ -1,10 +1,12 @@
-import { helloRouter } from './hello';
-
 import { router } from './context';
+import { helloRouter } from './hello';
+import { usersRouter } from './users';
+
 export * from './context';
 
 export const appRouter = router({
-  hello: helloRouter
+  hello: helloRouter,
+  users: usersRouter
 });
 
 // export type definition of API
