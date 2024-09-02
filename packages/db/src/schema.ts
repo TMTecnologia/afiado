@@ -1,1 +1,3 @@
-export { schema as users } from './users'
+import { schema as users } from './users'
+
+export const usersTable = users.usersTable
