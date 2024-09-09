@@ -5,6 +5,9 @@
     "src"
   ],
   "main": "./src/index.ts",
+  "scripts": {
+    "db:migrate": "bun migrate.ts"
+  },
   "dependencies": {
     "@libsql/client": "~0.10.0",
     "drizzle-orm": "~0.33.0"
