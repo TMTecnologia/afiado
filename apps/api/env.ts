@@ -19,6 +19,7 @@ if (!shouldSkipValidation) {
     )
     throw new Error('Invalid environment variables')
   }
+  console.log('✅ Valid environment variables 🚀')
 }
 
 declare global {
