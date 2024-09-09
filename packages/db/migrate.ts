@@ -1,7 +1,10 @@
 import { migrate } from 'drizzle-orm/libsql/migrator';
 import { createDatabase } from './src/client';
 
-const { db, connection } = createDatabase({ url: process.env.DATABASE_URL! })
+const { db, connection } = createDatabase({
+  url: process.env.DATABASE_URL!,
+  authToken: process.env.AUTH_TOKEN,
+})
 
 // This will run migrations on the database, skipping the ones already applied
 await migrate(db, { migrationsFolder: './migrations' });
