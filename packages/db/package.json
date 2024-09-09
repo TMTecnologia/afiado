@@ -6,7 +6,7 @@
   ],
   "main": "./src/index.ts",
   "scripts": {
-    "db:migrate": "bun migrate.ts"
+    "db:migrate": "bun --env-file=../../.env migrate.ts"
   },
   "dependencies": {
     "@libsql/client": "~0.10.0",

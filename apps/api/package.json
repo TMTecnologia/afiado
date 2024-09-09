@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "module": "index.ts",
   "scripts": {
-    "start": "bun index.ts",
-    "check:env": "bun env.ts"
+    "start": "bun --env-file=../../.env index.ts",
+    "check:env": "bun --env-file=../../.env env.ts"
   },
   "devDependencies": {
     "@types/express": "~4.17.21",
