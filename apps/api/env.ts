@@ -3,6 +3,7 @@ import { z } from 'zod'
 const envVariables = z.object({
   PORT: z.string(),
   DATABASE_URL: z.string().url(),
+  AUTH_TOKEN: z.string().optional(),
 })
 
 const shouldSkipValidation =
