@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "@afiado/db": "workspace:*",
-    "@trpc/server": "~10.45.2",
-    "express": "~4.19.2"
+    "@trpc/server": "~10.45.2"
   }
 }
