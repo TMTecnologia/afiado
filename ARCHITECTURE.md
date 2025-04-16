@@ -40,6 +40,13 @@ This document outlines the key architectural decisions, engineering principles, 
 
 ## Technology Choices
 
+For each technology choice, we will consider the following:
+
+- Context: What is the problem we are trying to solve?
+- Considered Alternatives: What other technologies did we consider?
+- Decision Factors: What factors led to the choice of this technology?
+- Consequences: What are the trade-offs of this technology?
+
 ### Frontend Framework: Next.js
 
 **Context:**
