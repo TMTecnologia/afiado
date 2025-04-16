@@ -83,4 +83,4 @@ By participating in this project, you are expected to uphold our Code of Conduct
 
 ## License
 
-By contributing to Afiado, you agree that your contributions will be licensed under its [GNU General Public License v3.0](./COPYING).
+By contributing to Afiado, you agree that your contributions will be licensed under [GNU General Public License v3.0](./COPYING).
