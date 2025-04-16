@@ -57,6 +57,25 @@ For each technology choice, we will consider the following:
 - Considered Alternatives: What other technologies did we consider? List at least 3 alternatives.
 - Consequences: What are the trade-offs of the chosen technology? What are the mitigation strategies for the negative consequences?
 
+Summary of the technology choices:
+
+- [Frontend Framework: Next.js](#frontend-framework-nextjs)
+- [Auth Provider: Clerk](#auth-provider-clerk)
+- [Backend: Convex](#backend-convex)
+- [Payments: AbacatePay + Lemon Squeezy by Stripe](#payments-abacatepay-lemon-squeezy-by-stripe)
+- [Styling: TailwindCSS](#styling-tailwindcss)
+- [Component Library: Shadcn/ui](#component-library-shadcn-ui)
+- [Analytics: PostHog](#analytics-posthog)
+- [SEO Tracking: aHrefs + MakeMeFindable](#seo-tracking-ahrefs-makemefindable)
+- [DNS: Cloudflare](#dns-cloudflare)
+- [E-mail: ⁠Resend](#e-mail-resend)
+- [Package Manager: ⁠Bun](#package-manager-bun)
+- [Linting: Biome](#linting-biome)
+- [Formatting: Biome](#formatting-biome)
+- [Unit Testing: Vitest](#unit-testing-vitest)
+- [E2E Testing: Playwright](#e2e-testing-playwright)
+
+
 ### Frontend Framework: Next.js
 
 **Context:**
@@ -107,6 +126,72 @@ For each technology choice, we will consider the following:
 - Mitigation Strategies:
   - We can consider using [WorkOS](https://workos.com/) which has a Admin Portal and a more flexible role-based access control (RBAC)
   - We can consider using [BetterAuth](https://better-auth.com/) which enables us to self-host and have more control over the user experience and the data we store about our users
+
+### Backend: Convex
+
+**Context:**
+- Need for a modern backend framework with a strong focus on user experience
+- Looking for a provider that is easy to integrate with
+- Looking for an alternative that is easy to implement Real-Time Data Sync
+- Offline-first approach is nice plus.
+- Require strong TypeScript support
+
+**Considered Alternatives:**
+1. [Convex](https://www.convex.dev/)
+2. [Supabase](https://supabase.com/)
+3. [Firebase](https://firebase.google.com/)
+
+**Consequences: Convex**
+- Positive:
+  - Good support for Real-Time Data Sync
+  - Good support for Offline-first approach
+  - Good support for TypeScript
+- Negative:
+  - Some lock-in to Convex's ecosystem
+
+### Payments: AbacatePay + Lemon Squeezy by Stripe
+
+**Context:**
+- Need for a modern payments provider with a strong focus on user experience
+- Looking for a provider that is easy to integrate with
+- Good support for PIX, Brazilian instant payment method
+- Require strong TypeScript support
+- Prefer MoR over Payment Gateway, wherever possible
+
+**Considered Alternatives:**
+1. [AbacatePay](https://abacate.com.br/)
+2. [Stripe](https://stripe.com/)
+3. [Lemon Squeezy](https://lemonsqueezy.com/)
+4. [Polar](https://polar.sh/)
+
+**Consequences: AbacatePay + Lemon Squeezy by Stripe**
+- Positive:
+  - Good support for PIX, Brazilian instant payment method, using AbacatePay
+  - Good support for Card, using Lemon Squeezy by Stripe
+  - Smallest fees in comparison to other providers
+  - Easy to integrate with
+  - Strong TypeScript support
+- Negative:
+  - Lock-in to AbacatePay and Lemon Squeezy's ecosystem and payout limitations
+  - Need to use Paypal Account to receive Lemon Squeezy payouts
+- Mitigation Strategies:
+  - We can consider using [Polar](https://polar.sh/) which has smaller fees, after they add support for Brazilian accounts for payouts; see more @ https://github.com/orgs/polarsource/discussions/3494#discussioncomment-9816314
+
+### Styling: TailwindCSS
+### Component Library: Shadcn/ui
+### Analytics: PostHog
+### SEO Tracking: aHrefs + MakeMeFindable
+
+[1] https://www.makemefindable.com/
+[2] https://ahrefs.com/webmaster-tools
+
+### DNS: Cloudflare
+### E-mail: ⁠Resend
+### Package Manager: ⁠Bun
+### Linting: Biome
+### Formatting: Biome
+### Unit Testing: Vitest
+### E2E Testing: Playwright
 
 ## Contributing Guidelines
 
