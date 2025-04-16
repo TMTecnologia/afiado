@@ -42,18 +42,16 @@ This document outlines the key architectural decisions, engineering principles, 
 
 ### Frontend Framework: Next.js
 
-**Decision Date:** [Insert Date]
-
 **Context:**
-- Need for a modern React framework
+- Need for a modern framework with recognizable patterns, helping new developers get up to speed quickly
 - Looking for excellent developer experience
 - Require strong TypeScript support
 
 **Considered Alternatives:**
-1. Remix
-2. Gatsby
-3. Create React App
-4. Astro
+1. React Router (Framework Mode)
+2. Nuxt
+3. Solid Start
+4. Tanstack Start
 
 **Decision Factors:**
 - Production-proven at scale
