@@ -9,8 +9,7 @@ This document outlines the key architectural decisions, engineering principles, 
 - Keep the codebase approachable for new contributors
 - If a feature feels complex, it probably needs more design thinking
 
-### 2. Type Safety First
-- Use TypeScript for all new code
+### 2. Type Safety is not optional
 - Maintain strict type checking configurations
 - Document type definitions clearly
 
@@ -23,6 +22,21 @@ This document outlines the key architectural decisions, engineering principles, 
 - Consider performance implications in every PR
 - Optimize for core web vitals
 - Regular performance monitoring and benchmarking
+
+### 5. Mobile First UI
+- Build for mobile first, then desktop
+- Use responsive design patterns
+- Optimize for touch interactions
+
+### 6. Build Fast, Ship Faster
+- Optimize build times, for both development and production
+- The faster we can build, the faster we can ship
+- Use CI/CD to automate builds and tests
+
+### 7. We love open source
+- Prefer open source tools and libraries
+- Share our learnings with the community
+- Keep the CHANGELOG up to date
 
 ## Technology Choices
 
