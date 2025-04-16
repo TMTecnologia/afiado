@@ -38,6 +38,17 @@ This document outlines the key architectural decisions, engineering principles, 
 - Share our learnings with the community
 - Keep the CHANGELOG up to date
 
+## Architecture Overview
+
+### System Components
+
+```mermaid
+graph TD
+Client[Client Browser] --> NextJS[Next.js Frontend]
+NextJS --> API[API Layer]
+API --> DB[Database]
+```
+
 ## Technology Choices
 
 For each technology choice, we will consider the following:
@@ -83,74 +94,6 @@ For each technology choice, we will consider the following:
 ### [Other Technology Choice]
 
 [Follow same format for other major technology choices]
-
-## Architecture Overview
-
-### System Components
-
-```mermaid
-graph TD
-Client[Client Browser] --> NextJS[Next.js Frontend]
-NextJS --> API[API Layer]
-API --> DB[Database]
-```
-
-### Key Design Patterns
-
-1. **Feature-based Directory Structure**
-   ```
-   src/
-   ├── features/
-   │   ├── auth/
-   │   ├── dashboard/
-   │   └── transactions/
-   ```
-
-2. **State Management**
-   - React Query for server state
-   - Context API for global UI state
-   - Local state when possible
-
-3. **API Design**
-   - RESTful principles
-   - Strong typing with TypeScript
-   - OpenAPI documentation
-
-## Performance Considerations
-
-### Client-Side
-- Implement code splitting
-- Optimize image loading
-- Minimize JavaScript bundles
-- Use appropriate caching strategies
-
-### Server-Side
-- Implement edge caching where possible
-- Optimize database queries
-- Monitor server response times
-
-## Security Principles
-
-1. **Authentication & Authorization**
-   - JWT-based authentication
-   - Role-based access control
-   - Regular security audits
-
-2. **Data Protection**
-   - Encrypt sensitive data at rest
-   - Secure API endpoints
-   - Follow OWASP guidelines
-
-## Monitoring & Observability
-
-1. **Metrics We Track**
-   - Core Web Vitals
-   - Error rates
-   - API response times
-   - User engagement metrics
-
-2. **Tools We Use**
-   - [List monitoring tools]
 
 ## Contributing Guidelines
 
