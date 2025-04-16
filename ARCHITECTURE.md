@@ -54,9 +54,8 @@ API --> DB[Database]
 For each technology choice, we will consider the following:
 
 - Context: What is the problem we are trying to solve?
-- Considered Alternatives: What other technologies did we consider?
-- Decision Factors: What factors led to the choice of this technology?
-- Consequences: What are the trade-offs of this technology?
+- Considered Alternatives: What other technologies did we consider? List at least 3 alternatives.
+- Consequences: What are the trade-offs of the chosen technology? What are the mitigation strategies for the negative consequences?
 
 ### Frontend Framework: Next.js
 
@@ -66,34 +65,48 @@ For each technology choice, we will consider the following:
 - Require strong TypeScript support
 
 **Considered Alternatives:**
-1. React Router (Framework Mode)
-2. Nuxt
-3. Solid Start
-4. Tanstack Start
+1. [Next.js](https://nextjs.org/)
+2. [React Router (Framework Mode)](https://reactrouter.com/)
+3. [Tanstack Start](https://tanstack.com/start)
 
-**Decision Factors:**
-- Production-proven at scale
-- Large, active community
-- Built-in performance optimizations
-- File-based routing
-- API routes support
-- Excellent TypeScript integration
-- Vercel's strong backing and support
-
-**Consequences:**
+**Consequences: Next.js**
 - Positive:
-  - Faster development cycles
+  - Faster development cycles, since is widely regarded as the de facto framework for starting a React project
   - Built-in performance optimizations
-  - Great DX with hot reload
-  - Strong ecosystem
+  - Great DX with hot reload and turbopack improvements reducing build times
+  - Strong ecosystem, backed by Vercel
+  - Allows for starting with static generation, but also has the ability to be server-side rendered
 - Negative:
   - Learning curve for developers new to Next.js
   - Some lock-in to Vercel's ecosystem
   - Need to follow Next.js upgrade cycles
 
-### [Other Technology Choice]
+### Auth Provider: Clerk
 
-[Follow same format for other major technology choices]
+**Context:**
+- Need for a modern auth provider with a strong focus on user experience
+- Looking for a provider that is easy to integrate with
+- Preferably hosted solution, but we can self-host if necessary
+- Require strong TypeScript support
+
+**Considered Alternatives:**
+1. [Clerk](https://clerk.com/)
+2. [BetterAuth](https://better-auth.com/)
+3. [WorkOS](https://workos.com/)
+
+**Consequences: Clerk**
+- Positive:
+  - Strong TypeScript support
+  - Excellent developer experience
+  - Active community
+  - Excellent documentation
+  - Excellent support for social login providers
+- Negative:
+  - Some lock-in to Clerk's ecosystem
+  - Hard to onboard Enterprise customers with multiple sign-in and users with different roles
+- Mitigation Strategies:
+  - We can consider using [WorkOS](https://workos.com/) which has a Admin Portal and a more flexible role-based access control (RBAC)
+  - We can consider using [BetterAuth](https://better-auth.com/) which enables us to self-host and have more control over the user experience and the data we store about our users
 
 ## Contributing Guidelines
 
