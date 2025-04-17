@@ -74,7 +74,7 @@ Summary of the technology choices:
 - [Formatting: Biome](#formatting-biome)
 - [Unit Testing: Vitest](#unit-testing-vitest)
 - [E2E Testing: Playwright](#e2e-testing-playwright)
-
+- [Deployment: Cloudflare Pages](#deployment-cloudflare)
 
 ### Frontend Framework: Next.js
 
@@ -122,10 +122,10 @@ Summary of the technology choices:
   - Excellent support for social login providers
 - Negative:
   - Some lock-in to Clerk's ecosystem
-  - Hard to onboard Enterprise customers with multiple sign-in and users with different roles
+  - Hard to onboard Enterprise customers with multiple sign-in methods and users with different roles
 - Mitigation Strategies:
-  - We can consider using [WorkOS](https://workos.com/) which has a Admin Portal and a more flexible role-based access control (RBAC)
-  - We can consider using [BetterAuth](https://better-auth.com/) which enables us to self-host and have more control over the user experience and the data we store about our users
+  - [WorkOS](https://workos.com/) has a Admin Portal and a more flexible role-based access control (RBAC)
+  - [BetterAuth](https://better-auth.com/) enables us to self-host and have more control over the user experience and the data we store about our users
 
 ### Backend: Convex
 
@@ -148,6 +148,7 @@ Summary of the technology choices:
   - Good support for TypeScript
 - Negative:
   - Some lock-in to Convex's ecosystem
+  - When offline Convex enqueues requests to be sent when the user comes back online, but to be fully offline-first we need to add some third-party libraries
 
 ### Payments: AbacatePay + Lemon Squeezy by Stripe
 
@@ -175,13 +176,80 @@ Summary of the technology choices:
   - Lock-in to AbacatePay and Lemon Squeezy's ecosystem and payout limitations
   - Need to use Paypal Account to receive Lemon Squeezy payouts
 - Mitigation Strategies:
-  - We can consider using [Polar](https://polar.sh/) which has smaller fees, after they add support for Brazilian accounts for payouts; see more @ https://github.com/orgs/polarsource/discussions/3494#discussioncomment-9816314
+  - [Polar](https://polar.sh/) has smaller fees, but Brazilian accounts are not supported for payouts; see more @ https://github.com/orgs/polarsource/discussions/3494#discussioncomment-9816314
 
 ### Styling: TailwindCSS
-### Component Library: Shadcn/ui
-### Analytics: PostHog
-### SEO Tracking: aHrefs + MakeMeFindable
 
+**Context:**
+- Need for a modern styling library with a strong focus on user experience
+- Server-side rendering (SSR) friendly
+- Good documentation
+- Good community support
+
+**Considered Alternatives:**
+1. [TailwindCSS](https://tailwindcss.com/)
+2. [Styled Components](https://styled-components.com/)
+3. [UnoCSS](https://unocss.dev/)
+
+**Consequences: TailwindCSS**
+- Positive:
+  - Good documentation
+  - Good community support
+  - Good performance
+  - Good DX
+- Negative:
+  - Some lock-in to TailwindCSS's ecosystem
+
+### Component Library: Shadcn/ui
+
+**Context:**
+- Need for a modern component library with a strong focus on user experience
+- Server-side rendering (SSR) friendly
+- Good documentation
+- Good community support
+- Good DX
+- Good design
+- Good accessibility
+- Good dark mode support
+
+**Considered Alternatives:**
+1. [Shadcn/ui](https://ui.shadcn.com/)
+2. [Mantine](https://mantine.dev/)
+3. [Chakra UI](https://chakra-ui.com/)
+
+**Consequences: Shadcn/ui**
+- Positive:
+  - Good documentation
+  - Good community support
+  - Good DX, uses TailwindCSS under the hood
+  - Good design
+  - Good accessibility, uses Radix UI under the hood
+  - Good dark mode support
+- Negative:
+  - Smaller component library than other libraries
+
+### Analytics: PostHog
+
+**Context:**
+- Need for a modern analytics provider with a strong focus on user experience
+- Looking for a provider that is easy to integrate with
+- Good documentation
+- Good community support
+
+**Considered Alternatives:**
+1. [PostHog](https://posthog.com/)
+2. [Google Analytics](https://analytics.google.com/)
+3. [Mixpanel](https://mixpanel.com/)
+
+**Consequences: PostHog**
+- Positive:
+  - Good documentation
+  - Good community support
+  - Good DX
+- Negative:
+  - Some lock-in to PostHog's ecosystem
+
+### SEO Tracking: aHrefs + MakeMeFindable
 [1] https://www.makemefindable.com/
 [2] https://ahrefs.com/webmaster-tools
 
@@ -190,8 +258,13 @@ Summary of the technology choices:
 ### Package Manager: ⁠Bun
 ### Linting: Biome
 ### Formatting: Biome
-### Unit Testing: Vitest
+### Unit Testing: Vitest   
 ### E2E Testing: Playwright
+### Deployment: Cloudflare Pages
+
+Teams are free, builds are limited to 500 builds per month.
+
+https://pages.cloudflare.com/
 
 ## Contributing Guidelines
 
