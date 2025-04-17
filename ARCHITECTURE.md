@@ -65,7 +65,8 @@ Summary of the technology choices:
 - [Payments: AbacatePay + Lemon Squeezy by Stripe](#payments-abacatepay-lemon-squeezy-by-stripe)
 - [Styling: TailwindCSS](#styling-tailwindcss)
 - [Component Library: Shadcn/ui](#component-library-shadcn-ui)
-- [Analytics: PostHog](#analytics-posthog)
+- [Product Analytics: PostHog](#product-analytics-posthog)
+- [Web Analytics: PostHog](#web-analytics-posthog)
 - [SEO Tracking: aHrefs + MakeMeFindable](#seo-tracking-ahrefs-makemefindable)
 - [DNS: Cloudflare](#dns-cloudflare)
 - [E-mail: ⁠Resend](#e-mail-resend)
@@ -228,17 +229,18 @@ Summary of the technology choices:
 - Negative:
   - Smaller component library than other libraries
 
-### Analytics: PostHog
+### Product Analytics: PostHog
 
 **Context:**
 - Need for a modern analytics provider with a strong focus on user experience
+- Want to easily track user/product events and properties
 - Looking for a provider that is easy to integrate with
 - Good documentation
 - Good community support
 
 **Considered Alternatives:**
 1. [PostHog](https://posthog.com/)
-2. [Google Analytics](https://analytics.google.com/)
+2. [Segment](https://segment.com/)
 3. [Mixpanel](https://mixpanel.com/)
 
 **Consequences: PostHog**
@@ -246,6 +248,30 @@ Summary of the technology choices:
   - Good documentation
   - Good community support
   - Good DX
+- Negative:
+  - Some lock-in to PostHog's ecosystem
+
+### Web Analytics: PostHog
+
+**Context:**
+- Need for a modern analytics provider with a strong focus on user experience
+- Want to easily track anonymous analytics for web traffic and heatmaps
+- Looking for a provider that is easy to integrate with
+- Good documentation
+- Good community support
+
+**Considered Alternatives:**
+1. [PostHog](https://posthog.com/)
+2. [Google Analytics](https://analytics.google.com/)
+3. [Hotjar](https://hotjar.com/)
+
+**Consequences: PostHog**
+- Positive:
+  - Good documentation
+  - Good community support
+  - Good DX
+  - Good support for heatmaps
+  - One less tool to integrate, since we are already using PostHog for product analytics
 - Negative:
   - Some lock-in to PostHog's ecosystem
 
