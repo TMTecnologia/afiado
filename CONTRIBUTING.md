@@ -2,6 +2,16 @@
 
 Thank you for your interest in contributing to Afiado! We welcome contributions from everyone.
 
+## Frequently Asked Question
+
+### Why Portuguese?
+
+Currently, we are a product focused on the Brazilian market; but the code is documented in English.
+
+But as for opening issues and giving feedback, you are welcome to write in the language you feel more confortable.
+
+If any maintainers know the language, we will respond in the same language, otherwise we will default to responding in English and using the translation option from GitHub.
+
 ## Code of Conduct
 
 By participating in this project, you are expected to uphold our Code of Conduct. Please read [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md) before proceeding.
