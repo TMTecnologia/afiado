@@ -369,7 +369,43 @@ Summary of the technology choices:
   - Good TypeScript support
 
 ### Linting: Biome
+
+**Context:**
+- Need for a modern linting tool with a strong focus on user experience
+- Good documentation
+- Good community support
+
+**Considered Alternatives:**
+1. [Biome](https://biomejs.dev/)
+2. [ESLint](https://eslint.org/)
+
+**Consequences: Biome**
+- Positive:
+  - Good documentation
+  - Good community support
+  - Good DX
+  - Good performance
+  - Good TypeScript support
+
 ### Formatting: Biome
+
+**Context:**
+- Need for a modern formatting tool with a strong focus on user experience
+- Good documentation
+- Good community support
+
+**Considered Alternatives:**
+1. [Biome](https://biomejs.dev/)
+2. [Prettier](https://prettier.io/)
+
+**Consequences: Biome**
+- Positive:
+  - Good documentation
+  - Good community support
+  - Good DX
+  - Good performance
+  - Good TypeScript support
+
 ### Unit Testing: Vitest   
 ### E2E Testing: Playwright
 ### Deployment: Cloudflare Pages
