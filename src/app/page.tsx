@@ -13,6 +13,7 @@ import {
 } from "~/components/ui/accordion";
 import { Card } from "~/components/ui/card";
 import WaitlistForm from "./WaitlistForm";
+import Image from 'next/image'
 
 export default function HomePage() {
   return (
@@ -148,21 +149,45 @@ export default function HomePage() {
       </section>
 
       {/* Footer section */}
-      <footer className="bg-gray-100 py-8">
-        <div className="container mx-auto text-center">
-          <p className="mb-4 text-gray-600">
-            {"Dúvidas? Sugestões? Envie um e-mail para "}
+      <footer className="bg-gray-100 py-8 border-t mt-12">
+        <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-4 px-4">
+          <div className="text-gray-600 text-sm">
+            {"Criado por "}
             <a
-              href="mailto:contato@tmtecnologia.dev.br"
-              className="text-purple-700 underline"
+              href="https://www.tmtecnologia.dev.br/"
+              className="font-semibold text-purple-700 hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              {"contato@tmtecnologia.dev.br"}
+              {"TMTecnologia"}
             </a>
-          </p>
-          <div className="flex justify-center space-x-4">
-            <a href="https://x.com/afiado_app" target="_blank" rel="noreferrer">
-              <XIcon className="h-5 w-5 text-purple-700" />
+          </div>
+          <div className="flex items-center gap-6">
+            <a href="#" className="text-gray-600 hover:text-purple-700 text-sm">Termos de Serviço</a>
+            <a href="#" className="text-gray-600 hover:text-purple-700 text-sm">Política de Privacidade</a>
+            <a
+              href="https://x.com/afiado_app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-purple-700 hover:text-purple-900"
+              aria-label="X (Twitter)"
+            >
+              {/* X/Twitter SVG */}
+              <Image src="/twitter-x-logo.svg" className="invert" alt="X (Twitter)" width={22} height={22} />
             </a>
+            <a
+              href="https://github.com/tmtecnologia/afiado"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-purple-700 hover:text-purple-900"
+              aria-label="GitHub"
+            >
+              {/* GitHub SVG */}
+              <Image src="/github-octocat-logo.svg" className="invert" alt="GitHub" width={26} height={26} />
+            </a>
+          </div>
+          <div className="text-gray-500 text-xs text-center md:text-right">
+            © {new Date().getFullYear()} TMTecnologia. Todos os direitos reservados.
           </div>
         </div>
       </footer>
