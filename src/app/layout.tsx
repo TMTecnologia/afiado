@@ -1,9 +1,10 @@
 import "~/styles/globals.css";
 
-import { type Metadata } from "next";
+import type { Metadata } from "next";
 
 import { ClerkProvider } from '@clerk/nextjs'
 import { Geist, Geist_Mono } from 'next/font/google'
+import { ptBR } from "@clerk/localizations";
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -34,7 +35,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <ClerkProvider>
+    <ClerkProvider localization={ptBR}>
       <html lang="pt-BR">
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
           <header className="flex justify-between items-center p-4 gap-4 h-16">

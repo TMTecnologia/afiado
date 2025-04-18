@@ -4,6 +4,7 @@
     "": {
       "name": "afiado",
       "dependencies": {
+        "@clerk/localizations": "^3.13.12",
         "@clerk/nextjs": "^6.16.0",
         "@t3-oss/env-nextjs": "^0.12.0",
         "next": "^15.2.3",
@@ -47,6 +48,8 @@
     "@clerk/backend": ["@clerk/backend@1.29.1", "", { "dependencies": { "@clerk/shared": "^3.7.2", "@clerk/types": "^4.54.2", "cookie": "1.0.2", "snakecase-keys": "8.0.1", "tslib": "2.8.1" }, "peerDependencies": { "svix": "^1.62.0" }, "optionalPeers": ["svix"] }, "sha512-QMIKTGLJi+hUeEfV1E7Kqe+RSey72BcuMij25HCoBLt1PZVlcvKb9Cf9QM/zfZEFWaTGZk7xSoV42DRut81CyQ=="],
 
     "@clerk/clerk-react": ["@clerk/clerk-react@5.28.2", "", { "dependencies": { "@clerk/shared": "^3.7.2", "@clerk/types": "^4.54.2", "tslib": "2.8.1" }, "peerDependencies": { "react": "^18.0.0 || ^19.0.0 || ^19.0.0-0", "react-dom": "^18.0.0 || ^19.0.0 || ^19.0.0-0" } }, "sha512-snoA4Q7bkfjzAuZeGm/5cQNX9vAqI5EXiaN3HE18pHSvmhLTmtgvKgeJt+lT+yWQisOWswwp8XlHOToEeIS6dA=="],
+
+    "@clerk/localizations": ["@clerk/localizations@3.13.12", "", { "dependencies": { "@clerk/types": "^4.54.2" } }, "sha512-/hHDgJAnjmcm1dTK0pUubR2UYDscUWtKViGpOZ+TnZTTR0uduy5/vp6eki3asydpuTu/BbAo0JujGlgp3xbdhw=="],
 
     "@clerk/nextjs": ["@clerk/nextjs@6.16.0", "", { "dependencies": { "@clerk/backend": "^1.29.1", "@clerk/clerk-react": "^5.28.2", "@clerk/shared": "^3.7.2", "@clerk/types": "^4.54.2", "server-only": "0.0.1", "tslib": "2.8.1" }, "peerDependencies": { "next": "^13.5.7 || ^14.2.25 || ^15.2.3", "react": "^18.0.0 || ^19.0.0 || ^19.0.0-0", "react-dom": "^18.0.0 || ^19.0.0 || ^19.0.0-0" } }, "sha512-R/3e5Cipp7LFf89oA7eRc5j9byZDjy8ege8Hrba3vKkeq3QADBiZ0oKLh9gp1joSk5TTmE844kOnpuEbVK+VRA=="],
 
