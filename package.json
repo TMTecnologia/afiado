@@ -16,6 +16,7 @@
   "dependencies": {
     "@clerk/localizations": "^3.13.12",
     "@clerk/nextjs": "^6.16.0",
+    "@radix-ui/react-accordion": "^1.2.4",
     "@t3-oss/env-nextjs": "^0.12.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
