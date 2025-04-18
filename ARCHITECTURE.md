@@ -50,7 +50,7 @@ All checked components are already implemented/configured
 - [ ] [PIX Payments: AbacatePay](https://abacatepay.com.br/) 💸
 - [ ] [Card Payments: Lemon Squeezy by Stripe](https://lemonsqueezy.com/) 💸
 - [x] [Styling: TailwindCSS](https://tailwindcss.com/) 🎨
-- [ ] [Component Library: Shadcn/ui](https://shadcn.github.io/ui/) 📂
+- [x] [Component Library: Shadcn/ui](https://shadcn.github.io/ui/) 📂
 - [ ] [Product Analytics: PostHog](https://posthog.com/) 📊
 - [ ] [Web Analytics: PostHog](https://posthog.com/) 📊
 - [ ] [SEO Tracking: aHrefs](https://ahrefs.com/) 🔍
