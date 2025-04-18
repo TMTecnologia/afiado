@@ -50,8 +50,9 @@ By participating in this project, you are expected to uphold our Code of Conduct
 
 1. Clone the repository
 2. Install dependencies: `bun install`
-3. Start development server: `bun run dev`
-4. Run tests: `bun run test`
+3. Set up environment variables: `cp .env.example .env`
+4. Start development server: `bun run dev`
+5. Run tests: `bun run test`
 
 ## Testing Guidelines
 

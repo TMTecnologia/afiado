@@ -45,7 +45,7 @@ This document outlines the key architectural decisions, engineering principles, 
 All checked components are already implemented/configured
 
 - [x] [Frontend Framework: Next.js](https://nextjs.org/) 🤖
-- [ ] [Auth Provider: Clerk](https://clerk.dev/) 📝
+- [x] [Auth Provider: Clerk](https://clerk.dev/) 📝
 - [ ] [Backend: Convex](https://convex.dev/) 💻
 - [ ] [PIX Payments: AbacatePay](https://abacatepay.com.br/) 💸
 - [ ] [Card Payments: Lemon Squeezy by Stripe](https://lemonsqueezy.com/) 💸
