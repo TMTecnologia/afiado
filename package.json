@@ -19,6 +19,7 @@
     "check:unsafe": "biome check --write --unsafe .",
     "check:write": "biome check --write .",
     "dev": "next dev --turbo",
+    "postinstall": "fumadocs-mdx",
     "preview": "next build && next start",
     "start": "next start",
     "typecheck": "tsc --noEmit"
@@ -30,6 +31,9 @@
     "@t3-oss/env-nextjs": "^0.12.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "fumadocs-ui": "15.2.8",
+    "fumadocs-core": "15.2.8",
+    "fumadocs-mdx": "11.6.0",
     "lucide-react": "^0.494.0",
     "next": "^15.2.3",
     "react": "^19.0.0",
@@ -41,6 +45,7 @@
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@tailwindcss/postcss": "^4.0.15",
+    "@types/mdx": "^2.0.13",
     "@types/node": "^20.14.10",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
