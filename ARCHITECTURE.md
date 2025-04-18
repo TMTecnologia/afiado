@@ -42,31 +42,33 @@ This document outlines the key architectural decisions, engineering principles, 
 
 ### System Components
 
-- [Frontend Framework: Next.js](https://nextjs.org/) 🤖
-- [Auth Provider: Clerk](https://clerk.dev/) 📝
-- [Backend: Convex](https://convex.dev/) 💻
-- [PIX Payments: AbacatePay](https://abacatepay.com.br/) 💸
-- [Card Payments: Lemon Squeezy by Stripe](https://lemonsqueezy.com/) 💸
-- [Styling: TailwindCSS](https://tailwindcss.com/) 🎨
-- [Component Library: Shadcn/ui](https://shadcn.github.io/ui/) 📂
-- [Product Analytics: PostHog](https://posthog.com/) 📊
-- [Web Analytics: PostHog](https://posthog.com/) 📊
-- [SEO Tracking: aHrefs](https://ahrefs.com/) 🔍
-- [SEO Tracking: MakeMeFindable](https://makemefindable.com/) 🔍
-- [DNS: Cloudflare](https://www.cloudflare.com/) ☁️
-- [Transactional E-mails: Resend](https://resend.com/) 📧
-- [Package Manager: Bun](https://bun.sh/) 📦
-- [Linting: Biome](https://github.com/biome-dev/biome) 💪
-- [Formatting: Biome](https://github.com/biome-dev/biome) 💪
-- [Unit Testing: Vitest](https://vitest.dev/) 🧪
-- [E2E Testing: Playwright](https://playwright.dev/) 🤖
-- [Deployment: Cloudflare Pages](https://pages.cloudflare.com/) 🌐
-- [Documentation: Fumadocs](https://fumadocs.com/) 📚
-- [Sync Engine: LegendState](https://legendstate.com/) ⚙️
-- [Error Handling: Neverthrow](https://neverthrow.dev/) 🚨
-- [Forms: Tanstack Form](https://tanstack.com/form) 📝
-- [Validation: Zod](https://zod.dev/) 🔒
-- [Error Tracking: Glitchtip](https://glitchtip.com/) 🐛🐞
+All checked components are already implemented/configured
+
+- [x] [Frontend Framework: Next.js](https://nextjs.org/) 🤖
+- [ ] [Auth Provider: Clerk](https://clerk.dev/) 📝
+- [ ] [Backend: Convex](https://convex.dev/) 💻
+- [ ] [PIX Payments: AbacatePay](https://abacatepay.com.br/) 💸
+- [ ] [Card Payments: Lemon Squeezy by Stripe](https://lemonsqueezy.com/) 💸
+- [x] [Styling: TailwindCSS](https://tailwindcss.com/) 🎨
+- [ ] [Component Library: Shadcn/ui](https://shadcn.github.io/ui/) 📂
+- [ ] [Product Analytics: PostHog](https://posthog.com/) 📊
+- [ ] [Web Analytics: PostHog](https://posthog.com/) 📊
+- [ ] [SEO Tracking: aHrefs](https://ahrefs.com/) 🔍
+- [ ] [SEO Tracking: MakeMeFindable](https://makemefindable.com/) 🔍
+- [ ] [DNS: Cloudflare](https://www.cloudflare.com/) ☁️
+- [ ] [Transactional E-mails: Resend](https://resend.com/) 📧
+- [x] [Package Manager: Bun](https://bun.sh/) 📦
+- [x] [Linting: Biome](https://github.com/biome-dev/biome) 💪
+- [x] [Formatting: Biome](https://github.com/biome-dev/biome) 💪
+- [ ] [Unit Testing: Vitest](https://vitest.dev/) 🧪
+- [ ] [E2E Testing: Playwright](https://playwright.dev/) 🤖
+- [ ] [Deployment: Cloudflare Pages](https://pages.cloudflare.com/) 🌐
+- [ ] [Documentation: Fumadocs](https://fumadocs.com/) 📚
+- [ ] [Sync Engine: LegendState](https://legendstate.com/) ⚙️
+- [ ] [Error Handling: Neverthrow](https://neverthrow.dev/) 🚨
+- [ ] [Forms: Tanstack Form](https://tanstack.com/form) 📝
+- [x] [Validation: Zod](https://zod.dev/) 🔒
+- [ ] [Error Tracking: Glitchtip](https://glitchtip.com/) 🐛🐞
 
 ## Technology Choices
 
