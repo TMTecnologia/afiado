@@ -346,6 +346,28 @@ Summary of the technology choices:
   - Some lock-in to Resend's ecosystem
 
 ### Package Manager: ⁠Bun
+
+**Context:**
+- Need for a modern package manager with a strong focus on user experience
+- Good documentation
+- Good community support
+- Good performance
+- Good TypeScript support
+
+**Considered Alternatives:**
+1. [Bun](https://bun.sh/)
+2. [Yarn](https://yarnpkg.com/)
+3. [npm](https://www.npmjs.com/)
+4. [pnpm](https://pnpm.io/)
+
+**Consequences: Bun**
+- Positive:
+  - Good documentation
+  - Good community support
+  - Good DX
+  - Good performance
+  - Good TypeScript support
+
 ### Linting: Biome
 ### Formatting: Biome
 ### Unit Testing: Vitest   
