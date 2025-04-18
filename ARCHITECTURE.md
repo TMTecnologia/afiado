@@ -69,7 +69,7 @@ Summary of the technology choices:
 - [Web Analytics: PostHog](#web-analytics-posthog)
 - [SEO Tracking: aHrefs + MakeMeFindable](#seo-tracking-ahrefs-makemefindable)
 - [DNS: Cloudflare](#dns-cloudflare)
-- [Transactional E-mails: Resend](#e-mail-resend)
+- [Transactional E-mails: Resend](#transactional-e-mails-resend)
 - [Package Manager: Bun](#package-manager-bun)
 - [Linting: Biome](#linting-biome)
 - [Formatting: Biome](#formatting-biome)
