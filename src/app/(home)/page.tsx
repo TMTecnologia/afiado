@@ -5,6 +5,7 @@ import {
   ShieldCheck,
   X as XIcon,
 } from "lucide-react";
+import Image from "next/image";
 import {
   Accordion,
   AccordionContent,
@@ -13,7 +14,6 @@ import {
 } from "~/components/ui/accordion";
 import { Card } from "~/components/ui/card";
 import WaitlistForm from "./WaitlistForm";
-import Image from 'next/image'
 
 export default function HomePage() {
   return (
@@ -102,7 +102,7 @@ export default function HomePage() {
       </section>
 
       {/* FAQ section */}
-      <section id="faq" className="container max-w-3xl mx-auto px-4 py-16">
+      <section id="faq" className="container mx-auto max-w-3xl px-4 py-16">
         <h2 className="mb-8 text-center font-bold text-3xl text-purple-900">
           {"Perguntas frequentes"}
         </h2>
@@ -149,8 +149,8 @@ export default function HomePage() {
       </section>
 
       {/* Footer section */}
-      <footer className="bg-gray-100 py-8 border-t mt-12">
-        <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-4 px-4">
+      <footer className="mt-12 border-t bg-gray-100 py-8">
+        <div className="container mx-auto flex flex-col items-center justify-between gap-4 px-4 md:flex-row">
           <div className="text-gray-600 text-sm">
             {"Criado por "}
             <a
@@ -163,8 +163,12 @@ export default function HomePage() {
             </a>
           </div>
           <div className="flex items-center gap-6">
-            <a href="#" className="text-gray-600 hover:text-purple-700 text-sm">Termos de Serviço</a>
-            <a href="#" className="text-gray-600 hover:text-purple-700 text-sm">Política de Privacidade</a>
+            <a href="#" className="text-gray-600 text-sm hover:text-purple-700">
+              Termos de Serviço
+            </a>
+            <a href="#" className="text-gray-600 text-sm hover:text-purple-700">
+              Política de Privacidade
+            </a>
             <a
               href="https://x.com/afiado_app"
               target="_blank"
@@ -173,7 +177,13 @@ export default function HomePage() {
               aria-label="X (Twitter)"
             >
               {/* X/Twitter SVG */}
-              <Image src="/twitter-x-logo.svg" className="invert" alt="X (Twitter)" width={22} height={22} />
+              <Image
+                src="/twitter-x-logo.svg"
+                className="invert"
+                alt="X (Twitter)"
+                width={22}
+                height={22}
+              />
             </a>
             <a
               href="https://github.com/tmtecnologia/afiado"
@@ -183,11 +193,18 @@ export default function HomePage() {
               aria-label="GitHub"
             >
               {/* GitHub SVG */}
-              <Image src="/github-octocat-logo.svg" className="invert" alt="GitHub" width={26} height={26} />
+              <Image
+                src="/github-octocat-logo.svg"
+                className="invert"
+                alt="GitHub"
+                width={26}
+                height={26}
+              />
             </a>
           </div>
-          <div className="text-gray-500 text-xs text-center md:text-right">
-            © {new Date().getFullYear()} TMTecnologia. Todos os direitos reservados.
+          <div className="text-center text-gray-500 text-xs md:text-right">
+            © {new Date().getFullYear()} TMTecnologia. Todos os direitos
+            reservados.
           </div>
         </div>
       </footer>
