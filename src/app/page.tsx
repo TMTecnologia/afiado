@@ -14,7 +14,7 @@ export default function HomePage() {
       </section>
 
       <section id="beneficios" className="w-full max-w-4xl mx-auto py-16 px-4">
-        <h2 className="text-2xl sm:text-3xl font-bold text-purple-900 mb-8 text-center">Por que escolher o Afiado?</h2>
+        <h2 className="text-2xl sm:text-3xl font-bold text-purple-900 mb-8 text-center">{"Por que escolher o Afiado?"}</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="bg-white rounded-xl p-6 shadow-md">
             <h3 className="font-bold text-lg mb-2">{"Automação total"}</h3>
@@ -40,7 +40,7 @@ export default function HomePage() {
         <div className="space-y-6">
           <div>
             <h3 className="font-semibold">{"Quando o Afiado será lançado?"}</h3>
-            <p className="text-gray-700">{"Estamos em fase final de desenvolvimento. Inscreva-se na waitlist para ser avisado em primeira mão!"}</p>
+            <p className="text-gray-700">{"Estamos em fase inicial de desenvolvimento. Inscreva-se na waitlist para ser avisado em primeira mão, das novidades do desenvolvimento!"}</p>
           </div>
           <div>
             <h3 className="font-semibold">{"O Afiado é para mim?"}</h3>
