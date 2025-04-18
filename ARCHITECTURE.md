@@ -406,13 +406,72 @@ Summary of the technology choices:
   - Good performance
   - Good TypeScript support
 
-### Unit Testing: Vitest   
+### Unit Testing: Vitest
+
+**Context:**
+- Need for a modern unit testing framework with a strong focus on development experience
+- Good documentation
+- Good community support
+
+**Considered Alternatives:**
+1. [Vitest](https://vitest.dev/)
+2. [Jest](https://jestjs.io/)
+3. [Mocha](https://mochajs.org/)
+4. [Jasmine](https://jasmine.github.io/)
+
+**Consequences: Vitest**
+- Positive:
+  - Good documentation
+  - Good community support
+  - Good DX
+  - Good performance
+  - Good TypeScript support
+
 ### E2E Testing: Playwright
+
+**Context:**
+- Need for a modern end-to-end testing framework with a strong focus on development experience
+- Good documentation
+- Good community support
+
+**Considered Alternatives:**
+1. [Playwright](https://playwright.dev/)
+2. [Cypress](https://www.cypress.io/)
+3. [Puppeteer](https://pptr.dev/)
+4. [Selenium](https://www.selenium.dev/)
+
+**Consequences: Playwright**
+- Positive:
+  - Good documentation
+  - Good community support
+  - Good DX
+  - Good performance
+  - Good TypeScript support
+
 ### Deployment: Cloudflare Pages
 
-Teams are free, builds are limited to 500 builds per month.
+**Context:**
+- Need for a modern deployment platform with a strong focus on development experience
+- Team support is a must, free if possible
+- Good documentation
+- Good community support
 
-https://pages.cloudflare.com/
+**Considered Alternatives:**
+1. [Cloudflare Pages](https://pages.cloudflare.com/)
+2. [Vercel](https://vercel.com/)
+3. [Netlify](https://www.netlify.com/)
+4. [Render](https://render.com/)
+
+**Consequences: Cloudflare Pages**
+- Positive:
+  - Good documentation
+  - Good community support
+  - Good DX
+  - Good performance
+  - Good TypeScript support
+  - Teams included in free plan
+- Negatives:
+  - Builds are limited to 500 builds per month
 
 ### Documentation: Fumadocs
 
