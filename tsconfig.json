@@ -28,6 +28,8 @@
     /* Path Aliases */
     "baseUrl": ".",
     "paths": {
+      // This is important to handle docs.toFumadocsSource() in src/lib/source
+      "~/.source": ["./.source/index.ts"],
       "~/*": ["./src/*"]
     }
   },

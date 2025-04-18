@@ -2,6 +2,7 @@ import "~/styles/globals.css";
 
 import type { Metadata } from "next";
 
+import { RootProvider } from 'fumadocs-ui/provider';
 import { ptBR } from "@clerk/localizations";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Geist, Geist_Mono } from "next/font/google";
@@ -38,30 +39,32 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider localization={ptBR}>
-      <html lang="pt-BR">
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
-          <header className="flex h-16 items-center justify-between gap-4 p-4">
-            <div className="font-bold text-lg text-purple-800">{"Afiado"}</div>
-            <nav className="flex gap-4">
-              <a href="#beneficios" className="hover:underline">
-                {"Benefícios"}
-              </a>
-              <a href="#faq" className="hover:underline">
-                {"FAQ"}
-              </a>
-              <a href="#sobre" className="hover:underline">
-                {"Sobre"}
-              </a>
-              <a href="#contato" className="hover:underline">
-                {"Contato"}
-              </a>
-            </nav>
-          </header>
-          {children}
-        </body>
-      </html>
+      <RootProvider>
+        <html lang="pt-BR">
+          <body
+            className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          >
+            <header className="flex h-16 items-center justify-between gap-4 p-4">
+              <div className="font-bold text-lg text-purple-800">{"Afiado"}</div>
+              <nav className="flex gap-4">
+                <a href="#beneficios" className="hover:underline">
+                  {"Benefícios"}
+                </a>
+                <a href="#faq" className="hover:underline">
+                  {"FAQ"}
+                </a>
+                <a href="#sobre" className="hover:underline">
+                  {"Sobre"}
+                </a>
+                <a href="#contato" className="hover:underline">
+                  {"Contato"}
+                </a>
+              </nav>
+            </header>
+            {children}
+          </body>
+        </html>
+      </RootProvider>
     </ClerkProvider>
   );
 }
