@@ -69,8 +69,8 @@ Summary of the technology choices:
 - [Web Analytics: PostHog](#web-analytics-posthog)
 - [SEO Tracking: aHrefs + MakeMeFindable](#seo-tracking-ahrefs-makemefindable)
 - [DNS: Cloudflare](#dns-cloudflare)
-- [E-mail: ⁠Resend](#e-mail-resend)
-- [Package Manager: ⁠Bun](#package-manager-bun)
+- [E-mail: Resend](#e-mail-resend)
+- [Package Manager: Bun](#package-manager-bun)
 - [Linting: Biome](#linting-biome)
 - [Formatting: Biome](#formatting-biome)
 - [Unit Testing: Vitest](#unit-testing-vitest)
@@ -276,8 +276,28 @@ Summary of the technology choices:
   - Some lock-in to PostHog's ecosystem
 
 ### SEO Tracking: aHrefs + MakeMeFindable
-[1] https://www.makemefindable.com/
-[2] https://ahrefs.com/webmaster-tools
+
+**Context:**
+- Need for a modern SEO tracking provider with a strong focus on user experience
+- Looking for a provider that is easy to integrate with
+- Gives a variety of insights, including backlinks, keywords, and traffic
+- Good documentation
+- Good community support
+
+**Considered Alternatives:**
+1. [aHrefs](https://ahrefs.com/webmaster-tools)
+2. [Google Search Console](https://search.google.com/search-console)
+2. [MakeMeFindable](https://makemefindable.com/)
+
+**Consequences: aHrefs + MakeMeFindable**
+- Positive:
+  - Good documentation
+  - Good community support
+  - Good DX
+  - Good support for heatmaps
+  - Free software, that provide a lot of insights and metric
+- Negative:
+  - Some lock-in to aHrefs's ecosystem
 
 ### DNS: Cloudflare
 ### E-mail: ⁠Resend
