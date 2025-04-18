@@ -79,6 +79,7 @@ Summary of the technology choices:
 - [Documentation: Fumadocs](#documentation-fumadocs)
 - [Sync Engine: LegendState](#sync-engine-legendstate)
 - [Error Handling: Neverthrow](#error-handling-neverthrow)
+- [Forms: Tanstack Form](#forms-tanstack-form)
 
 ### Frontend Framework: Next.js
 
@@ -542,6 +543,30 @@ Summary of the technology choices:
   - Need to override some types
 - Mitigation Strategies:
   - [Effect](https://effect.website/) is a good alternative if neverthrow proves to be insufficient, but it would elevate the requirement to understand and collaborate in the code
+
+### Forms: Tanstack Form
+
+**Context:**
+- Need for a modern form library with a strong focus on user experience
+- Typescript support
+- Controlled input focused
+- Supports validation libraries
+- Good documentation
+- Good community support
+
+**Considered Alternatives:**
+1. [Tanstack Form](https://tanstack.com/form)
+2. [React Hook Form](https://react-hook-form.com/)
+3. [Formik](https://formik.org/)
+4. [Yup](https://github.com/jquense/yup)
+
+**Consequences: Tanstack Form**
+- Positive:
+  - Good documentation
+  - Good community support
+  - Good DX
+  - TypeScript as first class citizen
+  - Focus on Controlled inputs
 
 ## Contributing Guidelines
 
