@@ -1,37 +1,72 @@
-import Link from "next/link";
+import WaitlistForm from "./WaitlistForm";
 
 export default function HomePage() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-      <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
-        <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
-          Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
+    <main className="flex flex-col items-center w-full min-h-screen bg-gradient-to-b from-[#f8fafc] to-[#ede9fe] text-gray-900">
+      <section className="w-full flex flex-col items-center justify-center py-20 px-4 bg-gradient-to-b from-purple-50 to-purple-100">
+        <h1 className="text-4xl sm:text-6xl font-extrabold text-center text-purple-900 mb-6">
+          {"Controle financeiro afiado para negócios inteligentes"}
         </h1>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
-          <Link
-            className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-            href="https://create.t3.gg/en/usage/first-steps"
-            target="_blank"
-          >
-            <h3 className="text-2xl font-bold">First Steps →</h3>
-            <div className="text-lg">
-              Just the basics - Everything you need to know to set up your
-              database and authentication.
-            </div>
-          </Link>
-          <Link
-            className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-            href="https://create.t3.gg/en/introduction"
-            target="_blank"
-          >
-            <h3 className="text-2xl font-bold">Documentation →</h3>
-            <div className="text-lg">
-              Learn more about Create T3 App, the libraries it uses, and how to
-              deploy it.
-            </div>
-          </Link>
+        <p className="text-lg sm:text-2xl text-center max-w-2xl mb-8 text-purple-800">
+          {"Automatize o controle financeiro da sua empresa, elimine planilhas e tenha decisões mais inteligentes. Entre para a lista de espera do "}<span className="font-bold">{"Afiado"}</span>{"!"}
+        </p>
+        <WaitlistForm />
+      </section>
+
+      <section id="beneficios" className="w-full max-w-4xl mx-auto py-16 px-4">
+        <h2 className="text-2xl sm:text-3xl font-bold text-purple-900 mb-8 text-center">Por que escolher o Afiado?</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="bg-white rounded-xl p-6 shadow-md">
+            <h3 className="font-bold text-lg mb-2">{"Automação total"}</h3>
+            <p className="text-gray-700">{"Diga adeus à digitação manual e às planilhas caóticas. O Afiado organiza tudo para você automaticamente."}</p>
+          </div>
+          <div className="bg-white rounded-xl p-6 shadow-md">
+            <h3 className="font-bold text-lg mb-2">{"Acesso de qualquer lugar"}</h3>
+            <p className="text-gray-700">{"Veja o panorama financeiro do seu negócio em qualquer dispositivo, a qualquer hora."}</p>
+          </div>
+          <div className="bg-white rounded-xl p-6 shadow-md">
+            <h3 className="font-bold text-lg mb-2">{"Relatórios inteligentes"}</h3>
+            <p className="text-gray-700">{"Visualize relatórios claros, prontos para decisões rápidas e estratégicas."}</p>
+          </div>
+          <div className="bg-white rounded-xl p-6 shadow-md">
+            <h3 className="font-bold text-lg mb-2">{"Segurança e privacidade"}</h3>
+            <p className="text-gray-700">{"Seus dados protegidos, com privacidade e transparência total."}</p>
+          </div>
         </div>
-      </div>
+      </section>
+
+      <section id="faq" className="w-full max-w-4xl mx-auto py-16 px-4">
+        <h2 className="text-2xl sm:text-3xl font-bold text-purple-900 mb-8 text-center">{"Perguntas frequentes"}</h2>
+        <div className="space-y-6">
+          <div>
+            <h3 className="font-semibold">{"Quando o Afiado será lançado?"}</h3>
+            <p className="text-gray-700">{"Estamos em fase final de desenvolvimento. Inscreva-se na waitlist para ser avisado em primeira mão!"}</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">{"O Afiado é para mim?"}</h3>
+            <p className="text-gray-700">{"Se você é empreendedor, freelancer, ou dono de pequeno negócio e quer mais tempo livre e menos burocracia, sim!"}</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">{"Quanto vai custar?"}</h3>
+            <p className="text-gray-700">{"Teremos planos acessíveis para todos os perfis."}</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="sobre" className="w-full max-w-4xl mx-auto py-16 px-4">
+        <h2 className="text-2xl sm:text-3xl font-bold text-purple-900 mb-8 text-center">{"Sobre o Afiado"}</h2>
+        <p className="text-lg text-gray-800 text-center max-w-2xl mx-auto">
+          {"O "}<span className="font-bold">{"Afiado"}</span>{" nasceu para eliminar a dor de cabeça do controle financeiro. Queremos que você foque no que importa: crescer e atender seus clientes, enquanto nós cuidamos das finanças."}
+        </p>
+      </section>
+
+      <section id="contato" className="w-full max-w-4xl mx-auto py-16 px-4 text-center">
+        <h2 className="text-2xl sm:text-3xl font-bold text-purple-900 mb-4">{"Fale conosco"}</h2>
+        <p className="text-gray-700 mb-2">{"Dúvidas? Sugestões? Envie um e-mail para "}<a href="mailto:contato@tmtecnologia.dev.br" className="underline text-purple-700">contato@tmtecnologia.dev.br</a></p>
+        <div className="flex justify-center gap-4 mt-4">
+          <a href="https://x.com/afiado_app" target="_blank" rel="noopener" className="text-purple-700 hover:underline">{"X"}</a>
+        </div>
+      </section>
     </main>
   );
 }
