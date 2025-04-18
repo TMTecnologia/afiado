@@ -3,8 +3,14 @@
  * for Docker builds.
  */
 import "./src/env.js";
+import { createMDX } from 'fumadocs-mdx/next';
 
-/** @type {import("next").NextConfig} */
-const config = {};
+const withMDX = createMDX();
 
-export default config;
+/** @type {import('next').NextConfig} */
+const config = {
+  reactStrictMode: true,
+};
+
+export default withMDX(config);
+
