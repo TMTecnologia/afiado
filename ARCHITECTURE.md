@@ -80,6 +80,7 @@ Summary of the technology choices:
 - [Sync Engine: LegendState](#sync-engine-legendstate)
 - [Error Handling: Neverthrow](#error-handling-neverthrow)
 - [Forms: Tanstack Form](#forms-tanstack-form)
+- [Validation: Zod](#validation-zod)
 
 ### Frontend Framework: Next.js
 
@@ -558,7 +559,6 @@ Summary of the technology choices:
 1. [Tanstack Form](https://tanstack.com/form)
 2. [React Hook Form](https://react-hook-form.com/)
 3. [Formik](https://formik.org/)
-4. [Yup](https://github.com/jquense/yup)
 
 **Consequences: Tanstack Form**
 - Positive:
@@ -567,6 +567,29 @@ Summary of the technology choices:
   - Good DX
   - TypeScript as first class citizen
   - Focus on Controlled inputs
+
+### Validation: Zod
+
+**Context:**
+- Need for a modern validation library with a strong focus on user experience
+- Small bundle size
+- Feature rich
+- Good documentation
+- Good community support
+- Good TypeScript support
+
+**Considered Alternatives:**
+1. [Zod](https://github.com/colinhacks/zod)
+2. [Joi](https://joi.dev/)
+3. [Yup](https://github.com/jquense/yup)
+
+**Consequences: Zod**
+- Positive:
+  - Good documentation
+  - Good community support
+  - Good DX
+  - Good TypeScript support
+  - Zod now has a new version that is more performant and smaller in the bundle size
 
 ## Contributing Guidelines
 
