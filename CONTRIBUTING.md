@@ -69,6 +69,9 @@ By participating in this project, you are expected to uphold our Code of Conduct
 - Follow the existing code style
 - Use meaningful variable and function names
 - Add comments for complex logic
+- Write comments in English and text rendered in the UI in Portuguese
+- Follow rule [react/jsx-no-literals](https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-no-literals.md)
+    - Not yet available in Biome, see @ https://github.com/biomejs/biome/discussions/3#discussioncomment-12013898
 - Keep functions focused and small
 
 ## Documentation
