@@ -69,13 +69,16 @@ Summary of the technology choices:
 - [Web Analytics: PostHog](#web-analytics-posthog)
 - [SEO Tracking: aHrefs + MakeMeFindable](#seo-tracking-ahrefs-makemefindable)
 - [DNS: Cloudflare](#dns-cloudflare)
-- [E-mail: Resend](#e-mail-resend)
+- [Transactional E-mails: Resend](#e-mail-resend)
 - [Package Manager: Bun](#package-manager-bun)
 - [Linting: Biome](#linting-biome)
 - [Formatting: Biome](#formatting-biome)
 - [Unit Testing: Vitest](#unit-testing-vitest)
 - [E2E Testing: Playwright](#e2e-testing-playwright)
 - [Deployment: Cloudflare Pages](#deployment-cloudflare)
+- [Documentation: Fumadocs](#documentation-fumadocs)
+- [Sync Engine: LegendState](#sync-engine-legendstate)
+- [Error Handling: Neverthrow](#error-handling-neverthrow)
 
 ### Frontend Framework: Next.js
 
@@ -300,7 +303,48 @@ Summary of the technology choices:
   - Some lock-in to aHrefs's ecosystem
 
 ### DNS: Cloudflare
-### E-mail: ⁠Resend
+
+**Context:**
+- Need for a modern DNS provider with a strong focus on user experience
+- Good documentation
+- Good community support
+
+**Considered Alternatives:**
+1. [Cloudflare](https://cloudflare.com/)
+2. [Google Domains](https://domains.google/)
+3. [Squarespace](https://domains.squarespace.com/)
+4. [AWS Route 53](https://aws.amazon.com/route53/)
+
+**Consequences: Cloudflare**
+- Positive:
+  - Good documentation
+  - Good community support
+  - Good DX
+  - Free plan
+  - DDOS protection
+
+### Transactional E-mails: ⁠Resend
+
+**Context:**
+- Need for a modern e-mail provider with a strong focus on user experience
+- Good documentation
+- Good community support
+
+**Considered Alternatives:**
+1. [Resend](https://resend.com/)
+2. [SendGrid](https://sendgrid.com/)
+3. [Mailgun](https://www.mailgun.com/)
+4. [Sendinblue](https://www.sendinblue.com/)
+
+**Consequences: Resend**
+- Positive:
+  - Good documentation
+  - Good community support
+  - Good DX
+  - Free plan
+- Negative:
+  - Some lock-in to Resend's ecosystem
+
 ### Package Manager: ⁠Bun
 ### Linting: Biome
 ### Formatting: Biome
@@ -311,6 +355,76 @@ Summary of the technology choices:
 Teams are free, builds are limited to 500 builds per month.
 
 https://pages.cloudflare.com/
+
+### Documentation: Fumadocs
+
+**Context:**
+- Need for a modern documentation framework with a strong focus on user experience
+- Good documentation
+- Good community support
+
+**Considered Alternatives:**
+1. [Fumadocs](https://fumadocs.vercel.app/)
+2. [Docusaurus](https://docusaurus.io/)
+3. [Nextra](https://nextra.site/)
+
+**Consequences: Fumadocs**
+- Positive:
+  - Good documentation
+  - Good community support
+  - Good DX
+  - Good TypeScript support
+- Negative:
+  - Some lock-in to Fumadocs's ecosystem
+
+### Sync Engine: LegendState
+
+**Context:**
+- Need for a modern sync engine with a strong focus on user experience
+- Need to integrate easily with the current Backend framework
+- Good documentation
+- Good community support
+
+**Considered Alternatives:**
+1. [LegendState](https://legendapp.com/open-source/state/v3/)
+2. [Replicache](https://replicache.dev/)
+3. [Zero](https://zero.rocicorp.dev/)
+
+**Consequences: LegendState**
+- Positive:
+  - Good documentation
+  - Good community support
+  - Good DX
+  - Good TypeScript support
+  - LegendState can be integrated with Convex, although there's no official plugin yet, see https://github.com/jmeistrich/convex-legendstate/blob/main/src/lib/convex.ts
+- Negative:
+  - Some lock-in to LegendState's ecosystem
+- Mitigation Strategies:
+  - [Zero](https://zero.rocicorp.dev/) is a good alternative if LegendState proves to be insufficient, but it would elevate the requirement to understand and collaborate in the code
+
+### Error Handling: Neverthrow
+
+**Context:**
+- Need for a modern error handling library with a strong focus on user experience
+- Good documentation
+- Good community support
+
+**Considered Alternatives:**
+1. [fp-ts](https://gcanti.github.io/fp-ts/)
+2. [Neverthrow](https://github.com/supermacro/neverthrow)
+3. [Effect](https://effect.website/)
+
+**Consequences: Neverthrow**
+- Positive:
+  - Good documentation
+  - Good community support
+  - Good DX
+  - Good TypeScript support
+- Negative:
+  - Some lock-in to Neverthrow's ecosystem
+  - Need to override some types
+- Mitigation Strategies:
+  - [Effect](https://effect.website/) is a good alternative if neverthrow proves to be insufficient, but it would elevate the requirement to understand and collaborate in the code
 
 ## Contributing Guidelines
 
