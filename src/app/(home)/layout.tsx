@@ -6,7 +6,6 @@ export default function Layout({ children }: { children: ReactNode }) {
   return (
     <HomeLayout
       {...baseOptions}
-      className="pt-0"
       links={[
         ...(baseOptions.links ?? []),
         {
