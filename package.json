@@ -14,7 +14,7 @@
   },
   "license": "GPL-3.0",
   "scripts": {
-    "build": "next build",
+    "build": "next build --turbo",
     "check": "biome check .",
     "check:unsafe": "biome check --write --unsafe .",
     "check:write": "biome check --write .",
