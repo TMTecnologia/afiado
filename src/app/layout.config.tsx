@@ -40,6 +40,6 @@ export const baseOptions: BaseLayoutProps = {
     },
   ],
   themeSwitch: {
-    mode: 'light-dark-system'
-  }
+    mode: "light-dark-system",
+  },
 };

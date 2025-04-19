@@ -2,8 +2,6 @@ import "~/styles/globals.css";
 
 import type { Metadata } from "next";
 
-import { ptBR } from "@clerk/localizations";
-import { ClerkProvider } from "@clerk/nextjs";
 import { RootProvider } from "fumadocs-ui/provider";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Inter } from "next/font/google";
@@ -43,14 +41,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider localization={ptBR}>
-      <html lang="pt-BR" suppressHydrationWarning>
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} ${inter.className} antialiased`}
-        >
-          <RootProvider>{children}</RootProvider>
-        </body>
-      </html>
-    </ClerkProvider>
+    <html lang="pt-BR" suppressHydrationWarning>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} ${inter.className} antialiased`}
+      >
+        <RootProvider>{children}</RootProvider>
+      </body>
+    </html>
   );
 }

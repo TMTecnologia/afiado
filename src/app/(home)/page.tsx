@@ -1,8 +1,7 @@
+import { Accordion, Accordions } from "fumadocs-ui/components/accordion";
 import { BarChart, CreditCard, Globe, ShieldCheck } from "lucide-react";
 import Image from "next/image";
-import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
 import { Card } from "~/components/ui/card";
-import WaitlistForm from "./WaitlistForm";
 
 export default function HomePage() {
   return (
@@ -18,9 +17,6 @@ export default function HomePage() {
               "Automatize o controle financeiro da sua empresa, elimine planilhas e tome decisões mais inteligentes."
             }
           </p>
-          <div className="mx-auto w-full max-w-md">
-            <WaitlistForm />
-          </div>
         </div>
       </section>
 
@@ -98,19 +94,19 @@ export default function HomePage() {
         <h2 className="mb-8 text-center font-bold text-3xl text-purple-900">
           {"Perguntas frequentes"}
         </h2>
-        <Accordions type="single" className="space-y-4">
+        <Accordions type="single">
           <Accordion title={"Quando o Afiado será lançado?"}>
-              {
-                "Estamos em fase inicial de desenvolvimento. Inscreva-se na lista de espera para ficar por dentro das novidades!"
-              }
+            {
+              "Estamos em fase inicial de desenvolvimento. Inscreva-se na lista de espera para ficar por dentro das novidades!"
+            }
           </Accordion>
           <Accordion title={"O Afiado é para mim?"}>
-              {
-                "Se você é empreendedor, freelancer ou pequeno empresário e quer mais tempo livre e menos burocracia, sim!"
-              }
+            {
+              "Se você é empreendedor, freelancer ou pequeno empresário e quer mais tempo livre e menos burocracia, sim!"
+            }
           </Accordion>
           <Accordion title={"Quanto vai custar?"}>
-              {"Teremos planos acessíveis para todos os perfis."}
+            {"Teremos planos acessíveis para todos os perfis."}
           </Accordion>
         </Accordions>
       </section>
@@ -144,10 +140,16 @@ export default function HomePage() {
             </a>
           </div>
           <div className="flex items-center gap-6">
-            <a href="/docs/termos-servico" className="text-gray-600 text-sm hover:text-purple-700">
+            <a
+              href="/docs/termos-servico"
+              className="text-gray-600 text-sm hover:text-purple-700"
+            >
               Termos de Serviço
             </a>
-            <a href="/docs/politica-privacidade" className="text-gray-600 text-sm hover:text-purple-700">
+            <a
+              href="/docs/politica-privacidade"
+              className="text-gray-600 text-sm hover:text-purple-700"
+            >
               Política de Privacidade
             </a>
           </div>
