@@ -1,7 +1,6 @@
 import { BarChart, CreditCard, Globe, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 import { Card } from '~/components/ui/card';  
-import WaitListForm from "./WaitListForm";
 
 export default function HomePage() {
   return (
@@ -12,9 +11,12 @@ export default function HomePage() {
         <p className="mb-8 max-w-xl text-lg font-light md:text-xl">
           {"Automatize o controle financeiro da sua empresa, elimine planilhas e tome decisões mais inteligentes."}
         </p>
-        <Link href="#lista-espera" className="rounded bg-black px-6 py-3 text-lg font-semibold text-white shadow hover:bg-gray-800 focus:outline-none focus:ring dark:bg-white dark:text-black dark:hover:bg-gray-200">
+        {/**
+         * TODO: Enable WaitListForm after adding integration to Backend, to store user email in DB
+         */}
+        {/* <Link href="#lista-espera" className="rounded bg-black px-6 py-3 text-lg font-semibold text-white shadow hover:bg-gray-800 focus:outline-none focus:ring dark:bg-white dark:text-black dark:hover:bg-gray-200">
           {"Entrar na lista de espera"}
-        </Link>
+        </Link> */}
       </section>
 
       {/* Benefits Section */}
@@ -87,7 +89,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      <WaitListForm />
+      {/**
+         * TODO: Enable WaitListForm after adding integration to Backend, to store user email in DB
+         */}
+      {/* <WaitListForm /> */}
 
       {/* About Section */}
       <section id="sobre" className="mx-auto max-w-2xl px-4 py-16">

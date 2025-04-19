@@ -16,10 +16,11 @@ export default function Layout({ children }: { children: ReactNode }) {
           text: "Perguntas Frequentes",
           url: "#perguntas-frequentes",
         },
-        {
-          text: "Acesso Antecipado",
-          url: "#lista-espera",
-        },
+        // TODO: Enable after adding integration to Backend
+        // {
+        //   text: "Acesso Antecipado",
+        //   url: "#lista-espera",
+        // },
         {
           text: "Sobre",
           url: "#sobre",
