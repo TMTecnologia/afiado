@@ -1,11 +1,6 @@
 import { BarChart, CreditCard, Globe, ShieldCheck } from "lucide-react";
 import Image from "next/image";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "~/components/ui/accordion";
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
 import { Card } from "~/components/ui/card";
 import WaitlistForm from "./WaitlistForm";
 
@@ -103,32 +98,21 @@ export default function HomePage() {
         <h2 className="mb-8 text-center font-bold text-3xl text-purple-900">
           {"Perguntas frequentes"}
         </h2>
-        <Accordion type="single" collapsible className="space-y-4">
-          <AccordionItem value="launch">
-            <AccordionTrigger>
-              {"Quando o Afiado será lançado?"}
-            </AccordionTrigger>
-            <AccordionContent>
+        <Accordions type="single" className="space-y-4">
+          <Accordion title={"Quando o Afiado será lançado?"}>
               {
                 "Estamos em fase inicial de desenvolvimento. Inscreva-se na lista de espera para ficar por dentro das novidades!"
               }
-            </AccordionContent>
-          </AccordionItem>
-          <AccordionItem value="who">
-            <AccordionTrigger>{"O Afiado é para mim?"}</AccordionTrigger>
-            <AccordionContent>
+          </Accordion>
+          <Accordion title={"O Afiado é para mim?"}>
               {
                 "Se você é empreendedor, freelancer ou pequeno empresário e quer mais tempo livre e menos burocracia, sim!"
               }
-            </AccordionContent>
-          </AccordionItem>
-          <AccordionItem value="price">
-            <AccordionTrigger>{"Quanto vai custar?"}</AccordionTrigger>
-            <AccordionContent>
+          </Accordion>
+          <Accordion title={"Quanto vai custar?"}>
               {"Teremos planos acessíveis para todos os perfis."}
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
+          </Accordion>
+        </Accordions>
       </section>
 
       {/* About section */}
