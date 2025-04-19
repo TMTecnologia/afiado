@@ -5,6 +5,11 @@
 /.pnp
 .pnp.js
 
+# generated content
+.contentlayer
+.content-collections
+.source
+
 # testing
 /coverage
 

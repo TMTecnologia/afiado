@@ -1,10 +1,4 @@
-import {
-  BarChart,
-  CreditCard,
-  Globe,
-  ShieldCheck,
-  X as XIcon,
-} from "lucide-react";
+import { BarChart, CreditCard, Globe, ShieldCheck } from "lucide-react";
 import Image from "next/image";
 import {
   Accordion,
@@ -102,7 +96,10 @@ export default function HomePage() {
       </section>
 
       {/* FAQ section */}
-      <section id="faq" className="container mx-auto max-w-3xl px-4 py-16">
+      <section
+        id="perguntas-frequentes"
+        className="container mx-auto max-w-3xl px-4 py-16"
+      >
         <h2 className="mb-8 text-center font-bold text-3xl text-purple-900">
           {"Perguntas frequentes"}
         </h2>
@@ -163,43 +160,11 @@ export default function HomePage() {
             </a>
           </div>
           <div className="flex items-center gap-6">
-            <a href="#" className="text-gray-600 text-sm hover:text-purple-700">
+            <a href="/docs/termos-servico" className="text-gray-600 text-sm hover:text-purple-700">
               Termos de Serviço
             </a>
-            <a href="#" className="text-gray-600 text-sm hover:text-purple-700">
+            <a href="/docs/politica-privacidade" className="text-gray-600 text-sm hover:text-purple-700">
               Política de Privacidade
-            </a>
-            <a
-              href="https://x.com/afiado_app"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-purple-700 hover:text-purple-900"
-              aria-label="X (Twitter)"
-            >
-              {/* X/Twitter SVG */}
-              <Image
-                src="/twitter-x-logo.svg"
-                className="invert"
-                alt="X (Twitter)"
-                width={22}
-                height={22}
-              />
-            </a>
-            <a
-              href="https://github.com/tmtecnologia/afiado"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-purple-700 hover:text-purple-900"
-              aria-label="GitHub"
-            >
-              {/* GitHub SVG */}
-              <Image
-                src="/github-octocat-logo.svg"
-                className="invert"
-                alt="GitHub"
-                width={26}
-                height={26}
-              />
             </a>
           </div>
           <div className="text-center text-gray-500 text-xs md:text-right">
