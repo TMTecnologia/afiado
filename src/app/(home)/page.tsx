@@ -98,13 +98,13 @@ export default function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer className="mt-12 border-t px-4 py-8 text-center text-xs opacity-80">
-        <div className="mb-2">Criado por <a href="https://www.tmtecnologia.dev.br/" className="underline hover:opacity-60" target="_blank" rel="noopener noreferrer">TMTecnologia</a></div>
+      <footer className="pt-12 border-t px-4 py-8 text-center text-xs opacity-80">
+        <div className="pb-2">{"Criado por "}<a href="https://www.tmtecnologia.dev.br/" className="underline hover:opacity-60" target="_blank" rel="noopener noreferrer">{"TMTecnologia"}</a></div>
         <div className="flex flex-col items-center gap-2 md:flex-row md:justify-center md:gap-6">
           <a href="/docs/termos-servico" className="hover:underline">{"Termos de Serviço"}</a>
           <a href="/docs/politica-privacidade" className="hover:underline">{"Política de Privacidade"}</a>
         </div>
-        <div className="mt-2">{"2025 TMTecnologia. Todos os direitos reservados."}</div>
+        <div className="pt-2">{"© "}{new Date().getFullYear()}{" TMTecnologia. Todos os direitos reservados."}</div>
       </footer>
     </main>
   );
