@@ -45,7 +45,7 @@ This document outlines the key architectural decisions, engineering principles, 
 All checked components are already implemented/configured
 
 - [x] [Frontend Framework: Next.js](https://nextjs.org/) 🤖
-- [x] [Auth Provider: Clerk](https://clerk.dev/) 📝
+- [ ] [Auth Provider: Convex Auth](https://convex.dev/auth) 📝
 - [ ] [Backend: Convex](https://convex.dev/) 💻
 - [ ] [PIX Payments: AbacatePay](https://abacatepay.com.br/) 💸
 - [ ] [Card Payments: Lemon Squeezy by Stripe](https://lemonsqueezy.com/) 💸
@@ -63,7 +63,7 @@ All checked components are already implemented/configured
 - [ ] [Unit Testing: Vitest](https://vitest.dev/) 🧪
 - [ ] [E2E Testing: Playwright](https://playwright.dev/) 🤖
 - [ ] [Deployment: Cloudflare Pages](https://pages.cloudflare.com/) 🌐
-- [ ] [Documentation: Fumadocs](https://fumadocs.com/) 📚
+- [x] [Documentation: Fumadocs](https://fumadocs.com/) 📚
 - [ ] [Sync Engine: LegendState](https://legendstate.com/) ⚙️
 - [ ] [Error Handling: Neverthrow](https://neverthrow.dev/) 🚨
 - [ ] [Forms: Tanstack Form](https://tanstack.com/form) 📝
@@ -81,8 +81,8 @@ For each technology choice, we will consider the following:
 Summary of the technology choices:
 
 - [Frontend Framework: Next.js](#frontend-framework-nextjs)
-- [Auth Provider: Clerk](#auth-provider-clerk)
 - [Backend: Convex](#backend-convex)
+- [Auth Provider: Convex Auth](#auth-provider-convex-auth)
 - [Payments: AbacatePay + Lemon Squeezy by Stripe](#payments-abacatepay--lemon-squeezy-by-stripe)
 - [Styling: TailwindCSS](#styling-tailwindcss)
 - [Component Library: Shadcn/ui](#component-library-shadcnui)
@@ -128,33 +128,6 @@ Summary of the technology choices:
   - Some lock-in to Vercel's ecosystem
   - Need to follow Next.js upgrade cycles
 
-### Auth Provider: Clerk
-
-**Context:**
-- Need for a modern auth provider with a strong focus on user experience
-- Looking for a provider that is easy to integrate with
-- Preferably hosted solution, but we can self-host if necessary
-- Require strong TypeScript support
-
-**Considered Alternatives:**
-1. [Clerk](https://clerk.com/)
-2. [BetterAuth](https://better-auth.com/)
-3. [WorkOS](https://workos.com/)
-
-**Consequences: Clerk**
-- Positive:
-  - Strong TypeScript support
-  - Excellent developer experience
-  - Active community
-  - Excellent documentation
-  - Excellent support for social login providers
-- Negative:
-  - Some lock-in to Clerk's ecosystem
-  - Hard to onboard Enterprise customers with multiple sign-in methods and users with different roles
-- Mitigation Strategies:
-  - [WorkOS](https://workos.com/) has a Admin Portal and a more flexible role-based access control (RBAC)
-  - [BetterAuth](https://better-auth.com/) enables us to self-host and have more control over the user experience and the data we store about our users
-
 ### Backend: Convex
 
 **Context:**
@@ -177,6 +150,34 @@ Summary of the technology choices:
 - Negative:
   - Some lock-in to Convex's ecosystem
   - When offline Convex enqueues requests to be sent when the user comes back online, but to be fully offline-first we need to add some third-party libraries
+
+### Auth Provider: Convex Auth
+
+**Context:**
+- Need for a modern auth provider with a strong focus on user experience
+- Looking for a provider that is easy to integrate with
+- Preferably hosted solution, but we can self-host if necessary
+- Require strong TypeScript support
+
+**Considered Alternatives:**
+1. [Convex Auth](https://convex.dev/auth)
+2. [Clerk](https://clerk.com/)
+3. [BetterAuth](https://better-auth.com/)
+4. [WorkOS](https://workos.com/)
+
+**Consequences: Convex Auth**
+- Positive:
+  - Strong TypeScript support
+  - Excellent developer experience
+  - Active community
+  - Excellent documentation
+  - Excellent support for social login providers
+- Negative:
+  - Some lock-in to Convex's ecosystem
+  - Hard to onboard Enterprise customers with multiple sign-in methods and users with different roles
+- Mitigation Strategies:
+  - [WorkOS](https://workos.com/) has a Admin Portal and a more flexible role-based access control (RBAC)
+  - [BetterAuth](https://better-auth.com/) enables us to self-host and have more control over the user experience and the data we store about our users
 
 ### Payments: AbacatePay + Lemon Squeezy by Stripe
 
