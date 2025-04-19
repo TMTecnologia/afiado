@@ -1,5 +1,5 @@
-import { source } from "@/lib/source";
-import { getMDXComponents } from "@/mdx-components";
+import { source } from "~/lib/source";
+import { getMDXComponents } from "~/mdx-components";
 import { createRelativeLink } from "fumadocs-ui/mdx";
 import {
   DocsBody,
