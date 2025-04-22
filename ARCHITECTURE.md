@@ -47,22 +47,21 @@ All checked components are already implemented/configured
 - [x] [Frontend Framework: Next.js](https://nextjs.org/) 🤖
 - [ ] [Auth Provider: Convex Auth](https://convex.dev/auth) 📝
 - [ ] [Backend: Convex](https://convex.dev/) 💻
-- [ ] [PIX Payments: AbacatePay](https://abacatepay.com.br/) 💸
-- [ ] [Card Payments: Lemon Squeezy by Stripe](https://lemonsqueezy.com/) 💸
+- [ ] [Payments: AbacatePay](https://abacatepay.com.br/) 💸
 - [x] [Styling: TailwindCSS](https://tailwindcss.com/) 🎨
 - [x] [Component Library: Shadcn/ui](https://shadcn.github.io/ui/) 📂
 - [x] [Product Analytics: PostHog](https://posthog.com/) 📊
 - [x] [Web Analytics: PostHog](https://posthog.com/) 📊
-- [ ] [SEO Tracking: aHrefs](https://ahrefs.com/) 🔍
-- [ ] [SEO Tracking: MakeMeFindable](https://makemefindable.com/) 🔍
-- [ ] [DNS: Cloudflare](https://www.cloudflare.com/) ☁️
+- [x] [SEO Tracking: aHrefs (Webmaster Tools)](https://ahrefs.com/webmaster-tools) 🔍
+- [x] [SEO Tracking: MakeMeFindable](https://makemefindable.com/) 🔍
+- [x] [DNS: Cloudflare](https://www.cloudflare.com/) ☁️
 - [ ] [Transactional E-mails: Resend](https://resend.com/) 📧
 - [x] [Package Manager: Bun](https://bun.sh/) 📦
 - [x] [Linting: Biome](https://github.com/biome-dev/biome) 💪
 - [x] [Formatting: Biome](https://github.com/biome-dev/biome) 💪
 - [ ] [Unit Testing: Vitest](https://vitest.dev/) 🧪
 - [ ] [E2E Testing: Playwright](https://playwright.dev/) 🤖
-- [ ] [Deployment: Cloudflare Pages](https://pages.cloudflare.com/) 🌐
+- [x] [Deployment: Cloudflare Pages](https://pages.cloudflare.com/) 🌐
 - [x] [Documentation: Fumadocs](https://fumadocs.com/) 📚
 - [ ] [Sync Engine: LegendState](https://legendstate.com/) ⚙️
 - [ ] [Error Handling: Neverthrow](https://neverthrow.dev/) 🚨
@@ -83,7 +82,7 @@ Summary of the technology choices:
 - [Frontend Framework: Next.js](#frontend-framework-nextjs)
 - [Backend: Convex](#backend-convex)
 - [Auth Provider: Convex Auth](#auth-provider-convex-auth)
-- [Payments: AbacatePay + Lemon Squeezy by Stripe](#payments-abacatepay--lemon-squeezy-by-stripe)
+- [Payments: AbacatePay](#payments-abacatepay)
 - [Styling: TailwindCSS](#styling-tailwindcss)
 - [Component Library: Shadcn/ui](#component-library-shadcnui)
 - [Product Analytics: PostHog](#product-analytics-posthog)
@@ -179,7 +178,7 @@ Summary of the technology choices:
   - [WorkOS](https://workos.com/) has a Admin Portal and a more flexible role-based access control (RBAC)
   - [BetterAuth](https://better-auth.com/) enables us to self-host and have more control over the user experience and the data we store about our users
 
-### Payments: AbacatePay + Lemon Squeezy by Stripe
+### Payments: AbacatePay
 
 **Context:**
 - Need for a modern payments provider with a strong focus on user experience
@@ -197,13 +196,12 @@ Summary of the technology choices:
 **Consequences: AbacatePay + Lemon Squeezy by Stripe**
 - Positive:
   - Good support for PIX, Brazilian instant payment method, using AbacatePay
-  - Good support for Card, using Lemon Squeezy by Stripe
   - Smallest fees in comparison to other providers
   - Easy to integrate with
   - Strong TypeScript support
 - Negative:
-  - Lock-in to AbacatePay and Lemon Squeezy's ecosystem and payout limitations
-  - Need to use Paypal Account to receive Lemon Squeezy payouts
+  - Lock-in to AbacatePay ecosystem and payout limitations
+  - Card support is planned for May/2025
 - Mitigation Strategies:
   - [Polar](https://polar.sh/) has smaller fees, but Brazilian accounts are not supported for payouts; see more @ https://github.com/orgs/polarsource/discussions/3494#discussioncomment-9816314
 
