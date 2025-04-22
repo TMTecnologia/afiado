@@ -27,9 +27,9 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@cloudflare/next-on-pages": "^1.13.12",
+    "@cloudflare/next-on-pages": "1.13.12",
     "@radix-ui/react-accordion": "1.2.6",
-    "@sentry/nextjs": "^9.13.0",
+    "@sentry/nextjs": "9.13.0",
     "@t3-oss/env-nextjs": "0.12.0",
     "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",
@@ -38,8 +38,8 @@
     "fumadocs-ui": "15.2.8",
     "lucide-react": "0.501.0",
     "next": "15.3.1",
-    "posthog-js": "^1.236.4",
-    "posthog-node": "^4.13.0",
+    "posthog-js": "1.236.5",
+    "posthog-node": "4.13.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "tailwind-merge": "3.2.0",
