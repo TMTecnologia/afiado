@@ -3,5 +3,17 @@
   "name": "afiado",
   "compatibility_date": "2024-09-23",
   "compatibility_flags": ["nodejs_compat"],
-  "pages_build_output_dir": ".vercel/output/static"
+  "pages_build_output_dir": ".vercel/output/static",
+  "vars": {
+    "NEXT_PUBLIC_POSTHOG_DEBUG": "false",
+    "NEXT_PUBLIC_POSTHOG_HOST": "https://us.i.posthog.com",
+    "NEXT_PUBLIC_POSTHOG_STATIC_ASSETS_HOST": "https://us-assets.i.posthog.com/static"
+  },
+  "env": {
+    "preview": {
+      "vars": {
+        "NEXT_PUBLIC_POSTHOG_DEBUG": "true"
+      }
+    }
+  }
 }
