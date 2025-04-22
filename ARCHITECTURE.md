@@ -67,7 +67,7 @@ All checked components are already implemented/configured
 - [ ] [Error Handling: Neverthrow](https://neverthrow.dev/) 🚨
 - [ ] [Forms: Tanstack Form](https://tanstack.com/form) 📝
 - [x] [Validation: Zod](https://zod.dev/) 🔒
-- [ ] [Error Tracking: Glitchtip](https://glitchtip.com/) 🐛🐞
+- [x] [Error Tracking: Glitchtip](https://glitchtip.com/) 🐛🐞
 
 ## Technology Choices
 
@@ -635,6 +635,9 @@ Summary of the technology choices:
   - Good error tracking
   - Teams supported in free plan
   - Self-hosting is an option
+  - Uses the Sentry SDK
+- Mitigation Strategies:
+  - [Sentry](https://sentry.io/) is a good alternative to migrate to if we find any limitations, without any code changes needed; just create an account and update the DSN link
 
 ## Contributing Guidelines
 

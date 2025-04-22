@@ -7,7 +7,12 @@ export const env = createEnv({
    * isn't built with invalid env vars.
    */
   server: {
+    CI: z
+      .enum(["true", "false"])
+      .transform((value) => value === "true")
+      .optional(),
     NODE_ENV: z.enum(["development", "test", "production"]),
+    SENTRY_DSN: z.string().url(),
   },
 
   /**
@@ -31,6 +36,7 @@ export const env = createEnv({
    * middlewares) or client-side so we need to destruct manually.
    */
   runtimeEnv: {
+    CI: process.env.CI,
     NEXT_PUBLIC_AHREFS_ANALYTICS_KEY:
       process.env.NEXT_PUBLIC_AHREFS_ANALYTICS_KEY,
     NEXT_PUBLIC_POSTHOG_KEY: process.env.NEXT_PUBLIC_POSTHOG_KEY,
@@ -39,6 +45,7 @@ export const env = createEnv({
       process.env.NEXT_PUBLIC_POSTHOG_STATIC_ASSETS_HOST,
     NEXT_PUBLIC_POSTHOG_DEBUG: process.env.NEXT_PUBLIC_POSTHOB_DEBUG,
     NODE_ENV: process.env.NODE_ENV,
+    SENTRY_DSN: process.env.SENTRY_DSN,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially

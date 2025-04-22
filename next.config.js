@@ -1,4 +1,5 @@
 import { setupDevPlatform } from "@cloudflare/next-on-pages/next-dev";
+import { withSentryConfig } from "@sentry/nextjs";
 import { createMDX } from "fumadocs-mdx/next";
 /**
  * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially useful
@@ -35,4 +36,15 @@ if (env.NODE_ENV === "development") {
   await setupDevPlatform();
 }
 
-export default withMDX(config);
+// Make sure adding Sentry options is the last code to run before exporting
+export default withSentryConfig(withMDX(config), {
+  org: "TMTecnologia",
+  project: "afiado",
+
+  // Only print logs for uploading source maps in CI
+  // Set to `true` to suppress logs
+  silent: !env.CI,
+
+  // Automatically tree-shake Sentry logger statements to reduce bundle size
+  disableLogger: true,
+});
