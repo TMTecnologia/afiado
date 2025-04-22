@@ -20,7 +20,7 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
       ui_host: env.NEXT_PUBLIC_POSTHOG_HOST, // PostHog Cloud endpoint for Events
       capture_pageview: false, // We capture pageviews manually
       capture_pageleave: true, // Enable pageleave capture
-      debug: env.NODE_ENV === "development",
+      debug: env.NEXT_PUBLIC_POSTHOB_DEBUG,
     });
   }, []);
 

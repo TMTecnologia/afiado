@@ -9,6 +9,11 @@ import { notFound } from "next/navigation";
 import { source } from "~/lib/source";
 import { getMDXComponents } from "~/mdx-components";
 
+/**
+ * Use Edge Runtime for CloudFlare Pages compatibility
+ */
+export const runtime = "edge";
+
 export default async function Page(props: {
   params: Promise<{ slug?: string[] }>;
 }) {
@@ -32,10 +37,6 @@ export default async function Page(props: {
       </DocsBody>
     </DocsPage>
   );
-}
-
-export async function generateStaticParams() {
-  return source.generateParams();
 }
 
 export async function generateMetadata(props: {

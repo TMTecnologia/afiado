@@ -9,6 +9,7 @@
 .contentlayer
 .content-collections
 .source
+.wrangler
 
 # testing
 /coverage

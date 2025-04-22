@@ -1,3 +1,4 @@
+import { setupDevPlatform } from "@cloudflare/next-on-pages/next-dev";
 import { createMDX } from "fumadocs-mdx/next";
 /**
  * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially useful
@@ -29,5 +30,9 @@ const config = {
   // This is required to support PostHog trailing slash API requests
   skipTrailingSlashRedirect: true,
 };
+
+if (env.NODE_ENV === "development") {
+  await setupDevPlatform();
+}
 
 export default withMDX(config);
