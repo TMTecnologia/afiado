@@ -19,7 +19,7 @@ export const env = createEnv({
     NEXT_PUBLIC_POSTHOG_KEY: z.string(),
     NEXT_PUBLIC_POSTHOG_HOST: z.string().url(),
     NEXT_PUBLIC_POSTHOG_STATIC_ASSETS_HOST: z.string().url(),
-    NEXT_PUBLIC_POSTHOB_DEBUG: z
+    NEXT_PUBLIC_POSTHOG_DEBUG: z
       .enum(["true", "false"])
       .transform((value) => value === "true")
       .optional(),
