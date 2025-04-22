@@ -9,10 +9,8 @@ Afiado: Sharp financial tracking for smarter business decisions.
 ### Perfect For
 
 - Small business owners who want to focus on growth rather than bookkeeping
-- Entrepreneurs managing multiple revenue streams and client relationships  
-- Freelancers and independent professionals tracking project income
+- Entrepreneurs managing multiple revenue streams and client relationships
 - Service-based businesses needing organized financial records
-- Anyone looking to automate their financial tracking and reporting
 
 ### Especially Valuable If You
 
@@ -26,7 +24,7 @@ Afiado: Sharp financial tracking for smarter business decisions.
 
 ### The Challenge
 
-Are you spending precious hours managing finances when you could be growing your business? 
+Are you spending precious hours managing finances when you could be growing your business?
 Drowning in spreadsheets instead of delighting customers?
 Struggling to keep track of sales?
 
@@ -60,4 +58,3 @@ Read the [CONTRIBUTING.md](./CONTRIBUTING.md) file for more information.
 ## 📝 License
 
 This project is licensed under the GNU General Public License v3.0 - see the [COPYING](./COPYING) file for details.
-
