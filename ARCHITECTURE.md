@@ -67,7 +67,7 @@ All checked components are already implemented/configured
 - [ ] [Error Handling: Neverthrow](https://neverthrow.dev/) 🚨
 - [ ] [Forms: Tanstack Form](https://tanstack.com/form) 📝
 - [x] [Validation: Zod](https://zod.dev/) 🔒
-- [x] [Error Tracking: Glitchtip](https://glitchtip.com/) 🐛🐞
+- [x] [Error Tracking: PostHog](https://posthog.com/) 🐛🐞
 
 ## Technology Choices
 
@@ -101,7 +101,7 @@ Summary of the technology choices:
 - [Error Handling: Neverthrow](#error-handling-neverthrow)
 - [Forms: Tanstack Form](#forms-tanstack-form)
 - [Validation: Zod](#validation-zod)
-- [Error Tracking: Glitchtip](#error-tracking-glitchtip)
+- [Error Tracking: PostHog](#error-tracking-posthog)
 
 ### Frontend Framework: Next.js
 
@@ -612,7 +612,7 @@ Summary of the technology choices:
   - Good TypeScript support
   - Zod now has a new version that is more performant and smaller in the bundle size
 
-### Error Tracking: Glitchtip
+### Error Tracking: PostHog
 
 **Context:**
 - Need for a modern error tracking service with a strong focus on user experience
@@ -625,8 +625,9 @@ Summary of the technology choices:
 1. [Glitchtip](https://glitchtip.com/)
 2. [Sentry](https://sentry.io/)
 3. [Rollbar](https://rollbar.com/)
+4. [PostHog](https://posthog.com/)
 
-**Consequences: Glitchtip**
+**Consequences: PostHog**
 - Positive:
   - Good documentation
   - Good community support
@@ -634,10 +635,9 @@ Summary of the technology choices:
   - Good TypeScript support
   - Good error tracking
   - Teams supported in free plan
-  - Self-hosting is an option
-  - Uses the Sentry SDK
+  - We are already using PostHog for Analytics
 - Mitigation Strategies:
-  - [Sentry](https://sentry.io/) is a good alternative to migrate to if we find any limitations, without any code changes needed; just create an account and update the DSN link
+  - [GlitchTip](https://glitchtip.com/) and [Sentry](https://sentry.io/) are good alternatives to migrate to if we find any limitations, since they use the same SDK; but CloudFlare Pages has trouble handling Instrumentation Configuration https://github.com/cloudflare/next-on-pages/issues/678#issuecomment-2236272058
 
 ## Contributing Guidelines
 
