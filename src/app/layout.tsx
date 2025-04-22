@@ -5,7 +5,9 @@ import type { Metadata } from "next";
 import { RootProvider } from "fumadocs-ui/provider";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 import { PostHogProvider } from "~/app/_providers";
+import { env } from "~/env.js";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -49,6 +51,11 @@ export default function RootLayout({
         <PostHogProvider>
           <RootProvider>{children}</RootProvider>
         </PostHogProvider>
+        <Script
+          src="https://analytics.ahrefs.com/analytics.js"
+          data-key={env.NEXT_PUBLIC_AHREFS_ANALYTICS_KEY}
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
