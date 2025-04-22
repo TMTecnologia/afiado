@@ -51,8 +51,8 @@ All checked components are already implemented/configured
 - [ ] [Card Payments: Lemon Squeezy by Stripe](https://lemonsqueezy.com/) 💸
 - [x] [Styling: TailwindCSS](https://tailwindcss.com/) 🎨
 - [x] [Component Library: Shadcn/ui](https://shadcn.github.io/ui/) 📂
-- [ ] [Product Analytics: PostHog](https://posthog.com/) 📊
-- [ ] [Web Analytics: PostHog](https://posthog.com/) 📊
+- [x] [Product Analytics: PostHog](https://posthog.com/) 📊
+- [x] [Web Analytics: PostHog](https://posthog.com/) 📊
 - [ ] [SEO Tracking: aHrefs](https://ahrefs.com/) 🔍
 - [ ] [SEO Tracking: MakeMeFindable](https://makemefindable.com/) 🔍
 - [ ] [DNS: Cloudflare](https://www.cloudflare.com/) ☁️

@@ -1,15 +1,33 @@
+import { createMDX } from "fumadocs-mdx/next";
 /**
  * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially useful
  * for Docker builds.
  */
-import "./src/env.js";
-import { createMDX } from "fumadocs-mdx/next";
+import { env } from "./src/env.js";
 
 const withMDX = createMDX();
 
 /** @type {import('next').NextConfig} */
 const config = {
   reactStrictMode: true,
+  async rewrites() {
+    return [
+      {
+        source: "/ingest/static/:path*",
+        destination: `${env.NEXT_PUBLIC_POSTHOG_STATIC_ASSETS_HOST}/:path*`,
+      },
+      {
+        source: "/ingest/:path*",
+        destination: `${env.NEXT_PUBLIC_POSTHOG_HOST}/:path*`,
+      },
+      {
+        source: "/ingest/decide",
+        destination: `${env.NEXT_PUBLIC_POSTHOG_HOST}/decide`,
+      },
+    ];
+  },
+  // This is required to support PostHog trailing slash API requests
+  skipTrailingSlashRedirect: true,
 };
 
 export default withMDX(config);
