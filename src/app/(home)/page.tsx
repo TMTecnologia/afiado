@@ -192,22 +192,20 @@ export default function HomePage() {
               <span className="font-semibold text-blue-400">{"Afiado"}</span>
               {" é para mim?"}
             </summary>
-            <p className="mt-2 text-base">
-              <div>
-                {"Sim! O Afiado é perfeito para você se você quer:"}
-                <ul className="mt-4 space-y-2">
-                  <li>{"• acompanhar suas vendas em tempo real"}</li>
-                  <li>{"• acessar suas finanças de qualquer lugar"}</li>
-                  <li>
-                    {
-                      "• chegar em casa sem ter uma pilha de recibos para digitar na planilha"
-                    }
-                  </li>
-                  <li>{"• tomar decisões baseadas em dados"}</li>
-                  <li>{"• tranquilidade na hora da contabilidade"}</li>
-                </ul>
-              </div>
-            </p>
+            <div className="mt-2 text-base">
+              {"Sim! O Afiado é perfeito para você se você quer:"}
+              <ul className="mt-4 space-y-2">
+                <li>{"• acompanhar suas vendas em tempo real"}</li>
+                <li>{"• acessar suas finanças de qualquer lugar"}</li>
+                <li>
+                  {
+                    "• chegar em casa sem ter uma pilha de recibos para digitar na planilha"
+                  }
+                </li>
+                <li>{"• tomar decisões baseadas em dados"}</li>
+                <li>{"• tranquilidade na hora da contabilidade"}</li>
+              </ul>
+            </div>
           </details>
           <details className="rounded border p-4">
             <summary className="cursor-pointer font-medium text-lg">
