@@ -32,14 +32,14 @@ export default function HomePage() {
       {/* Benefits Section */}
       <section
         id="beneficios"
-        className="bg-gray-50 dark:bg-gray-900 px-4 py-16"
+        className="bg-gray-50 px-4 py-16 dark:bg-gray-900"
       >
         <h2 className="pb-8 text-center font-bold text-2xl md:text-3xl">
           {"Por que escolher o "}
           <span className="text-blue-400">{"Afiado"}</span>
           {"?"}
         </h2>
-        <div className="mx-auto max-w-3xl grid grid-cols-1 gap-6 md:grid-cols-2">
+        <div className="mx-auto grid max-w-3xl grid-cols-1 gap-6 md:grid-cols-2">
           <Card className="flex items-start space-x-4 p-6 shadow-lg">
             <CreditCard className="h-6 w-6 pt-1 text-blue-400" />
             <div>
@@ -96,43 +96,43 @@ export default function HomePage() {
       </section>
 
       {/* Market Stats Section */}
-      <section className="py-16 px-4">
+      <section className="px-4 py-16">
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="mb-8 font-bold text-2xl md:text-3xl">
             {"O mercado em números"}
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             <div>
-              <p className="text-3xl font-bold text-blue-400">
+              <p className="font-bold text-3xl text-blue-400">
                 {"7,4 milhões"}
               </p>
-              <p className="text-sm mt-2">
+              <p className="mt-2 text-sm">
                 {"empresas ativas no comércio brasileiro"}
               </p>
             </div>
             <div>
-              <p className="text-3xl font-bold text-blue-400">
+              <p className="font-bold text-3xl text-blue-400">
                 {"3,7 milhões"}
               </p>
-              <p className="text-sm mt-2">{"MEIs no setor de comércio"}</p>
+              <p className="mt-2 text-sm">{"MEIs no setor de comércio"}</p>
             </div>
             <div>
-              <p className="text-3xl font-bold text-blue-400">
+              <p className="font-bold text-3xl text-blue-400">
                 {"19,7 milhões"}
               </p>
-              <p className="text-sm mt-2">{"empreendedores informais"}</p>
+              <p className="mt-2 text-sm">{"empreendedores informais"}</p>
             </div>
           </div>
-          <p className="mt-4 text-xs text-gray-500">
+          <p className="mt-4 text-gray-500 text-xs">
             {"Fonte: Mapa de Empresas do Governo Federal, IBGE e SEBRAE, 2025"}
           </p>
         </div>
       </section>
 
       {/* Brazilian Team Section */}
-      <section className="bg-gray-50 dark:bg-gray-900 py-16 px-4">
+      <section className="bg-gray-50 px-4 py-16 dark:bg-gray-900">
         <div className="mx-auto max-w-2xl text-center">
-          <Users className="h-12 w-12 mx-auto mb-4 text-blue-400" />
+          <Users className="mx-auto mb-4 h-12 w-12 text-blue-400" />
           <h2 className="mb-4 font-bold text-2xl md:text-3xl">
             {"Feito no Brasil, para brasileiros"}
           </h2>
@@ -144,11 +144,11 @@ export default function HomePage() {
       </section>
 
       {/* Open Source Section */}
-      <section className="py-16 px-4">
+      <section className="px-4 py-16">
         <div className="mx-auto max-w-2xl text-center">
           <Image
             src="/github-octocat-logo.svg"
-            className="invert dark:invert-0 mx-auto mb-4"
+            className="mx-auto mb-4 invert dark:invert-0"
             alt="GitHub"
             width={48}
             height={48}
@@ -156,7 +156,7 @@ export default function HomePage() {
           <h2 className="mb-4 font-bold text-2xl md:text-3xl">
             {"100% Open Source"}
           </h2>
-          <p className="text-lg mb-6">
+          <p className="mb-6 text-lg">
             {"Todo nosso código é aberto e pode ser auditado pela comunidade."}
           </p>
           <a
@@ -180,7 +180,7 @@ export default function HomePage() {
       {/* FAQ Section */}
       <section
         id="perguntas-frequentes"
-        className="bg-gray-50 dark:bg-gray-900 px-4 py-16"
+        className="bg-gray-50 px-4 py-16 dark:bg-gray-900"
       >
         <h2 className="mb-6 text-center font-bold text-2xl md:text-3xl">
           {"Perguntas frequentes"}
