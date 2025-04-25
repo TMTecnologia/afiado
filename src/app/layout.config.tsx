@@ -19,11 +19,6 @@ export const baseOptions: BaseLayoutProps = {
   },
   links: [
     {
-      text: "Documentação",
-      url: "/docs",
-      active: "nested-url",
-    },
-    {
       type: "icon",
       url: "https://github.com/tmtecnologia/afiado",
       text: "GitHub",
@@ -41,5 +36,8 @@ export const baseOptions: BaseLayoutProps = {
   ],
   themeSwitch: {
     mode: "light-dark-system",
+  },
+  searchToggle: {
+    enabled: false,
   },
 };
