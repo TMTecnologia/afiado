@@ -8,6 +8,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { Card } from "~/components/ui/card";
+import WaitListForm from "./WaitListForm";
 
 export default function HomePage() {
   return (
@@ -24,15 +25,12 @@ export default function HomePage() {
             "Automatize seu controle financeiro e foque no que realmente importa: vender mais."
           }
         </p>
-        {/**
-         * TODO: Enable WaitListForm after adding integration to Backend, to store user email in DB
-         */}
-        {/* <Link
+        <Link
           href="#lista-espera"
           className="rounded bg-blue-500 px-8 py-4 text-lg font-semibold text-white shadow-lg hover:bg-blue-600 focus:outline-none focus:ring transition-colors"
         >
           {"Entrar na lista de espera"}
-        </Link> */}
+        </Link>
       </section>
 
       {/* Benefits Section */}
@@ -215,17 +213,18 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* TODO: Add waitlist form */}
-      {/* WaitList Form Section
+      {/* WaitList Form Section */}
       <section id="lista-espera" className="mx-auto max-w-xl px-4 py-16">
         <h2 className="mb-6 text-center font-bold text-2xl md:text-3xl">
-          {"Entre na lista de espera"}
+          {"Garanta seu acesso antecipado"}
         </h2>
         <p className="text-center mb-8">
           {"Seja um dos primeiros a experimentar o "}
           <span className="font-bold text-blue-400">{"Afiado"}</span>
+          {" quando lançarmos"}
         </p>
-      </section>*/}
+        <WaitListForm />
+      </section>
 
       {/* Footer */}
       <footer className="border-t px-4 py-8 pt-12 text-center text-xs opacity-80">
