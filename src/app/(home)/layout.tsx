@@ -17,8 +17,8 @@ export default function Layout({ children }: { children: ReactNode }) {
           url: "#feito-no-brasil",
         },
         {
-          text: "Open Source",
-          url: "#open-source",
+          text: "Código Aberto",
+          url: "#codigo-aberto",
         },
         {
           text: "Perguntas Frequentes",

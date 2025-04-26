@@ -151,7 +151,7 @@ export default function HomePage() {
       </section>
 
       {/* Open Source Section */}
-      <section id="open-source" className="px-4 py-16">
+      <section id="codigo-aberto" className="px-4 py-16">
         <div className="mx-auto max-w-2xl text-center">
           <Image
             src="/github-octocat-logo.svg"
@@ -161,7 +161,7 @@ export default function HomePage() {
             height={48}
           />
           <h2 className="mb-4 font-bold text-2xl md:text-3xl">
-            {"100% Open Source"}
+            {"100% Código Aberto"}
           </h2>
           <p className="mb-6 text-lg">
             {"Todo nosso código é aberto e pode ser auditado pela comunidade."}
