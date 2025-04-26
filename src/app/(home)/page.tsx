@@ -27,7 +27,7 @@ export default function HomePage() {
         </p>
         <Link
           href="#lista-espera"
-          className="rounded bg-blue-500 px-8 py-4 text-lg font-semibold text-white shadow-lg hover:bg-blue-600 focus:outline-none focus:ring transition-colors"
+          className="rounded bg-blue-500 px-8 py-4 font-semibold text-lg text-white shadow-lg transition-colors hover:bg-blue-600 focus:outline-none focus:ring"
         >
           {"Entrar na lista de espera"}
         </Link>
@@ -218,7 +218,7 @@ export default function HomePage() {
         <h2 className="mb-6 text-center font-bold text-2xl md:text-3xl">
           {"Garanta seu acesso antecipado"}
         </h2>
-        <p className="text-center mb-8">
+        <p className="mb-8 text-center">
           {"Seja um dos primeiros a experimentar o "}
           <span className="font-bold text-blue-400">{"Afiado"}</span>
           {" quando lançarmos"}

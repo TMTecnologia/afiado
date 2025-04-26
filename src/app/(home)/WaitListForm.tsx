@@ -39,7 +39,7 @@ export default function WaitListForm() {
       <div className="flex items-center justify-center">
         <button
           type="submit"
-          className="rounded bg-blue-500 px-8 py-4 text-lg font-semibold text-white shadow-lg hover:bg-blue-600 focus:outline-none focus:ring transition-colors"
+          className="rounded bg-blue-500 px-8 py-4 font-semibold text-lg text-white shadow-lg transition-colors hover:bg-blue-600 focus:outline-none focus:ring"
         >
           {"Reservar Minha Vaga"}
         </button>
