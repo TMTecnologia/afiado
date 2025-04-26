@@ -46,7 +46,7 @@ All checked components are already implemented/configured
 
 - [x] [Frontend Framework: Next.js](https://nextjs.org/) 🤖
 - [ ] [Auth Provider: Convex Auth](https://convex.dev/auth) 📝
-- [ ] [Backend: Convex](https://convex.dev/) 💻
+- [x] [Backend: Convex](https://convex.dev/) 💻
 - [ ] [Payments: AbacatePay](https://abacatepay.com.br/) 💸
 - [x] [Styling: TailwindCSS](https://tailwindcss.com/) 🎨
 - [x] [Component Library: Shadcn/ui](https://shadcn.github.io/ui/) 📂
