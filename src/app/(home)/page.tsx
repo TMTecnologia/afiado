@@ -100,7 +100,7 @@ export default function HomePage() {
       </section>
 
       {/* Market Stats Section */}
-      <section className="px-4 py-16">
+      <section id="mercado" className="px-4 py-16">
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="mb-8 font-bold text-2xl md:text-3xl">
             {"O mercado em números"}
@@ -134,7 +134,10 @@ export default function HomePage() {
       </section>
 
       {/* Brazilian Team Section */}
-      <section className="bg-gray-50 px-4 py-16 dark:bg-gray-900">
+      <section
+        id="feito-no-brasil"
+        className="bg-gray-50 px-4 py-16 dark:bg-gray-900"
+      >
         <div className="mx-auto max-w-2xl text-center">
           <Users className="mx-auto mb-4 h-12 w-12 text-blue-400" />
           <h2 className="mb-4 font-bold text-2xl md:text-3xl">
@@ -148,7 +151,7 @@ export default function HomePage() {
       </section>
 
       {/* Open Source Section */}
-      <section className="px-4 py-16">
+      <section id="open-source" className="px-4 py-16">
         <div className="mx-auto max-w-2xl text-center">
           <Image
             src="/github-octocat-logo.svg"
