@@ -21,6 +21,7 @@ export const env = createEnv({
    */
   client: {
     NEXT_PUBLIC_AHREFS_ANALYTICS_KEY: z.string(),
+    NEXT_PUBLIC_CONVEX_URL: z.string().url(),
     NEXT_PUBLIC_POSTHOG_KEY: z.string(),
     NEXT_PUBLIC_POSTHOG_HOST: z.string().url(),
     NEXT_PUBLIC_POSTHOG_STATIC_ASSETS_HOST: z.string().url(),
@@ -38,6 +39,7 @@ export const env = createEnv({
     CI: process.env.CI,
     NEXT_PUBLIC_AHREFS_ANALYTICS_KEY:
       process.env.NEXT_PUBLIC_AHREFS_ANALYTICS_KEY,
+    NEXT_PUBLIC_CONVEX_URL: process.env.NEXT_PUBLIC_CONVEX_URL,
     NEXT_PUBLIC_POSTHOG_KEY: process.env.NEXT_PUBLIC_POSTHOG_KEY,
     NEXT_PUBLIC_POSTHOG_HOST: process.env.NEXT_PUBLIC_POSTHOG_HOST,
     NEXT_PUBLIC_POSTHOG_STATIC_ASSETS_HOST:
