@@ -26,10 +26,10 @@ export default function HomePage() {
           }
         </p>
         <Link
-          href="#lista-espera"
+          href="#acesso-antecipado"
           className="rounded bg-blue-500 px-8 py-4 font-semibold text-lg text-white shadow-lg transition-colors hover:bg-blue-600 focus:outline-none focus:ring"
         >
-          {"Entrar na lista de espera"}
+          {"Garantir Acesso Antecipado"}
         </Link>
       </section>
 
@@ -217,7 +217,7 @@ export default function HomePage() {
       </section>
 
       {/* WaitList Form Section */}
-      <section id="lista-espera" className="mx-auto max-w-xl px-4 py-16">
+      <section id="acesso-antecipado" className="mx-auto max-w-xl px-4 py-16">
         <h2 className="mb-6 text-center font-bold text-2xl md:text-3xl">
           {"Garanta seu acesso antecipado"}
         </h2>

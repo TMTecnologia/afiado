@@ -26,7 +26,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         },
         {
           text: "Acesso Antecipado",
-          url: "#lista-espera",
+          url: "#acesso-antecipado",
         },
       ]}
     >
