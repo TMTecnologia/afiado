@@ -1,4 +1,10 @@
-import { BarChart, CreditCard, Globe, ShieldCheck, Users } from "lucide-react";
+import {
+  ChartLine,
+  FileSpreadsheet,
+  Globe,
+  ShieldCheck,
+  Users,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Card } from "~/components/ui/card";
@@ -41,14 +47,14 @@ export default function HomePage() {
         </h2>
         <div className="mx-auto grid max-w-3xl grid-cols-1 gap-6 md:grid-cols-2">
           <Card className="flex items-start space-x-4 p-6 shadow-lg">
-            <CreditCard className="h-6 w-6 pt-1 text-blue-400" />
+            <FileSpreadsheet className="h-6 w-6 pt-1 text-blue-400" />
             <div>
               <h3 className="pb-1 font-semibold text-lg">
-                {"Controle simplificado"}
+                {"Mais vendas, menos planilhas"}
               </h3>
               <p className="text-base text-current/70">
                 {
-                  "Chega de preencher planilhas confusas. Automatize seu controle financeiro de forma intuitiva."
+                  "Acompanhe suas vendas em tempo real e diga adeus à pilha de recibos para digitar em casa."
                 }
               </p>
             </div>
@@ -67,7 +73,7 @@ export default function HomePage() {
             </div>
           </Card>
           <Card className="flex items-start space-x-4 p-6 shadow-lg">
-            <BarChart className="h-6 w-6 pt-1 text-blue-400" />
+            <ChartLine className="h-6 w-6 pt-1 text-blue-400" />
             <div>
               <h3 className="pb-1 font-semibold text-lg">
                 {"Relatórios inteligentes"}
@@ -134,7 +140,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-2xl text-center">
           <Users className="mx-auto mb-4 h-12 w-12 text-blue-400" />
           <h2 className="mb-4 font-bold text-2xl md:text-3xl">
-            {"Feito no Brasil, para brasileiros"}
+            {"Feito no Brasil 🇧🇷"}
           </h2>
           <p className="text-lg">
             {`Entendemos os desafios únicos do empreendedor brasileiro porque vivemos a mesma realidade.
@@ -186,27 +192,6 @@ export default function HomePage() {
           {"Perguntas frequentes"}
         </h2>
         <div className="mx-auto max-w-2xl space-y-4">
-          <details className="rounded border p-4" open>
-            <summary className="cursor-pointer font-medium text-lg">
-              {"O "}
-              <span className="font-semibold text-blue-400">{"Afiado"}</span>
-              {" é para mim?"}
-            </summary>
-            <div className="mt-2 text-base">
-              {"Sim! O Afiado é perfeito para você se você quer:"}
-              <ul className="mt-4 space-y-2">
-                <li>{"• acompanhar suas vendas em tempo real"}</li>
-                <li>{"• acessar suas finanças de qualquer lugar"}</li>
-                <li>
-                  {
-                    "• chegar em casa sem ter uma pilha de recibos para digitar na planilha"
-                  }
-                </li>
-                <li>{"• tomar decisões baseadas em dados"}</li>
-                <li>{"• tranquilidade na hora da contabilidade"}</li>
-              </ul>
-            </div>
-          </details>
           <details className="rounded border p-4">
             <summary className="cursor-pointer font-medium text-lg">
               {"Quando o "}
