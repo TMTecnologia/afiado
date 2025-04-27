@@ -7,6 +7,9 @@ import { api } from "~/convex/_generated/api";
 export default function WaitListForm() {
   const addEntry = useMutation(api.waitlist.addEntry);
 
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+
   const [form, setForm] = useState({
     email: "",
   });
@@ -20,14 +23,21 @@ export default function WaitListForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    addEntry(form).then(() => {
-      window.history.pushState(null, "", "/obrigado");
-      window.location.reload();
-    });
+    setIsSubmitting(true);
+    addEntry(form)
+      .then(() => {
+        window.history.pushState(null, "", "/obrigado");
+        window.location.reload();
+      })
+      .catch((error) => {
+        setError(error.message);
+      })
+      .finally(() => setIsSubmitting(false));
   };
 
   return (
     <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+      {error && <p className="text-red-500">{error}</p>}
       <label className="flex flex-col text-left font-medium text-sm">
         {"E-mail"}
         <input
@@ -45,7 +55,7 @@ export default function WaitListForm() {
           type="submit"
           className="rounded bg-blue-500 px-8 py-4 font-semibold text-lg text-white shadow-lg transition-colors hover:bg-blue-600 focus:outline-none focus:ring"
         >
-          {"Reservar Minha Vaga"}
+          {isSubmitting ? "Reservando..." : "Reservar Minha Vaga"}
         </button>
       </div>
     </form>
