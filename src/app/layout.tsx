@@ -2,11 +2,11 @@ import "~/styles/globals.css";
 
 import type { Metadata } from "next";
 
-import { RootProvider } from "fumadocs-ui/provider";
+import { RootProvider as FumadocsRootProvider } from "fumadocs-ui/provider";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Inter } from "next/font/google";
 import Script from "next/script";
-import { PostHogProvider } from "~/app/_providers";
+import { ConvexClientProvider, PostHogProvider } from "~/app/_providers";
 import { env } from "~/env.js";
 
 const geistSans = Geist({
@@ -49,7 +49,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${inter.className} antialiased`}
       >
         <PostHogProvider>
-          <RootProvider>{children}</RootProvider>
+          <FumadocsRootProvider>
+            <ConvexClientProvider>{children}</ConvexClientProvider>
+          </FumadocsRootProvider>
         </PostHogProvider>
         <Script
           src="https://analytics.ahrefs.com/analytics.js"

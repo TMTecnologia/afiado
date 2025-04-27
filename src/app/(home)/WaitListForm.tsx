@@ -1,10 +1,13 @@
 "use client";
 
+import { useMutation } from "convex/react";
 import { useState } from "react";
+import { api } from "~/convex/_generated/api";
 
 export default function WaitListForm() {
+  const addEntry = useMutation(api.waitlist.addEntry);
+
   const [form, setForm] = useState({
-    nome: "",
     email: "",
   });
 
@@ -17,9 +20,10 @@ export default function WaitListForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implement form submission to Database
-    window.history.pushState(null, "", "/obrigado");
-    window.location.reload();
+    addEntry(form).then(() => {
+      window.history.pushState(null, "", "/obrigado");
+      window.location.reload();
+    });
   };
 
   return (
