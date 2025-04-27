@@ -18,6 +18,7 @@
 /prisma/db.sqlite
 /prisma/db.sqlite-journal
 db.sqlite
+convex/_generated
 
 # next.js
 /.next/

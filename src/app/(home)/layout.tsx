@@ -13,17 +13,20 @@ export default function Layout({ children }: { children: ReactNode }) {
           url: "#beneficios",
         },
         {
+          text: "Feito no Brasil",
+          url: "#feito-no-brasil",
+        },
+        {
+          text: "Código Aberto",
+          url: "#codigo-aberto",
+        },
+        {
           text: "Perguntas Frequentes",
           url: "#perguntas-frequentes",
         },
-        // TODO: Enable after adding integration to Backend
-        // {
-        //   text: "Acesso Antecipado",
-        //   url: "#lista-espera",
-        // },
         {
-          text: "Sobre",
-          url: "#sobre",
+          text: "Acesso Antecipado",
+          url: "#acesso-antecipado",
         },
       ]}
     >

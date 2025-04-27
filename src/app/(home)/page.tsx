@@ -1,7 +1,14 @@
-import { BarChart, CreditCard, Globe, ShieldCheck, Users } from "lucide-react";
+import {
+  ChartLine,
+  FileSpreadsheet,
+  Globe,
+  ShieldCheck,
+  Users,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Card } from "~/components/ui/card";
+import WaitListForm from "./WaitListForm";
 
 export default function HomePage() {
   return (
@@ -18,15 +25,12 @@ export default function HomePage() {
             "Automatize seu controle financeiro e foque no que realmente importa: vender mais."
           }
         </p>
-        {/**
-         * TODO: Enable WaitListForm after adding integration to Backend, to store user email in DB
-         */}
-        {/* <Link
-          href="#lista-espera"
-          className="rounded bg-blue-500 px-8 py-4 text-lg font-semibold text-white shadow-lg hover:bg-blue-600 focus:outline-none focus:ring transition-colors"
+        <Link
+          href="#acesso-antecipado"
+          className="rounded bg-blue-500 px-8 py-4 font-semibold text-lg text-white shadow-lg transition-colors hover:bg-blue-600 focus:outline-none focus:ring"
         >
-          {"Entrar na lista de espera"}
-        </Link> */}
+          {"Garantir Acesso Antecipado"}
+        </Link>
       </section>
 
       {/* Benefits Section */}
@@ -41,14 +45,14 @@ export default function HomePage() {
         </h2>
         <div className="mx-auto grid max-w-3xl grid-cols-1 gap-6 md:grid-cols-2">
           <Card className="flex items-start space-x-4 p-6 shadow-lg">
-            <CreditCard className="h-6 w-6 pt-1 text-blue-400" />
+            <FileSpreadsheet className="h-6 w-6 pt-1 text-blue-400" />
             <div>
               <h3 className="pb-1 font-semibold text-lg">
-                {"Controle simplificado"}
+                {"Mais vendas, menos planilhas"}
               </h3>
               <p className="text-base text-current/70">
                 {
-                  "Chega de preencher planilhas confusas. Automatize seu controle financeiro de forma intuitiva."
+                  "Acompanhe suas vendas em tempo real e diga adeus à pilha de recibos para digitar em casa."
                 }
               </p>
             </div>
@@ -67,7 +71,7 @@ export default function HomePage() {
             </div>
           </Card>
           <Card className="flex items-start space-x-4 p-6 shadow-lg">
-            <BarChart className="h-6 w-6 pt-1 text-blue-400" />
+            <ChartLine className="h-6 w-6 pt-1 text-blue-400" />
             <div>
               <h3 className="pb-1 font-semibold text-lg">
                 {"Relatórios inteligentes"}
@@ -96,7 +100,7 @@ export default function HomePage() {
       </section>
 
       {/* Market Stats Section */}
-      <section className="px-4 py-16">
+      <section id="mercado" className="px-4 py-16">
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="mb-8 font-bold text-2xl md:text-3xl">
             {"O mercado em números"}
@@ -130,11 +134,14 @@ export default function HomePage() {
       </section>
 
       {/* Brazilian Team Section */}
-      <section className="bg-gray-50 px-4 py-16 dark:bg-gray-900">
+      <section
+        id="feito-no-brasil"
+        className="bg-gray-50 px-4 py-16 dark:bg-gray-900"
+      >
         <div className="mx-auto max-w-2xl text-center">
           <Users className="mx-auto mb-4 h-12 w-12 text-blue-400" />
           <h2 className="mb-4 font-bold text-2xl md:text-3xl">
-            {"Feito no Brasil, para brasileiros"}
+            {"Feito no Brasil 🇧🇷"}
           </h2>
           <p className="text-lg">
             {`Entendemos os desafios únicos do empreendedor brasileiro porque vivemos a mesma realidade.
@@ -144,7 +151,7 @@ export default function HomePage() {
       </section>
 
       {/* Open Source Section */}
-      <section className="px-4 py-16">
+      <section id="codigo-aberto" className="px-4 py-16">
         <div className="mx-auto max-w-2xl text-center">
           <Image
             src="/github-octocat-logo.svg"
@@ -154,7 +161,7 @@ export default function HomePage() {
             height={48}
           />
           <h2 className="mb-4 font-bold text-2xl md:text-3xl">
-            {"100% Open Source"}
+            {"100% Código Aberto"}
           </h2>
           <p className="mb-6 text-lg">
             {"Todo nosso código é aberto e pode ser auditado pela comunidade."}
@@ -186,27 +193,6 @@ export default function HomePage() {
           {"Perguntas frequentes"}
         </h2>
         <div className="mx-auto max-w-2xl space-y-4">
-          <details className="rounded border p-4" open>
-            <summary className="cursor-pointer font-medium text-lg">
-              {"O "}
-              <span className="font-semibold text-blue-400">{"Afiado"}</span>
-              {" é para mim?"}
-            </summary>
-            <div className="mt-2 text-base">
-              {"Sim! O Afiado é perfeito para você se você quer:"}
-              <ul className="mt-4 space-y-2">
-                <li>{"• acompanhar suas vendas em tempo real"}</li>
-                <li>{"• acessar suas finanças de qualquer lugar"}</li>
-                <li>
-                  {
-                    "• chegar em casa sem ter uma pilha de recibos para digitar na planilha"
-                  }
-                </li>
-                <li>{"• tomar decisões baseadas em dados"}</li>
-                <li>{"• tranquilidade na hora da contabilidade"}</li>
-              </ul>
-            </div>
-          </details>
           <details className="rounded border p-4">
             <summary className="cursor-pointer font-medium text-lg">
               {"Quando o "}
@@ -230,17 +216,18 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* TODO: Add waitlist form */}
-      {/* WaitList Form Section
-      <section id="lista-espera" className="mx-auto max-w-xl px-4 py-16">
+      {/* WaitList Form Section */}
+      <section id="acesso-antecipado" className="mx-auto max-w-xl px-4 py-16">
         <h2 className="mb-6 text-center font-bold text-2xl md:text-3xl">
-          {"Entre na lista de espera"}
+          {"Garanta seu acesso antecipado"}
         </h2>
-        <p className="text-center mb-8">
+        <p className="mb-8 text-center">
           {"Seja um dos primeiros a experimentar o "}
           <span className="font-bold text-blue-400">{"Afiado"}</span>
+          {" quando lançarmos"}
         </p>
-      </section>*/}
+        <WaitListForm />
+      </section>
 
       {/* Footer */}
       <footer className="border-t px-4 py-8 pt-12 text-center text-xs opacity-80">
