@@ -9,8 +9,9 @@ export const addEntry = mutation({
       .withIndex("by_email", (q) => q.eq("email", args.email))
       .first();
 
+    // If the email is already in the waitlist, return it
     if (email) {
-      throw new Error("E-mail já cadastrado");
+      return email;
     }
 
     const newEntry = await ctx.db.insert("waitlist", { email: args.email });
