@@ -11,20 +11,24 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
     name: Deploy
+    runs-on: ubuntu-latest
+
     permissions:
       contents: read
       deployments: write
+
     steps:
       - uses: actions/checkout@v4
+
       - uses: oven-sh/setup-bun@v2
         with:
           bun-version-file: package.json
 
       - name: Run Build
         run: bun run pages:build
-      - name: Deploy
+
+      - name: Wrangler Pages Deploy
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
