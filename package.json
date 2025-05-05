@@ -24,7 +24,7 @@
     "pages:build": "bunx @cloudflare/next-on-pages",
     "preview": "bun run pages:build && wrangler pages dev",
     "start": "next start",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "bunx convex codegen && tsc --noEmit"
   },
   "dependencies": {
     "@cloudflare/next-on-pages": "1.13.12",
