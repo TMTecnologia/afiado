@@ -19,16 +19,27 @@ jobs:
       deployments: write
 
     steps:
-      - uses: actions/checkout@v4
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
 
-      - uses: oven-sh/setup-bun@v2
+      - name: 📦 Load cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.bun
+          key: ${{ runner.os }}-bun-${{ hashFiles('bun.lock') }}
+
+      - name: 🔧 Setup bun
+        uses: oven-sh/setup-bun@v2
         with:
           bun-version-file: package.json
 
-      - name: Run Build
+      - name: ⏳ Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: 👷 Build
         run: bun run pages:build
 
-      - name: Wrangler Pages Deploy
+      - name: 🚀 Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
