@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "packageManager": "bun@1.2.12",
   "engines": {
     "node": ">=18.0.0 <23.0.0"
   },
@@ -21,10 +22,10 @@
     "deploy": "bun run pages:build && wrangler pages deploy",
     "dev": "next dev --turbo",
     "postinstall": "fumadocs-mdx",
-    "pages:build": "bunx @cloudflare/next-on-pages",
+    "pages:build": "bunx convex codegen && bunx @cloudflare/next-on-pages",
     "preview": "bun run pages:build && wrangler pages dev",
     "start": "next start",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "bunx convex codegen && tsc --noEmit"
   },
   "dependencies": {
     "@cloudflare/next-on-pages": "1.13.12",

@@ -1,0 +1,54 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, reopened, synchronize, ready_for_review]
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      deployments: write
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 📦 Load cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.bun
+          key: ${{ runner.os }}-bun-${{ hashFiles('bun.lock') }}
+
+      - name: 🔧 Setup bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version-file: package.json
+
+      - name: ⏳ Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: 👷 Build
+        run: bun run pages:build
+        env:
+          NEXT_PUBLIC_AHREFS_ANALYTICS_KEY: ${{ secrets.AHREFS_ANALYTICS_KEY }}
+          NEXT_PUBLIC_CONVEX_URL: ${{ github.event_name == 'push' && secrets.CONVEX_PROD_URL || secrets.CONVEX_DEV_URL }}
+          NEXT_PUBLIC_POSTHOG_KEY: ${{ secrets.POSTHOG_KEY }}
+          NEXT_PUBLIC_POSTHOG_HOST: "https://us.i.posthog.com"
+          NEXT_PUBLIC_POSTHOG_STATIC_ASSETS_HOST: "https://us-assets.i.posthog.com/static"
+
+      - name: 🚀 Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
