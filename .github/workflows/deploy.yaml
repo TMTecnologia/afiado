@@ -38,6 +38,12 @@ jobs:
 
       - name: 👷 Build
         run: bun run pages:build
+        env:
+          NEXT_PUBLIC_AHREFS_ANALYTICS_KEY: ${{ secrets.AHREFS_ANALYTICS_KEY }}
+          NEXT_PUBLIC_CONVEX_URL: ${{ github.event_name == 'push' && secrets.CONVEX_PROD_URL || secrets.CONVEX_DEV_URL }}
+          NEXT_PUBLIC_POSTHOG_KEY: ${{ secrets.POSTHOG_KEY }}
+          NEXT_PUBLIC_POSTHOG_HOST: "https://us.i.posthog.com"
+          NEXT_PUBLIC_POSTHOG_STATIC_ASSETS_HOST: "https://us-assets.i.posthog.com/static"
 
       - name: 🚀 Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
