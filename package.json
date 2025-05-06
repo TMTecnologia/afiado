@@ -22,7 +22,7 @@
     "deploy": "bun run pages:build && wrangler pages deploy",
     "dev": "next dev --turbo",
     "postinstall": "fumadocs-mdx",
-    "pages:build": "bunx @cloudflare/next-on-pages",
+    "pages:build": "bunx convex codegen && bunx @cloudflare/next-on-pages",
     "preview": "bun run pages:build && wrangler pages dev",
     "start": "next start",
     "typecheck": "bunx convex codegen && tsc --noEmit"
