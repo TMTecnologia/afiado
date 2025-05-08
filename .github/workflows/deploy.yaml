@@ -9,10 +9,19 @@ on:
     branches:
       - main
 
+concurrency:
+  # For PRs, use PR number to group concurrent runs
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+  # Only apply concurrency to the same environment
+  # This ensures we don't cancel production deployments for development PRs
+  environment: ${{ github.event_name == 'push' && 'production' || 'development' }}
+
 jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
+    environment: ${{ github.event_name == 'push' && 'production' || 'development' }}
 
     permissions:
       contents: read
@@ -52,3 +61,9 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 🚀 Deploy to Convex
+        if: github.event_name == 'push'
+        run: bunx convex deploy
+        env:
+          CONVEX_DEPLOY_KEY: ${{ secrets.CONVEX_DEPLOY_KEY }}
