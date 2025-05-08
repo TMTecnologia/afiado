@@ -1,6 +1,7 @@
 import { httpAction, internalMutation } from "./_generated/server";
 import { internal } from "./_generated/api";
 import { v } from "convex/values";
+import { z } from "zod";
 
 export const addEmailToWaitlist = internalMutation({
   args: { email: v.string() },
@@ -28,6 +29,10 @@ const HTTP_STATUS_CODE = {
   UNPROCESSABLE_CONTENT: 422,
 };
 
+const waitlistSchema = z.object({
+  email: z.string().email("Invalid email format"),
+});
+
 export const addEmailToWaitlistHttp = httpAction(async (ctx, request) => {
   const args = await request.json().catch(() => {
     return new Response(
@@ -39,10 +44,14 @@ export const addEmailToWaitlistHttp = httpAction(async (ctx, request) => {
     );
   });
 
-  // TODO: safe parse args here using zod to ensure e-mail
-  if (!("email" in args && typeof args.email === "string")) {
+  const result = waitlistSchema.safeParse(args);
+  
+  if (!result.success) {
     return new Response(
-      JSON.stringify({ message: "Invalid input: email required" }),
+      JSON.stringify({ 
+        message: "Invalid input", 
+        errors: result.error.errors 
+      }),
       {
         status: HTTP_STATUS_CODE.UNPROCESSABLE_CONTENT,
         headers: { "Content-Type": "application/json" },
@@ -51,7 +60,7 @@ export const addEmailToWaitlistHttp = httpAction(async (ctx, request) => {
   }
 
   await ctx.runMutation(internal.waitlist.addEmailToWaitlist, {
-    email: args.email,
+    email: result.data.email,
   });
 
   return new Response(null, {
