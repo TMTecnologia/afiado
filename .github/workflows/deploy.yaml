@@ -27,6 +27,9 @@ jobs:
       contents: read
       deployments: write
 
+    outputs:
+      deployment_url: ${{ steps.cloudflare_deploy.outputs.deployment-url }}
+
     steps:
       - name: 📥 Checkout repository
         uses: actions/checkout@v4
@@ -68,6 +71,7 @@ jobs:
           NEXT_PUBLIC_POSTHOG_STATIC_ASSETS_HOST: "https://us-assets.i.posthog.com/static"
 
       - name: 🚀 Deploy to Cloudflare Pages
+        id: cloudflare_deploy
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -80,3 +84,24 @@ jobs:
         run: bunx convex deploy
         env:
           CONVEX_DEPLOY_KEY: ${{ secrets.CONVEX_DEPLOY_KEY }}
+
+  accessibility:
+    runs-on: ubuntu-latest
+    needs: [deploy]
+    steps:
+      - name: 🎯 Accessibility Testing
+        uses: pa11y/pa11y-ci-action@v1.0.0
+        with:
+          urls: ${{ needs.deploy.outputs.deployment_url }}
+          standard: "WCAG2AA"
+
+  performance:
+    runs-on: ubuntu-latest
+    needs: [deploy]
+    steps:
+      - name: ⚡ Performance Testing
+        uses: treosh/lighthouse-ci-action@v9
+        with:
+          urls: ${{ needs.deploy.outputs.deployment_url }}
+          uploadArtifacts: true
+          temporaryPublicStorage: true
