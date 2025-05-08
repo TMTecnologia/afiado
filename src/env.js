@@ -12,6 +12,7 @@ export const env = createEnv({
       .transform((value) => value === "true")
       .optional(),
     NODE_ENV: z.enum(["development", "test", "production"]),
+    CONVEX_HTTP_URL: z.string().url(),
   },
 
   /**
@@ -37,6 +38,7 @@ export const env = createEnv({
    */
   runtimeEnv: {
     CI: process.env.CI,
+    CONVEX_HTTP_URL: process.env.CONVEX_HTTP_URL,
     NEXT_PUBLIC_AHREFS_ANALYTICS_KEY:
       process.env.NEXT_PUBLIC_AHREFS_ANALYTICS_KEY,
     NEXT_PUBLIC_CONVEX_URL: process.env.NEXT_PUBLIC_CONVEX_URL,
