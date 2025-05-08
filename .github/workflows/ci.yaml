@@ -70,7 +70,6 @@ jobs:
         uses: actions/checkout@v4
 
       - name: 🤝 Check Inclusive Language
-        if: matrix.task = language
         uses: get-alex/alex-action@v1
         with:
           files: "**/*.{md,mdx,txt}"
