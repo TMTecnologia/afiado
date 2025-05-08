@@ -19,7 +19,7 @@ type WaitlistResponse = {
  */
 export async function addToWaitlist(email: string): Promise<WaitlistResponse> {
   try {
-    const waitlistUrl = new URL('waitlist', env.CONVEX_HTTP_URL);
+    const waitlistUrl = new URL('waitlist', env.CONVEX_SITE_URL);
     const response = await fetch(waitlistUrl, {
       method: "POST",
       headers: {
