@@ -8,6 +8,11 @@ type FormErrors = {
   [key: string]: string;
 };
 
+/**
+ * Renders a waitlist signup form that allows users to submit their email address.
+ *
+ * Handles form state, validation, and submission to add the email to the waitlist. Displays field-specific and general error messages, and navigates to a thank-you page upon successful submission.
+ */
 export default function WaitListForm() {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
