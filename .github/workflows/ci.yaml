@@ -44,3 +44,20 @@ jobs:
           else if [ "${{ matrix.task }}" = "typecheck" ]; then
             bun run typecheck
           fi
+
+  inclusive-language:
+    name: Inclusive Language
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🤝 Check Inclusive Language
+        if: matrix.task = language
+        uses: get-alex/alex-action@v1
+        with:
+          files: "**/*.{md,mdx,txt}"
