@@ -6,8 +6,26 @@ import { httpAction, internalMutation } from "./_generated/server";
 
 const zInternalMutation = zCustomMutation(internalMutation, NoOp);
 
+// Custom error messages in Portuguese
+const errorMessages = {
+  email: {
+    required: "O e-mail é obrigatório",
+    invalid: "Formato de e-mail inválido",
+  },
+  json: {
+    invalid: "O corpo da requisição deve ser um JSON válido",
+  },
+  validation: {
+    failed: "Falha na validação",
+  },
+} as const;
+
 const waitlistSchema = z.object({
-  email: z.string().email("Invalid email format"),
+  email: z
+    .string({
+      required_error: errorMessages.email.required,
+    })
+    .email(errorMessages.email.invalid),
 });
 
 export const addEmailToWaitlist = zInternalMutation({
@@ -60,12 +78,12 @@ export const addEmailToWaitlistHttp = httpAction(async (ctx, request) => {
     args = await request.json();
   } catch (error) {
     return createErrorResponse({
-      message: "Invalid JSON payload",
+      message: "Payload JSON inválido",
       code: "INVALID_JSON",
       errors: [
         {
           path: "body",
-          message: "The request body must be a valid JSON",
+          message: errorMessages.json.invalid,
         },
       ],
     });
@@ -75,7 +93,7 @@ export const addEmailToWaitlistHttp = httpAction(async (ctx, request) => {
 
   if (!result.success) {
     return createErrorResponse({
-      message: "Validation failed",
+      message: errorMessages.validation.failed,
       code: "VALIDATION_ERROR",
       errors: result.error.errors.map((err) => ({
         path: err.path.join("."),
