@@ -11,8 +11,8 @@ export const env = createEnv({
       .enum(["true", "false"])
       .transform((value) => value === "true")
       .optional(),
-    NODE_ENV: z.enum(["development", "test", "production"]),
     CONVEX_SITE_URL: z.string().url(),
+    NODE_ENV: z.enum(["development", "test", "production"]),
   },
 
   /**
