@@ -54,7 +54,7 @@ jobs:
         run: |
           if [ "${{ matrix.task }}" = "lint" ]; then
             bun run check
-          else if [ "${{ matrix.task }}" = "typecheck" ]; then
+          elif [ "${{ matrix.task }}" = "typecheck" ]; then
             bun run typecheck
           fi
 
