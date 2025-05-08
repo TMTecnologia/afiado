@@ -1,10 +1,17 @@
-import { httpAction, internalMutation } from "./_generated/server";
-import { internal } from "./_generated/api";
-import { v } from "convex/values";
+import { NoOp } from "convex-helpers/server/customFunctions";
+import { zCustomMutation } from "convex-helpers/server/zod";
 import { z } from "zod";
+import { internal } from "./_generated/api";
+import { httpAction, internalMutation } from "./_generated/server";
 
-export const addEmailToWaitlist = internalMutation({
-  args: { email: v.string() },
+const zInternalMutation = zCustomMutation(internalMutation, NoOp);
+
+const waitlistSchema = z.object({
+  email: z.string().email("Invalid email format"),
+});
+
+export const addEmailToWaitlist = zInternalMutation({
+  args: waitlistSchema,
   handler: async (ctx, args) => {
     const email = await ctx.db
       .query("waitlist")
@@ -29,34 +36,52 @@ const HTTP_STATUS_CODE = {
   UNPROCESSABLE_CONTENT: 422,
 };
 
-const waitlistSchema = z.object({
-  email: z.string().email("Invalid email format"),
-});
+type ErrorResponse = {
+  message: string;
+  errors?: Array<{ path: string; message: string }>;
+  code: string;
+};
+
+const createErrorResponse = (error: ErrorResponse, init?: ResponseInit) => {
+  return new Response(JSON.stringify(error), {
+    status: HTTP_STATUS_CODE.UNPROCESSABLE_CONTENT,
+    ...init,
+    headers: {
+      "Content-Type": "application/json",
+      ...init?.headers,
+    },
+  });
+};
 
 export const addEmailToWaitlistHttp = httpAction(async (ctx, request) => {
-  const args = await request.json().catch(() => {
-    return new Response(
-      JSON.stringify({ message: "Invalid input: email required" }),
-      {
-        status: HTTP_STATUS_CODE.UNPROCESSABLE_CONTENT,
-        headers: { "Content-Type": "application/json" },
-      },
-    );
-  });
+  let args: z.infer<typeof waitlistSchema> | undefined;
+
+  try {
+    args = await request.json();
+  } catch (error) {
+    return createErrorResponse({
+      message: "Invalid JSON payload",
+      code: "INVALID_JSON",
+      errors: [
+        {
+          path: "body",
+          message: "The request body must be a valid JSON",
+        },
+      ],
+    });
+  }
 
   const result = waitlistSchema.safeParse(args);
-  
+
   if (!result.success) {
-    return new Response(
-      JSON.stringify({ 
-        message: "Invalid input", 
-        errors: result.error.errors 
-      }),
-      {
-        status: HTTP_STATUS_CODE.UNPROCESSABLE_CONTENT,
-        headers: { "Content-Type": "application/json" },
-      },
-    );
+    return createErrorResponse({
+      message: "Validation failed",
+      code: "VALIDATION_ERROR",
+      errors: result.error.errors.map((err) => ({
+        path: err.path.join("."),
+        message: err.message,
+      })),
+    });
   }
 
   await ctx.runMutation(internal.waitlist.addEmailToWaitlist, {
