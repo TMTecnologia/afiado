@@ -19,7 +19,8 @@ type WaitlistResponse = {
  */
 export async function addToWaitlist(email: string): Promise<WaitlistResponse> {
   try {
-    const response = await fetch(path.join(env.CONVEX_HTTP_URL, "waitlist"), {
+    const waitlistUrl = new URL('waitlist', env.CONVEX_HTTP_URL);
+    const response = await fetch(waitlistUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
