@@ -70,6 +70,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: 🤝 Check Inclusive Language
-        uses: get-alex/alex-action@v1
+        uses: brown-ccv/alex-recommends@v1.2.1
         with:
-          files: "**/*.{md,mdx,txt}"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          profanity_sureness: 2
+          # remove pr_only after the first successfull run
+          pr_only: false
