@@ -11,17 +11,15 @@ on:
 
 concurrency:
   # For PRs, use PR number to group concurrent runs
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
   # Only apply concurrency to the same environment
   # This ensures we don't cancel production deployments for development PRs
-  environment: ${{ github.event_name == 'push' && 'production' || 'development' }}
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}-${{ github.event_name == 'push' && 'prod' || 'dev' }}
+  cancel-in-progress: true
 
 jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
-    environment: ${{ github.event_name == 'push' && 'production' || 'development' }}
 
     permissions:
       contents: read
