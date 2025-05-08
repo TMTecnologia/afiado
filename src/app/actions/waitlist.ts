@@ -9,6 +9,14 @@ type WaitlistResponse = {
   errors?: Array<{ path: string; message: string }>;
 };
 
+/**
+ * Submits an email address to the waitlist via a POST request.
+ *
+ * Sends the provided {@link email} to the waitlist endpoint and returns the result, including success status and any error details.
+ *
+ * @param email - The email address to add to the waitlist.
+ * @returns A {@link WaitlistResponse} indicating whether the email was successfully added or describing any errors encountered.
+ */
 export async function addToWaitlist(email: string): Promise<WaitlistResponse> {
   try {
     const response = await fetch(path.join(env.CONVEX_HTTP_URL, "waitlist"), {
