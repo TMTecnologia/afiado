@@ -12,6 +12,9 @@ jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        task: [lint, typecheck]
 
     permissions:
       contents: read
@@ -34,8 +37,10 @@ jobs:
       - name: ⏳ Install dependencies
         run: bun install --frozen-lockfile
 
-      - name: 🚨 Run Lint
-        run: bun run check
-
-      - name: 🏷️ Run Type Check
-        run: bun run typecheck
+      - name: 🚨 Run ${{ matrix.task }}
+        run: |
+          if [ "${{ matrix.task }}" = "lint" ]; then
+            bun run check
+          else if [ "${{ matrix.task }}" = "typecheck" ]; then
+            bun run typecheck
+          fi
