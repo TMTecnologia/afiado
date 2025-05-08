@@ -56,6 +56,9 @@ jobs:
             bun run check
           elif [ "${{ matrix.task }}" = "typecheck" ]; then
             bun run typecheck
+          else
+            echo "Unknown task: ${{ matrix.task }}"
+            exit 1
           fi
 
   inclusive-language:
