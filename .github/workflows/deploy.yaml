@@ -87,14 +87,11 @@ jobs:
     runs-on: ubuntu-latest
     needs: [deploy]
     steps:
-      # pa11y-ci requires node to run, might as well use it for the entire job
-      - name: 🔧 Setup node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 24
+      - name: 🔧 Setup bun
+        uses: oven-sh/setup-bun@v2
 
       - name: ⏳ Install Pa11y CI
-        run: npm install -g pa11y-ci
+        run: bun add -g pa11y-ci
 
       - name: 🛠️ Configure Pa11y CI for Ubuntu 20.04+
         # See: https://github.com/pa11y/pa11y-ci/issues/198#issuecomment-1418343240
