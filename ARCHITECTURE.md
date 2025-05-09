@@ -5,13 +5,13 @@ This document outlines the key architectural decisions, engineering principles, 
 ## Core Engineering Principles
 
 ### 1. Simplicity Over Complexity
-- Prefer simple, maintainable solutions over clever optimizations
+- Prefer straightforward, maintainable solutions over clever optimizations
 - Keep the codebase approachable for new contributors
 - If a feature feels complex, it probably needs more design thinking
 
 ### 2. Type Safety is not optional
 - Maintain strict type checking configurations
-- Document type definitions clearly
+- Document type definitions with precision
 
 ### 3. Testing as a First-Class Citizen
 - Maintain high test coverage for critical paths
@@ -131,8 +131,8 @@ Summary of the technology choices:
 
 **Context:**
 - Need for a modern backend framework with a strong focus on user experience
-- Looking for a provider that is easy to integrate with
-- Looking for an alternative that is easy to implement Real-Time Data Sync
+- Looking for a provider that is straightforward to integrate with
+- Looking for an alternative that is straightforward to implement Real-Time Data Sync
 - Offline-first approach is nice plus.
 - Require strong TypeScript support
 
@@ -154,7 +154,7 @@ Summary of the technology choices:
 
 **Context:**
 - Need for a modern auth provider with a strong focus on user experience
-- Looking for a provider that is easy to integrate with
+- Looking for a provider that is straightforward to integrate with
 - Preferably hosted solution, but we can self-host if necessary
 - Require strong TypeScript support
 
@@ -182,7 +182,7 @@ Summary of the technology choices:
 
 **Context:**
 - Need for a modern payments provider with a strong focus on user experience
-- Looking for a provider that is easy to integrate with
+- Looking for a provider that is straightforward to integrate with
 - Good support for PIX, Brazilian instant payment method
 - Require strong TypeScript support
 - Prefer MoR over Payment Gateway, wherever possible
@@ -197,7 +197,7 @@ Summary of the technology choices:
 - Positive:
   - Good support for PIX, Brazilian instant payment method, using AbacatePay
   - Smallest fees in comparison to other providers
-  - Easy to integrate with
+  - Straightforward to integrate with
   - Strong TypeScript support
 - Negative:
   - Lock-in to AbacatePay ecosystem and payout limitations
@@ -259,8 +259,8 @@ Summary of the technology choices:
 
 **Context:**
 - Need for a modern analytics provider with a strong focus on user experience
-- Want to easily track user/product events and properties
-- Looking for a provider that is easy to integrate with
+- Want to track user/product events and properties with minimal friction
+- Looking for a provider that is straightforward to integrate with
 - Good documentation
 - Good community support
 
@@ -281,8 +281,8 @@ Summary of the technology choices:
 
 **Context:**
 - Need for a modern analytics provider with a strong focus on user experience
-- Want to easily track anonymous analytics for web traffic and heatmaps
-- Looking for a provider that is easy to integrate with
+- Want to track anonymous analytics for web traffic and heatmaps with minimal friction
+- Looking for a provider that is straightforward to integrate with
 - Good documentation
 - Good community support
 
@@ -305,7 +305,7 @@ Summary of the technology choices:
 
 **Context:**
 - Need for a modern SEO tracking provider with a strong focus on user experience
-- Looking for a provider that is easy to integrate with
+- Looking for a provider that is straightforward to integrate with
 - Gives a variety of insights, including backlinks, keywords, and traffic
 - Good documentation
 - Good community support
@@ -521,7 +521,7 @@ Summary of the technology choices:
 
 **Context:**
 - Need for a modern sync engine with a strong focus on user experience
-- Need to integrate easily with the current Backend framework
+- Need to integrate with minimal friction with the current Backend framework
 - Good documentation
 - Good community support
 

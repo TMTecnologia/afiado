@@ -1,19 +1,20 @@
 name: CI
 
 on:
-  push:
-    branches: [main]
   pull_request:
     branches: [main]
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        task: [formatting, typecheck]
 
     permissions:
       contents: read
@@ -22,11 +23,24 @@ jobs:
       - name: 📥 Checkout repository
         uses: actions/checkout@v4
 
-      - name: 📦 Load cache
+      - name: 📦 Cache Bun
         uses: actions/cache@v3
         with:
-          path: ~/.bun
-          key: ${{ runner.os }}-bun-${{ hashFiles('bun.lock') }}
+          path: |
+            ~/.bun
+          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-bun-
+
+      - name: 📦 Cache Next.js
+        uses: actions/cache@v3
+        with:
+          path: |
+            .next/cache
+            ${{ github.workspace }}/.next/static
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/bun.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-
 
       - name: 🔧 Setup bun
         uses: oven-sh/setup-bun@v2
@@ -36,8 +50,31 @@ jobs:
       - name: ⏳ Install dependencies
         run: bun install --frozen-lockfile
 
-      - name: 🚨 Run Lint
-        run: bun run check
+      - name: 🚨 Run ${{ matrix.task }}
+        run: |
+          if [ "${{ matrix.task }}" = "formatting" ]; then
+            bun run check
+          elif [ "${{ matrix.task }}" = "typecheck" ]; then
+            bun run typecheck
+          else
+            echo "Unknown task: ${{ matrix.task }}"
+            exit 1
+          fi
 
-      - name: 🏷️ Run Type Check
-        run: bun run typecheck
+  inclusive-language:
+    name: Inclusive Language
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🤝 Check Inclusive Language
+        uses: brown-ccv/alex-recommends@v1.2.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          profanity_sureness: 2
