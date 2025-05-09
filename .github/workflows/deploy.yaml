@@ -91,7 +91,7 @@ jobs:
         uses: oven-sh/setup-bun@v2
 
       - name: ⏳ Install Pa11y CI
-        run: bun add -g pa11y-ci
+        run: bun add -g pa11y-ci@3.1.0
 
       - name: 🛠️ Configure Pa11y CI for Ubuntu 20.04+
         # See: https://github.com/pa11y/pa11y-ci/issues/198#issuecomment-1418343240
