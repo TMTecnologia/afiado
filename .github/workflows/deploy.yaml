@@ -9,6 +9,13 @@ on:
     branches:
       - main
 
+concurrency:
+  # For PRs, use PR number to group concurrent runs
+  # Only apply concurrency to the same environment
+  # This ensures we don't cancel production deployments for development PRs
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}-${{ github.event_name == 'push' && 'prod' || 'dev' }}
+  cancel-in-progress: true
+
 jobs:
   deploy:
     name: Deploy
@@ -18,15 +25,31 @@ jobs:
       contents: read
       deployments: write
 
+    outputs:
+      deployment_url: ${{ steps.cloudflare_deploy.outputs.deployment-url }}
+
     steps:
       - name: 📥 Checkout repository
         uses: actions/checkout@v4
 
-      - name: 📦 Load cache
+      - name: 📦 Cache Bun
         uses: actions/cache@v3
         with:
-          path: ~/.bun
-          key: ${{ runner.os }}-bun-${{ hashFiles('bun.lock') }}
+          path: |
+            ~/.bun
+          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-bun-
+
+      - name: 📦 Cache Next.js
+        uses: actions/cache@v3
+        with:
+          path: |
+            .next/cache
+            ${{ github.workspace }}/.next/static
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/bun.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-
 
       - name: 🔧 Setup bun
         uses: oven-sh/setup-bun@v2
@@ -46,9 +69,60 @@ jobs:
           NEXT_PUBLIC_POSTHOG_STATIC_ASSETS_HOST: "https://us-assets.i.posthog.com/static"
 
       - name: 🚀 Deploy to Cloudflare Pages
+        id: cloudflare_deploy
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 🚀 Deploy to Convex
+        if: github.event_name == 'push'
+        run: bunx convex deploy
+        env:
+          CONVEX_DEPLOY_KEY: ${{ secrets.CONVEX_DEPLOY_KEY }}
+
+  accessibility:
+    name: Accessibility Review
+    runs-on: ubuntu-latest
+    needs: [deploy]
+
+    steps:
+      - name: 🔧 Setup bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: 🛠️ Configure Pa11y CI for Ubuntu 20.04+
+        # See: https://github.com/pa11y/pa11y-ci/issues/198#issuecomment-1418343240
+        run: |
+          echo '{
+            "defaults": {
+              "chromeLaunchConfig": {
+                "executablePath": "/usr/bin/google-chrome"
+              }
+            }
+          }' > .pa11yci
+
+      - name: 🎯 Accessibility Testing
+        run: bunx --no-save pa11y-ci@3.1.0 ${{ needs.deploy.outputs.deployment_url }}
+
+  performance:
+    name: Performance Review
+    runs-on: ubuntu-latest
+    needs: [deploy]
+
+    steps:
+      # This is needed to upload the results
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: ⚡ Performance Testing
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          urls: ${{ needs.deploy.outputs.deployment_url }}
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+        env:
+          # This token will be used to add status checks with the lighthouse scores for each URL to the PR
+          # See: https://github.com/GoogleChrome/lighthouse-ci/blob/de45968a38faf11ca9f7b92dea377f23b84cf820/docs/getting-started.md#github-status-checks
+          LHCI_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
