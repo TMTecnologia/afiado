@@ -110,5 +110,4 @@ jobs:
         uses: treosh/lighthouse-ci-action@v9
         with:
           urls: ${{ needs.deploy.outputs.deployment_url }}
-          uploadArtifacts: true
           temporaryPublicStorage: true
