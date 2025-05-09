@@ -61,6 +61,7 @@ export default function WaitListForm() {
 
       router.push("/obrigado");
     } catch (error) {
+      console.debug(error);
       setFormErrors({
         form: "Erro ao adicionar email. Tente novamente mais tarde.",
       });
