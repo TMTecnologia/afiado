@@ -122,4 +122,6 @@ jobs:
           uploadArtifacts: true
           temporaryPublicStorage: true
         env:
+          # This token will be used to add status checks with the lighthouse scores for each URL to the PR
+          # See: https://github.com/GoogleChrome/lighthouse-ci/blob/de45968a38faf11ca9f7b92dea377f23b84cf820/docs/getting-started.md#github-status-checks
           LHCI_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
