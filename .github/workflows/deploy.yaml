@@ -102,7 +102,7 @@ jobs:
           }' > .pa11yci
 
       - name: 🎯 Accessibility Testing
-        run: bunx pa11y-ci@3.1.0 ${{ needs.deploy.outputs.deployment_url }}
+        run: bunx --no-save pa11y-ci@3.1.0 ${{ needs.deploy.outputs.deployment_url }}
 
   performance:
     runs-on: ubuntu-latest
