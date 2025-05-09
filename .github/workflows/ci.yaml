@@ -78,4 +78,3 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           profanity_sureness: 2
-          pr_only: false
