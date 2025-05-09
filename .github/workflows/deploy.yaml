@@ -93,6 +93,7 @@ jobs:
         with:
           node-version: 24
           cache: 'npm'
+          cache-dependency-path: 'bun.lock'
 
       - name: ⏳ Install Pa11y CI
         run: npm install -g pa11y-ci
