@@ -44,22 +44,24 @@ export default function WaitListForm() {
     try {
       const result = await addToWaitlist(form.email);
 
-      if (!result.success) {
-        if (result.errors) {
-          // Convert array of errors to object with field names as keys
-          const errors = result.errors.reduce((acc, error) => {
-            acc[error.path] = error.message;
-            return acc;
-          }, {} as FormErrors);
-          setFormErrors(errors);
-        } else {
-          // Handle general error
-          setFormErrors({ form: result.message });
-        }
+      if (result.success) {
+        router.push("/obrigado");
         return;
       }
 
-      router.push("/obrigado");
+      console.error("addToWaitlist::Erro na Server Action:", result);
+
+      if (result.errors) {
+        // Convert array of errors to object with field names as keys
+        const errors = result.errors.reduce((acc, error) => {
+          acc[error.path] = error.message;
+          return acc;
+        }, {} as FormErrors);
+        setFormErrors(errors);
+      } else {
+        // Handle general error
+        setFormErrors({ form: result.message });
+      }
     } catch (error) {
       console.debug(error);
       setFormErrors({

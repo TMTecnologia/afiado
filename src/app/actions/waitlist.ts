@@ -7,6 +7,7 @@ type WaitlistResponse = {
   success: boolean;
   message: string;
   errors?: Array<{ path: string; message: string }>;
+  error?: any;
 };
 
 /**
@@ -30,10 +31,6 @@ export async function addToWaitlist(email: string): Promise<WaitlistResponse> {
 
     if (!response.ok) {
       const error = await response.json();
-      console.error(
-        "addToWaitlist::Erro na resposta da Convex HTTP Action:",
-        error,
-      );
       return {
         success: false,
         message: error.message,
@@ -46,10 +43,10 @@ export async function addToWaitlist(email: string): Promise<WaitlistResponse> {
       message: "Email adicionado com sucesso!",
     };
   } catch (error) {
-    console.error("addToWaitlist::Erro na Server Action:", error);
     return {
       success: false,
       message: "Erro ao adicionar email. Tente novamente mais tarde.",
+      error,
     };
   }
 }
