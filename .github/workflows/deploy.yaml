@@ -90,9 +90,6 @@ jobs:
       - name: 🔧 Setup bun
         uses: oven-sh/setup-bun@v2
 
-      - name: ⏳ Install Pa11y CI
-        run: bun add -g pa11y-ci@3.1.0
-
       - name: 🛠️ Configure Pa11y CI for Ubuntu 20.04+
         # See: https://github.com/pa11y/pa11y-ci/issues/198#issuecomment-1418343240
         run: |
@@ -105,7 +102,7 @@ jobs:
           }' > .pa11yci
 
       - name: 🎯 Accessibility Testing
-        run: pa11y-ci ${{ needs.deploy.outputs.deployment_url }}
+        run: bunx pa11y-ci@3.1.0 ${{ needs.deploy.outputs.deployment_url }}
 
   performance:
     runs-on: ubuntu-latest
