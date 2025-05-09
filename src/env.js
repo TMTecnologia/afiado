@@ -11,6 +11,7 @@ export const env = createEnv({
       .enum(["true", "false"])
       .transform((value) => value === "true")
       .optional(),
+    CONVEX_SITE_URL: z.string().url(),
     NODE_ENV: z.enum(["development", "test", "production"]),
   },
 
@@ -21,7 +22,7 @@ export const env = createEnv({
    */
   client: {
     NEXT_PUBLIC_AHREFS_ANALYTICS_KEY: z.string(),
-    NEXT_PUBLIC_CONVEX_URL: z.string().url(),
+    NEXT_PUBLIC_CONVEX_DEPLOYMENT_URL: z.string().url(),
     NEXT_PUBLIC_POSTHOG_KEY: z.string(),
     NEXT_PUBLIC_POSTHOG_HOST: z.string().url(),
     NEXT_PUBLIC_POSTHOG_STATIC_ASSETS_HOST: z.string().url(),
@@ -37,9 +38,11 @@ export const env = createEnv({
    */
   runtimeEnv: {
     CI: process.env.CI,
+    CONVEX_SITE_URL: process.env.CONVEX_SITE_URL,
     NEXT_PUBLIC_AHREFS_ANALYTICS_KEY:
       process.env.NEXT_PUBLIC_AHREFS_ANALYTICS_KEY,
-    NEXT_PUBLIC_CONVEX_URL: process.env.NEXT_PUBLIC_CONVEX_URL,
+    NEXT_PUBLIC_CONVEX_DEPLOYMENT_URL:
+      process.env.NEXT_PUBLIC_CONVEX_DEPLOYMENT_URL,
     NEXT_PUBLIC_POSTHOG_KEY: process.env.NEXT_PUBLIC_POSTHOG_KEY,
     NEXT_PUBLIC_POSTHOG_HOST: process.env.NEXT_PUBLIC_POSTHOG_HOST,
     NEXT_PUBLIC_POSTHOG_STATIC_ASSETS_HOST:
