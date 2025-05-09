@@ -121,3 +121,5 @@ jobs:
           urls: ${{ needs.deploy.outputs.deployment_url }}
           uploadArtifacts: true
           temporaryPublicStorage: true
+        env:
+          LHCI_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
