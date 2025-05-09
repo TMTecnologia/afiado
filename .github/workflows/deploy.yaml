@@ -106,8 +106,13 @@ jobs:
     runs-on: ubuntu-latest
     needs: [deploy]
     steps:
+      # This is needed to upload the results
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+
       - name: ⚡ Performance Testing
         uses: treosh/lighthouse-ci-action@v9
         with:
           urls: ${{ needs.deploy.outputs.deployment_url }}
+          uploadArtifacts: true
           temporaryPublicStorage: true
