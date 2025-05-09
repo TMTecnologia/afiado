@@ -96,6 +96,17 @@ jobs:
       - name: ⏳ Install Pa11y CI
         run: npm install -g pa11y-ci
 
+      - name: 🛠️ Configure Pa11y CI for Ubuntu 20.04+
+        # See: https://github.com/pa11y/pa11y-ci/issues/198#issuecomment-1418343240
+        run: |
+          echo '{
+            "defaults": {
+              "chromeLaunchConfig": {
+                "executablePath": "/usr/bin/google-chrome"
+              }
+            }
+          }' > .pa11yci
+
       - name: 🎯 Accessibility Testing
         run: pa11y-ci ${{ needs.deploy.outputs.deployment_url }}
 
