@@ -197,7 +197,7 @@ Summary of the technology choices:
 - Positive:
   - Good support for PIX, Brazilian instant payment method, using AbacatePay
   - Smallest fees in comparison to other providers
-  - Easy to integrate with
+  - Straightforward to integrate with
   - Strong TypeScript support
 - Negative:
   - Lock-in to AbacatePay ecosystem and payout limitations
@@ -305,7 +305,7 @@ Summary of the technology choices:
 
 **Context:**
 - Need for a modern SEO tracking provider with a strong focus on user experience
-- Looking for a provider that is easy to integrate with
+- Looking for a provider that is straightforward to integrate with
 - Gives a variety of insights, including backlinks, keywords, and traffic
 - Good documentation
 - Good community support
