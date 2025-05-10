@@ -49,8 +49,6 @@ export default function WaitListForm() {
         return;
       }
 
-      console.error("addToWaitlist::Erro na Server Action:", result);
-
       if (result.errors) {
         // Convert array of errors to object with field names as keys
         const errors = result.errors.reduce((acc, error) => {
@@ -63,7 +61,6 @@ export default function WaitListForm() {
         setFormErrors({ form: result.message });
       }
     } catch (error) {
-      console.debug(error);
       setFormErrors({
         form: "Erro ao adicionar email. Tente novamente mais tarde.",
       });

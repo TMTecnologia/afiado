@@ -7,7 +7,6 @@ type WaitlistResponse = {
   success: boolean;
   message: string;
   errors?: Array<{ path: string; message: string }>;
-  error?: any;
 };
 
 /**
@@ -46,7 +45,6 @@ export async function addToWaitlist(email: string): Promise<WaitlistResponse> {
     return {
       success: false,
       message: "Erro ao adicionar email. Tente novamente mais tarde.",
-      error,
     };
   }
 }
