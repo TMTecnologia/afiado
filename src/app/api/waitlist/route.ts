@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { env } from "~/env";
+// import { env } from "~/env";
 
 /**
  * Use Edge Runtime for CloudFlare Pages compatibility
@@ -29,7 +29,9 @@ export async function POST(
       );
     }
 
-    const waitlistUrl = new URL("waitlist", env.CONVEX_SITE_URL);
+    console.log(JSON.stringify(process.env, null, 2))
+
+    const waitlistUrl = new URL("waitlist", process.env.CONVEX_SITE_URL);
     const response = await fetch(waitlistUrl, {
       method: "POST",
       headers: {
