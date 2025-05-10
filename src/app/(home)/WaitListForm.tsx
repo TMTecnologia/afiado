@@ -2,7 +2,6 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { addToWaitlist } from "~/app/actions/waitlist";
 
 type FormErrors = {
   [key: string]: string;
@@ -42,7 +41,15 @@ export default function WaitListForm() {
     setFormErrors({});
 
     try {
-      const result = await addToWaitlist(form.email);
+      const response = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email: form.email }),
+      });
+
+      const result = await response.json();
 
       if (result.success) {
         router.push("/obrigado");
@@ -51,10 +58,13 @@ export default function WaitListForm() {
 
       if (result.errors) {
         // Convert array of errors to object with field names as keys
-        const errors = result.errors.reduce((acc, error) => {
-          acc[error.path] = error.message;
-          return acc;
-        }, {} as FormErrors);
+        const errors = result.errors.reduce(
+          (acc: FormErrors, error: { path: string; message: string }) => {
+            acc[error.path] = error.message;
+            return acc;
+          },
+          {} as FormErrors,
+        );
         setFormErrors(errors);
       } else {
         // Handle general error
