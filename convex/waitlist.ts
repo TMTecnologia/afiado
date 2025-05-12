@@ -37,7 +37,7 @@ export const addEmailToWaitlist = zInternalMutation({
 });
 
 /**
- * Creates an response with the specified details
+ * Creates a response with the specified details
  */
 const createResponse = (
   response: ApiResponse,
