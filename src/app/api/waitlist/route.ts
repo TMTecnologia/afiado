@@ -80,6 +80,10 @@ export async function POST(
 
     if (!response.ok) {
       const error = await response.json();
+      console.error("[POST] /api/waitlist :: Error received from Convex:", {
+        status: response.status,
+        error,
+      });
       return NextResponse.json(
         {
           success: false,
@@ -96,6 +100,7 @@ export async function POST(
       message: "Email adicionado com sucesso!",
     });
   } catch (error) {
+    console.error("[POST] /api/waitlist :: Unexpected server error:", error);
     return NextResponse.json(
       {
         success: false,

@@ -61,6 +61,10 @@ export const addEmailToWaitlistHttp = httpAction(async (ctx, request) => {
   try {
     args = await request.json();
   } catch (error) {
+    console.error(
+      "addEmailToWaitlistHttp::JSON parsing error in waitlist HTTP action:",
+      error,
+    );
     return createResponse(
       {
         success: false,
@@ -82,6 +86,10 @@ export const addEmailToWaitlistHttp = httpAction(async (ctx, request) => {
   const result = waitlistSchema.safeParse(args);
 
   if (!result.success) {
+    console.error(
+      "addEmailToWaitlistHttp::Validation error in waitlist HTTP action:",
+      result.error.errors,
+    );
     return createResponse(
       {
         success: false,
