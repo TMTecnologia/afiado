@@ -1,33 +1,24 @@
 import { NoOp } from "convex-helpers/server/customFunctions";
 import { zCustomMutation } from "convex-helpers/server/zod";
 import { z } from "zod";
+import { ErrorCodeCatalog, HTTP_STATUS } from "../src/lib/api/constants";
+import { emailSchema } from "../src/lib/api/schemas";
+import type { ApiResponse } from "../src/lib/api/types";
 import { internal } from "./_generated/api";
 import { httpAction, internalMutation } from "./_generated/server";
 
 const zInternalMutation = zCustomMutation(internalMutation, NoOp);
 
-// Custom error messages in Portuguese
-const errorMessages = {
-  email: {
-    required: "O e-mail é obrigatório",
-    invalid: "Formato de e-mail inválido",
-  },
-  json: {
-    invalid: "O corpo da requisição deve ser um JSON válido",
-  },
-  validation: {
-    failed: "Falha na validação",
-  },
-} as const;
-
-const waitlistSchema = z.object({
-  email: z
-    .string({
-      required_error: errorMessages.email.required,
-    })
-    .email(errorMessages.email.invalid),
+/**
+ * Schema for validating waitlist requests
+ */
+export const waitlistSchema = z.object({
+  email: emailSchema,
 });
 
+/**
+ * Adds an email to the waitlist if it doesn't already exist
+ */
 export const addEmailToWaitlist = zInternalMutation({
   args: waitlistSchema,
   handler: async (ctx, args) => {
@@ -46,23 +37,13 @@ export const addEmailToWaitlist = zInternalMutation({
 });
 
 /**
- * HTTP response status codes
- * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status}
+ * Creates an response with the specified details
  */
-const HTTP_STATUS_CODE = {
-  CREATED: 201,
-  UNPROCESSABLE_CONTENT: 422,
-};
-
-type ErrorResponse = {
-  message: string;
-  errors?: Array<{ path: string; message: string }>;
-  code: string;
-};
-
-const createErrorResponse = (error: ErrorResponse, init?: ResponseInit) => {
-  return new Response(JSON.stringify(error), {
-    status: HTTP_STATUS_CODE.UNPROCESSABLE_CONTENT,
+const createResponse = (
+  response: ApiResponse,
+  init: ResponseInit & Required<Pick<ResponseInit, "status">>,
+) => {
+  return new Response(JSON.stringify(response), {
     ...init,
     headers: {
       "Content-Type": "application/json",
@@ -71,42 +52,63 @@ const createErrorResponse = (error: ErrorResponse, init?: ResponseInit) => {
   });
 };
 
+/**
+ * HTTP endpoint for adding an email to the waitlist
+ */
 export const addEmailToWaitlistHttp = httpAction(async (ctx, request) => {
-  let args: z.infer<typeof waitlistSchema> | undefined;
+  let args: unknown;
 
   try {
     args = await request.json();
   } catch (error) {
-    return createErrorResponse({
-      message: "Payload JSON inválido",
-      code: "INVALID_JSON",
-      errors: [
-        {
-          path: "body",
-          message: errorMessages.json.invalid,
-        },
-      ],
-    });
+    return createResponse(
+      {
+        success: false,
+        message: ErrorCodeCatalog.INVALID_JSON,
+        code: "INVALID_JSON",
+        errors: [
+          {
+            path: "body",
+            message: "O corpo da requisição deve ser um JSON válido",
+          },
+        ],
+      },
+      {
+        status: HTTP_STATUS.UNPROCESSABLE_CONTENT,
+      },
+    );
   }
 
   const result = waitlistSchema.safeParse(args);
 
   if (!result.success) {
-    return createErrorResponse({
-      message: errorMessages.validation.failed,
-      code: "VALIDATION_ERROR",
-      errors: result.error.errors.map((err) => ({
-        path: err.path.join("."),
-        message: err.message,
-      })),
-    });
+    return createResponse(
+      {
+        success: false,
+        message: ErrorCodeCatalog.VALIDATION_ERROR,
+        code: "VALIDATION_ERROR",
+        errors: result.error.errors.map((err) => ({
+          path: err.path.join("."),
+          message: err.message,
+        })),
+      },
+      {
+        status: HTTP_STATUS.UNPROCESSABLE_CONTENT,
+      },
+    );
   }
 
   await ctx.runMutation(internal.waitlist.addEmailToWaitlist, {
     email: result.data.email,
   });
 
-  return new Response(null, {
-    status: HTTP_STATUS_CODE.CREATED,
-  });
+  return createResponse(
+    {
+      success: true,
+      message: "Email adicionado com sucesso!",
+    },
+    {
+      status: HTTP_STATUS.CREATED,
+    },
+  );
 });

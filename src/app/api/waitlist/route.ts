@@ -1,37 +1,76 @@
 import { NextResponse } from "next/server";
-// import { env } from "~/env";
+import { z } from "zod";
+import { env } from "~/env";
+import { ErrorCodeCatalog, HTTP_STATUS } from "~/lib/api/constants";
+import { emailSchema } from "~/lib/api/schemas";
+import type { ApiResponse } from "~/lib/api/types";
 
 /**
  * Use Edge Runtime for CloudFlare Pages compatibility
  */
 export const runtime = "edge";
 
-type WaitlistResponse = {
-  success: boolean;
-  message: string;
-  errors?: Array<{ path: string; message: string }>;
-};
+/**
+ * Schema to validate the request params/args
+ */
+const requestSchema = z.object({
+  email: emailSchema,
+});
 
+/**
+ * Submits an email address to the waitlist via a POST request.
+ *
+ * Sends the provided email to the waitlist endpoint and returns the result,
+ * including success status and any error details.
+ *
+ * @param request - The incoming HTTP request
+ * @returns A response indicating whether the email was successfully added or describing any errors encountered
+ */
 export async function POST(
   request: Request,
-): Promise<NextResponse<WaitlistResponse>> {
+): Promise<NextResponse<ApiResponse>> {
+  let args: unknown;
+
   try {
-    const { email } = await request.json();
+    args = await request.json();
+  } catch (error) {
+    return NextResponse.json(
+      {
+        success: false,
+        message: ErrorCodeCatalog.INVALID_JSON,
+        code: "INVALID_JSON",
+        errors: [
+          {
+            path: "body",
+            message: "O corpo da requisição deve ser um JSON válido",
+          },
+        ],
+      },
+      { status: HTTP_STATUS.UNPROCESSABLE_CONTENT },
+    );
+  }
 
-    if (!email) {
-      return NextResponse.json(
-        {
-          success: false,
-          message: "Email é obrigatório",
-          errors: [{ path: "email", message: "Email é obrigatório" }],
-        },
-        { status: 400 },
-      );
-    }
+  const result = requestSchema.safeParse(args);
 
-    console.log(JSON.stringify(process.env, null, 2))
+  if (!result.success) {
+    return NextResponse.json(
+      {
+        success: false,
+        message: ErrorCodeCatalog.VALIDATION_ERROR,
+        code: "VALIDATION_ERROR",
+        errors: result.error.errors.map((err) => ({
+          path: err.path.join("."),
+          message: err.message,
+        })),
+      },
+      { status: HTTP_STATUS.UNPROCESSABLE_CONTENT },
+    );
+  }
 
-    const waitlistUrl = new URL("waitlist", process.env.CONVEX_SITE_URL);
+  try {
+    const { email } = result.data;
+
+    const waitlistUrl = new URL("waitlist", env.CONVEX_SITE_URL);
     const response = await fetch(waitlistUrl, {
       method: "POST",
       headers: {
@@ -46,6 +85,7 @@ export async function POST(
         {
           success: false,
           message: error.message,
+          code: "VALIDATION_ERROR",
           errors: error.errors,
         },
         { status: response.status },
@@ -60,9 +100,11 @@ export async function POST(
     return NextResponse.json(
       {
         success: false,
-        message: "Erro ao adicionar email. Tente novamente mais tarde.",
+        message: ErrorCodeCatalog.INTERNAL_SERVER_ERROR,
+        code: "INTERNAL_SERVER_ERROR",
+        errors: [],
       },
-      { status: 500 },
+      { status: HTTP_STATUS.INTERNAL_SERVER_ERROR },
     );
   }
 }

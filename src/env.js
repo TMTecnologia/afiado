@@ -60,6 +60,4 @@ export const env = createEnv({
    * `SOME_VAR=''` will throw an error.
    */
   emptyStringAsUndefined: true,
-  // Tell the library when we're in a server context.
-  isServer: typeof window === "undefined",
 });
