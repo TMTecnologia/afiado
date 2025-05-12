@@ -2,16 +2,15 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { addToWaitlist } from "~/app/actions/waitlist";
 
 type FormErrors = {
   [key: string]: string;
 };
 
 /**
- * Renders a waitlist signup form that allows users to submit their email address.
+ * Displays a waitlist signup form for users to submit their email address.
  *
- * Handles form state, validation, and submission to add the email to the waitlist. Displays field-specific and general error messages, and navigates to a thank-you page upon successful submission.
+ * Manages form state, handles validation and submission to the waitlist API, displays relevant error messages, and redirects to a thank-you page upon successful signup.
  */
 export default function WaitListForm() {
   const router = useRouter();
@@ -42,26 +41,36 @@ export default function WaitListForm() {
     setFormErrors({});
 
     try {
-      const result = await addToWaitlist(form.email);
+      const response = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email: form.email }),
+      });
 
-      if (!result.success) {
-        if (result.errors) {
-          // Convert array of errors to object with field names as keys
-          const errors = result.errors.reduce((acc, error) => {
-            acc[error.path] = error.message;
-            return acc;
-          }, {} as FormErrors);
-          setFormErrors(errors);
-        } else {
-          // Handle general error
-          setFormErrors({ form: result.message });
-        }
+      const result = await response.json();
+
+      if (result.success) {
+        router.push("/obrigado");
         return;
       }
 
-      router.push("/obrigado");
+      if (result.errors) {
+        // Convert array of errors to object with field names as keys
+        const errors = result.errors.reduce(
+          (acc: FormErrors, error: { path: string; message: string }) => {
+            acc[error.path] = error.message;
+            return acc;
+          },
+          {} as FormErrors,
+        );
+        setFormErrors(errors);
+      } else {
+        // Handle general error
+        setFormErrors({ form: result.message });
+      }
     } catch (error) {
-      console.debug(error);
       setFormErrors({
         form: "Erro ao adicionar email. Tente novamente mais tarde.",
       });
