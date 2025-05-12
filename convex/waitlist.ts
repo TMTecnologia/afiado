@@ -1,9 +1,9 @@
 import { NoOp } from "convex-helpers/server/customFunctions";
 import { zCustomMutation } from "convex-helpers/server/zod";
 import { z } from "zod";
-import { ErrorCodeCatalog, HTTP_STATUS } from "../src/lib/api/constants";
-import { emailSchema } from "../src/lib/api/schemas";
-import type { ApiResponse } from "../src/lib/api/types";
+import { ErrorCodeCatalog, HTTP_STATUS } from "~/lib/api/constants";
+import { emailSchema } from "~/lib/api/schemas";
+import type { ApiResponse } from "~/lib/api/types";
 import { internal } from "./_generated/api";
 import { httpAction, internalMutation } from "./_generated/server";
 
