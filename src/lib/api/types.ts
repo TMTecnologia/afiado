@@ -34,7 +34,10 @@ export type ApiResponseCatalog = {
 export type ApiResponse = ApiResponseCatalog[keyof ApiResponseCatalog];
 
 /**
- * Type guard to check if a response is a success response
+ * Determines whether the given API response represents a successful result.
+ *
+ * @param response - The API response to check.
+ * @returns True if the response is a {@link SuccessResponse}; otherwise, false.
  */
 export function isSuccessResponse(
   response: ApiResponse,
@@ -43,7 +46,10 @@ export function isSuccessResponse(
 }
 
 /**
- * Type guard to check if a response is an error response
+ * Determines whether the given API response is an error response.
+ *
+ * @param response - The API response to check.
+ * @returns `true` if the response is an {@link ErrorResponse}; otherwise, `false`.
  */
 export function isErrorResponse(
   response: ApiResponse,

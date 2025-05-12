@@ -18,13 +18,12 @@ const requestSchema = z.object({
 });
 
 /**
- * Submits an email address to the waitlist via a POST request.
+ * Handles a POST request to add an email address to the waitlist.
  *
- * Sends the provided email to the waitlist endpoint and returns the result,
- * including success status and any error details.
+ * Validates the request body for a valid email, forwards it to the waitlist endpoint, and returns a structured response indicating success or detailing any validation or processing errors.
  *
- * @param request - The incoming HTTP request
- * @returns A response indicating whether the email was successfully added or describing any errors encountered
+ * @param request - The incoming HTTP request containing the email to be added.
+ * @returns A JSON response indicating the result of the waitlist submission.
  */
 export async function POST(
   request: Request,
