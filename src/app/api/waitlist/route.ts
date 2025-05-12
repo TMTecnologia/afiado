@@ -1,7 +1,12 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { env } from "~/env";
-import { ErrorCodeCatalog, HTTP_STATUS } from "~/lib/api/constants";
+import {
+  ErrorCodeCatalog,
+  HTTP_STATUS,
+  responseStatusToErrorCode,
+  responseToErrorMessage,
+} from "~/lib/api/constants";
 import { emailSchema } from "~/lib/api/schemas";
 import type { ApiResponse } from "~/lib/api/types";
 
@@ -15,6 +20,19 @@ export const runtime = "edge";
  */
 const requestSchema = z.object({
   email: emailSchema,
+});
+
+/**
+ * Schema to validate the error response from Convex
+ */
+const errorResponseSchema = z.object({
+  message: z.string(),
+  errors: z.array(
+    z.object({
+      path: z.string(),
+      message: z.string(),
+    }),
+  ),
 });
 
 /**
@@ -66,49 +84,47 @@ export async function POST(
     );
   }
 
-  try {
-    const { email } = result.data;
+  const waitlistUrl = new URL("waitlist", env.CONVEX_SITE_URL);
+  const response = await fetch(waitlistUrl, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(result.data),
+  });
 
-    const waitlistUrl = new URL("waitlist", env.CONVEX_SITE_URL);
-    const response = await fetch(waitlistUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email }),
-    });
-
-    if (!response.ok) {
-      const error = await response.json();
-      console.error("[POST] /api/waitlist :: Error received from Convex:", {
-        status: response.status,
-        error,
-      });
-      return NextResponse.json(
-        {
-          success: false,
-          message: error.message,
-          code: "VALIDATION_ERROR",
-          errors: error.errors,
-        },
-        { status: response.status },
-      );
-    }
-
+  if (response.ok) {
     return NextResponse.json({
       success: true,
       message: "Email adicionado com sucesso!",
     });
-  } catch (error) {
-    console.error("[POST] /api/waitlist :: Unexpected server error:", error);
-    return NextResponse.json(
-      {
-        success: false,
-        message: ErrorCodeCatalog.INTERNAL_SERVER_ERROR,
-        code: "INTERNAL_SERVER_ERROR",
-        errors: [],
-      },
-      { status: HTTP_STATUS.INTERNAL_SERVER_ERROR },
-    );
   }
+
+  let errorBody: unknown;
+
+  try {
+    // Try to parse the error body, but it might not exist
+    errorBody = await response.json();
+  } catch {
+    // No body or invalid JSON
+    errorBody = null;
+  }
+
+  console.error("[POST] /api/waitlist :: Error received from Convex:", {
+    status: response.status,
+    error: errorBody,
+  });
+
+  const parsedError = errorResponseSchema.safeParse(errorBody ?? {});
+
+  return NextResponse.json(
+    {
+      success: false,
+      message: responseToErrorMessage(response),
+      code: responseStatusToErrorCode(response.status),
+      errors: [],
+      ...parsedError.data,
+    },
+    { status: response.status },
+  );
 }
