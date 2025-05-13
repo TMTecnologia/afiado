@@ -89,6 +89,12 @@ export async function POST(
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      /**
+       * Important to pipe the Origin header from NextJS to Convex request
+       *
+       * This allows us to enforce the CORS policy
+       */
+      Origin: request.headers.get("Origin") ?? "",
     },
     body: JSON.stringify(result.data),
   });
