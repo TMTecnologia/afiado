@@ -5,7 +5,7 @@
 export const HTTP_STATUS = {
   /** The request succeeded, and a new resource was created as a result */
   CREATED: 201,
-  /** The client does not have access rights to the content; that is, it is unauthorized, so the server is refusing to give the requested resource */
+  /** The client client is authenticated but lacks sufficient permissions */
   FORBIDDEN: 403,
   /** The request was well-formed but was unable to be followed due to semantic errors */
   UNPROCESSABLE_CONTENT: 422,
