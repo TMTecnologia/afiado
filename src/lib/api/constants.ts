@@ -39,7 +39,7 @@ export const responseStatusToErrorCode = (status: number): ErrorCode => {
   return "INTERNAL_SERVER_ERROR";
 };
 
-export const responseToErrorMessage = (response: ResponseInit) => {
+export const responseToErrorMessage = (response: Response) => {
   if (response.status === HTTP_STATUS.FORBIDDEN) {
     return ErrorCodeCatalog.FORBIDDEN;
   }

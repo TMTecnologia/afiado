@@ -129,7 +129,7 @@ export async function POST(
       message: responseToErrorMessage(response),
       code: responseStatusToErrorCode(response.status),
       errors: [],
-      ...parsedError.data,
+      ...(parsedError.success ? parsedError.data : {}),
     },
     { status: response.status },
   );
