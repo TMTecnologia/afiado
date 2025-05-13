@@ -137,15 +137,16 @@ export async function POST(
   });
 
   const parsedError = errorResponseSchema.safeParse(errorBody ?? {});
+  const baseResponse = {
+    success: false,
+    message: responseToErrorMessage(response),
+    code: responseStatusToErrorCode(response.status),
+  } as const;
+
+  const body = parsedError.success ? parsedError.data : { errors: [] };
 
   return NextResponse.json(
-    {
-      success: false,
-      message: responseToErrorMessage(response),
-      code: responseStatusToErrorCode(response.status),
-      errors: [],
-      ...(parsedError.success ? parsedError.data : {}),
-    },
+    { ...baseResponse, ...body },
     { status: response.status },
   );
 }
