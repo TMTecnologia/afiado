@@ -27,23 +27,3 @@ export const ErrorCodeCatalog = {
  * Type for error codes
  */
 export type ErrorCode = keyof typeof ErrorCodeCatalog;
-
-export const responseStatusToErrorCode = (status: number): ErrorCode => {
-  if (status === HTTP_STATUS.FORBIDDEN) {
-    return "FORBIDDEN";
-  }
-  if (status === HTTP_STATUS.UNPROCESSABLE_CONTENT) {
-    return "VALIDATION_ERROR";
-  }
-  return "INTERNAL_SERVER_ERROR";
-};
-
-export const responseToErrorMessage = (response: Response) => {
-  if (response.status === HTTP_STATUS.FORBIDDEN) {
-    return ErrorCodeCatalog.FORBIDDEN;
-  }
-  if (response.status === HTTP_STATUS.UNPROCESSABLE_CONTENT) {
-    return ErrorCodeCatalog.VALIDATION_ERROR;
-  }
-  return `Erro ao processar a solicitação (${response.status} ${response.statusText})`;
-};

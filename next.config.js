@@ -13,6 +13,7 @@ const config = {
   reactStrictMode: true,
   async rewrites() {
     return [
+      /** PostHog routes */
       {
         source: "/ingest/static/:path*",
         destination: `${env.NEXT_PUBLIC_POSTHOG_STATIC_ASSETS_HOST}/:path*`,
@@ -25,6 +26,11 @@ const config = {
         source: "/ingest/decide",
         destination: `${env.NEXT_PUBLIC_POSTHOG_HOST}/decide`,
       },
+      /** Convex routes */
+      {
+        source: "/api/waitlist",
+        destination: `${env.CONVEX_SITE_URL}/waitlist`
+      }
     ];
   },
   // This is required to support PostHog trailing slash API requests
