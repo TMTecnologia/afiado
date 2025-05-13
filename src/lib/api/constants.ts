@@ -18,8 +18,7 @@ export const HTTP_STATUS = {
  */
 export const ErrorCodeCatalog = {
   FORBIDDEN: "O cliente não tem direitos de acesso ao conteúdo",
-  INTERNAL_SERVER_ERROR:
-    "Erro ao processar requisição. Tente novamente mais tarde.",
+  INTERNAL_SERVER_ERROR: "Erro ao processar requisição",
   INVALID_JSON: "Payload JSON inválido",
   VALIDATION_ERROR: "Falha na validação",
 } as const;

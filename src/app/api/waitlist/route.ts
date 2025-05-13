@@ -84,20 +84,35 @@ export async function POST(
     );
   }
 
-  const waitlistUrl = new URL("waitlist", env.CONVEX_SITE_URL);
-  const response = await fetch(waitlistUrl, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      /**
-       * Important to pipe the Origin header from NextJS to Convex request
-       *
-       * This allows us to enforce the CORS policy
-       */
-      Origin: request.headers.get("Origin") ?? "",
-    },
-    body: JSON.stringify(result.data),
-  });
+  let response: Response;
+
+  try {
+    const waitlistUrl = new URL("waitlist", env.CONVEX_SITE_URL);
+    response = await fetch(waitlistUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        /**
+         * Important to pipe the Origin header from NextJS to Convex request
+         *
+         * This allows us to enforce the CORS policy
+         */
+        Origin: request.headers.get("Origin") ?? "",
+      },
+      body: JSON.stringify(result.data),
+    });
+  } catch (err) {
+    console.error("[POST] /api/waitlist :: Fetch failed", err);
+    return NextResponse.json(
+      {
+        success: false,
+        message: ErrorCodeCatalog.INTERNAL_SERVER_ERROR,
+        code: "INTERNAL_SERVER_ERROR",
+        errors: [],
+      },
+      { status: HTTP_STATUS.INTERNAL_SERVER_ERROR },
+    );
+  }
 
   if (response.ok) {
     return NextResponse.json({
