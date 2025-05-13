@@ -36,12 +36,12 @@ const errorResponseSchema = z.object({
 });
 
 /**
- * Handles a POST request to add an email address to the waitlist.
+ * Processes a POST request to add an email address to the waitlist.
  *
- * Validates the request body for a valid email, forwards it to the waitlist endpoint, and returns a structured response indicating success or detailing any validation or processing errors.
+ * Validates the request body for a properly formatted email address, forwards the data to an external waitlist service, and returns a structured JSON response indicating success or detailing validation and service errors.
  *
- * @param request - The incoming HTTP request containing the email to be added.
- * @returns A JSON response indicating the result of the waitlist submission.
+ * @param request - The HTTP request containing the email to be added.
+ * @returns A JSON response indicating whether the email was successfully added or describing any errors encountered.
  */
 export async function POST(
   request: Request,
