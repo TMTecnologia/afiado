@@ -29,8 +29,8 @@ const config = {
       /** Convex routes */
       {
         source: "/api/waitlist",
-        destination: `${env.CONVEX_SITE_URL}/waitlist`
-      }
+        destination: `${env.CONVEX_SITE_URL}/waitlist`,
+      },
     ];
   },
   // This is required to support PostHog trailing slash API requests
