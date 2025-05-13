@@ -106,9 +106,22 @@ export const addEmailToWaitlistHttp = httpAction(async (ctx, request) => {
     );
   }
 
-  await ctx.runMutation(internal.waitlist.addEmailToWaitlist, {
-    email: result.data.email,
-  });
+  try {
+    await ctx.runMutation(internal.waitlist.addEmailToWaitlist, {
+      email: result.data.email,
+    });
+  } catch (err) {
+    console.error("addEmailToWaitlistHttp::Mutation failed", err);
+    return createResponse(
+      {
+        success: false,
+        message: ErrorCodeCatalog.INTERNAL_SERVER_ERROR,
+        code: "INTERNAL_SERVER_ERROR",
+        errors: [],
+      },
+      { status: HTTP_STATUS.INTERNAL_SERVER_ERROR },
+    );
+  }
 
   return createResponse(
     {
