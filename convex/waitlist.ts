@@ -115,6 +115,10 @@ export const addEmailToWaitlistHttp = httpAction(async (ctx, request) => {
   const rateLimitHeaders = createRateLimitHeaders(rateLimitStatus);
 
   if (!rateLimitStatus.ok) {
+    console.warn(
+      "addEmailToWaitlistHttp::Rate limit exceeded",
+      { retryAfter: rateLimitStatus.retryAfter }
+    );
     return createResponse(
       {
         success: false,
