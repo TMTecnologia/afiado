@@ -22,7 +22,7 @@ export const ErrorCodeCatalog = {
   FORBIDDEN: "O cliente não tem direitos de acesso ao conteúdo",
   INTERNAL_SERVER_ERROR: "Erro ao processar requisição",
   INVALID_JSON: "Payload JSON inválido",
-  TOO_MANY_REQUESTS: "O usuário enviou muitas requisições",
+  TOO_MANY_REQUESTS: "Muitas tentativas",
   VALIDATION_ERROR: "Falha na validação",
 } as const;
 

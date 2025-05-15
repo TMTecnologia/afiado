@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { HTTP_STATUS } from "~/lib/api/constants";
 
 type FormErrors = {
   [key: string]: string;
@@ -56,7 +57,11 @@ export default function WaitListForm() {
         return;
       }
 
-      if (result.errors) {
+      if (
+        result.errors &&
+        Array.isArray(result.errors) &&
+        result.errors.length
+      ) {
         // Convert array of errors to object with field names as keys
         const errors = result.errors.reduce(
           (acc: FormErrors, error: { path: string; message: string }) => {
@@ -72,7 +77,7 @@ export default function WaitListForm() {
       }
     } catch (error) {
       setFormErrors({
-        form: "Erro ao adicionar email. Tente novamente mais tarde.",
+        form: "Erro ao adicionar email",
       });
     } finally {
       setIsSubmitting(false);

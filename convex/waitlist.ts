@@ -116,14 +116,13 @@ export const addEmailToWaitlistHttp = httpAction(async (ctx, request) => {
   const rateLimitHeaders = createRateLimitHeaders(rateLimitStatus);
 
   if (!rateLimitStatus.ok) {
-    console.warn(
-      "addEmailToWaitlistHttp::Rate limit exceeded",
-      { retryAfter: rateLimitStatus.retryAfter }
-    );
+    console.warn("addEmailToWaitlistHttp::Rate limit exceeded", {
+      retryAfter: rateLimitStatus.retryAfter,
+    });
     return createResponse(
       {
         success: false,
-        message: ErrorCodeCatalog.TOO_MANY_REQUESTS,
+        message: `Muitas tentativas. Por favor, aguarde ${rateLimitStatus.retryAfter} segundos antes de tentar novamente.`,
         code: "TOO_MANY_REQUESTS",
         errors: [],
       },
