@@ -103,13 +103,14 @@ export const addEmailToWaitlist = zInternalMutation({
  * HTTP endpoint for adding an email to the waitlist
  */
 export const addEmailToWaitlistHttp = httpAction(async (ctx, request) => {
+  const requestId = `${
+    request.headers.get("x-forwarded-for") ||
+    request.headers.get("x-real-ip") ||
+    request.headers.get("cookie") ||
+    "unknown"
+  }-${request.headers.get("origin") || "unknown"}`
   const rateLimitStatus = await rateLimiter.limit(ctx, "waitlistSignUp", {
-    key: `${
-      request.headers.get("x-forwarded-for") ||
-      request.headers.get("x-real-ip") ||
-      request.headers.get("cookie") ||
-      "unknown"
-    }-${request.headers.get("origin") || "unknown"}`,
+    key: requestId,
     config: {
       kind: WAITLIST_RATE_LIMIT.ALGORITHM,
       rate: WAITLIST_RATE_LIMIT.REQUESTS_PER_WINDOW,
