@@ -108,7 +108,7 @@ export const addEmailToWaitlistHttp = httpAction(async (ctx, request) => {
     request.headers.get("x-real-ip") ||
     request.headers.get("cookie") ||
     "unknown"
-  }-${request.headers.get("origin") || "unknown"}`
+  }-${request.headers.get("origin") || "unknown"}`;
   const rateLimitStatus = await rateLimiter.limit(ctx, "waitlistSignUp", {
     key: requestId,
     config: {
