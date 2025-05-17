@@ -10,9 +10,9 @@ type FormErrors = {
 };
 
 /**
- * Displays a waitlist signup form for users to submit their email address.
+ * Renders a waitlist signup form that allows users to submit their email address.
  *
- * Manages form state, handles validation and submission to the waitlist API, displays relevant error messages, and redirects to a thank-you page upon successful signup.
+ * Handles form state, client-side validation, API submission, error display, and redirects to a thank-you page upon successful registration.
  */
 export default function WaitListForm() {
   const router = useRouter();
