@@ -1,30 +1,10 @@
-import type { Prettify } from "../utils";
-import type { ErrorCode } from "./constants";
-import { z } from "zod";
-
-export const successResponseSchema = z.object({
-  success: z.literal(true),
-  message: z.string(),
-  code: z.never().optional(),
-  errors: z.never().optional(),
-});
-
-export const errorResponseSchema = z.object({
-  success: z.literal(false),
-  message: z.string(),
-  // The error code types are already being enforced on the API createResponse
-  // So they will not be enforced manually here, for the time being
-  code: z.string() as z.ZodType<ErrorCode>,
-  errors: z.array(z.object({
-    path: z.string(),
-    message: z.string(),
-  })),
-});
-
-export const apiResponseSchema = z.discriminatedUnion("success", [
-  successResponseSchema,
+import type { z } from "zod";
+import type { Prettify } from "~/lib/utils";
+import type {
+  apiResponseSchema,
   errorResponseSchema,
-]);
+  successResponseSchema,
+} from "./schemas";
 
 type SuccessResponse = Prettify<z.infer<typeof successResponseSchema>>;
 

@@ -2,6 +2,8 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { apiResponseSchema } from "~/lib/api/schemas";
+import { isSuccessResponse } from "~/lib/api/types";
 
 type FormErrors = {
   [key: string]: string;
@@ -49,27 +51,40 @@ export default function WaitListForm() {
         body: JSON.stringify({ email: form.email }),
       });
 
-      const result = await response.json();
+      // Parse Response Body
+      let responseBody: unknown;
+      try {
+        responseBody = await response.json();
+      } catch {
+        // If parsing fails, consider body empty
+        responseBody = null;
+      }
 
-      if (result.success) {
+      const parsedResult = apiResponseSchema.safeParse(responseBody);
+
+      // Check API response body parsing result
+      if (!parsedResult.success) {
+        // Response has no body, unknown response
+        setFormErrors({
+          form: `Resposta desconhecida: ${response.status} - ${response.statusText}`,
+        });
+        return;
+      }
+
+      const data = parsedResult.data;
+
+      if (isSuccessResponse(data)) {
         router.push("/obrigado");
         return;
       }
 
-      if (result.errors) {
-        // Convert array of errors to object with field names as keys
-        const errors = result.errors.reduce(
-          (acc: FormErrors, error: { path: string; message: string }) => {
-            acc[error.path] = error.message;
-            return acc;
-          },
-          {} as FormErrors,
-        );
-        setFormErrors(errors);
-      } else {
-        // Handle general error
-        setFormErrors({ form: result.message });
-      }
+      // Convert array of errors to object with field names as keys
+      const errors = data.errors.reduce((acc: FormErrors, error) => {
+        acc[error.path] = error.message;
+        return acc;
+      }, {} as FormErrors);
+
+      setFormErrors({ ...errors, form: data.message });
     } catch (error) {
       setFormErrors({
         form: "Erro ao adicionar email. Tente novamente mais tarde.",
