@@ -2,6 +2,13 @@
 # https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
 
 version: 2
+# While Bun is officially supported by Dependabot, there seems to have a bug
+# where both package.json and bun.lock files are not properly updated together
+# This flag is being used as a workaround until the issue is fixed
+# See: https://github.com/dependabot/dependabot-core/issues/11602
+# and: https://github.com/dependabot/dependabot-core/issues/6528#issuecomment-2718062536
+# and: https://docs.github.com/en/code-security/dependabot/ecosystems-supported-by-dependabot/supported-ecosystems-and-repositories#bun
+enable-beta-ecosystems: true
 updates:
   - package-ecosystem: "bun"
     directory: "/" # Location of package manifests
