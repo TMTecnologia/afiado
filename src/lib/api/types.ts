@@ -1,37 +1,16 @@
-import type { ErrorCode } from "./constants";
+import type { z } from "zod";
+import type { Prettify } from "~/lib/utils";
+import type {
+  apiResponseSchema,
+  errorResponseSchema,
+  successResponseSchema,
+} from "./schemas";
 
-/**
- * Represents a successful API response
- */
-export type SuccessResponse = {
-  success: true;
-  message: string;
-  code?: never;
-  errors?: never;
-};
+type SuccessResponse = Prettify<z.infer<typeof successResponseSchema>>;
 
-/**
- * Represents an error API response
- */
-export type ErrorResponse = {
-  success: false;
-  message: string;
-  code: ErrorCode;
-  errors: Array<{ path: string; message: string }>;
-};
+type ErrorResponse = Prettify<z.infer<typeof errorResponseSchema>>;
 
-/**
- * Catalog of possible response types
- */
-export type ApiResponseCatalog = {
-  success: SuccessResponse;
-  error: ErrorResponse;
-};
-
-/**
- * Union type of all possible API responses
- */
-export type ApiResponse = ApiResponseCatalog[keyof ApiResponseCatalog];
+export type ApiResponse = Prettify<z.infer<typeof apiResponseSchema>>;
 
 /**
  * Determines whether the given API response represents a successful result.

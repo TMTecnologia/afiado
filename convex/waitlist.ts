@@ -2,7 +2,7 @@ import { HOUR, MINUTE, RateLimiter } from "@convex-dev/rate-limiter";
 import { NoOp } from "convex-helpers/server/customFunctions";
 import { zCustomMutation } from "convex-helpers/server/zod";
 import { z } from "zod";
-import { ErrorCodeCatalog, HTTP_STATUS } from "~/lib/api/constants";
+import { HTTP_STATUS } from "~/lib/api/constants";
 import { emailSchema } from "~/lib/api/schemas";
 import type { ApiResponse } from "~/lib/api/types";
 import { internal } from "./_generated/api";
@@ -151,7 +151,7 @@ export const addEmailToWaitlistHttp = httpAction(async (ctx, request) => {
     return createResponse(
       {
         success: false,
-        message: ErrorCodeCatalog.INVALID_JSON,
+        message: "Payload JSON inválido",
         code: "INVALID_JSON",
         errors: [
           {
@@ -177,7 +177,7 @@ export const addEmailToWaitlistHttp = httpAction(async (ctx, request) => {
     return createResponse(
       {
         success: false,
-        message: ErrorCodeCatalog.VALIDATION_ERROR,
+        message: "Falha na validação",
         code: "VALIDATION_ERROR",
         errors: result.error.errors.map((err) => ({
           path: err.path.join("."),
@@ -200,7 +200,7 @@ export const addEmailToWaitlistHttp = httpAction(async (ctx, request) => {
     return createResponse(
       {
         success: false,
-        message: ErrorCodeCatalog.INTERNAL_SERVER_ERROR,
+        message: "Erro ao processar requisição",
         code: "INTERNAL_SERVER_ERROR",
         errors: [],
       },

@@ -1,3 +1,5 @@
+import type { Prettify } from "~/lib/utils";
+
 /**
  * HTTP response status codes
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status}
@@ -15,18 +17,21 @@ export const HTTP_STATUS = {
   INTERNAL_SERVER_ERROR: 500,
 } as const;
 
+export enum InternalErrorCode {
+  /** Invalid JSON Payload */
+  INVALID_JSON = "INVALID_JSON",
+  /** The request was well-formed but was unable to be followed due to input validation errors */
+  VALIDATION_ERROR = "VALIDATION_ERROR",
+}
+
 /**
- * Catalog of error codes and their default messages
+ * Type for HTTP errors, i.e, non 2xx | 3xx status
  */
-export const ErrorCodeCatalog = {
-  FORBIDDEN: "O cliente não tem direitos de acesso ao conteúdo",
-  INTERNAL_SERVER_ERROR: "Erro ao processar requisição",
-  INVALID_JSON: "Payload JSON inválido",
-  TOO_MANY_REQUESTS: "Muitas tentativas",
-  VALIDATION_ERROR: "Falha na validação",
-} as const;
+export type HTTP_ERROR_STATUS = Exclude<keyof typeof HTTP_STATUS, "CREATED">;
 
 /**
  * Type for error codes
  */
-export type ErrorCode = keyof typeof ErrorCodeCatalog;
+export type ErrorCode = Prettify<
+  keyof typeof InternalErrorCode | HTTP_ERROR_STATUS
+>;
