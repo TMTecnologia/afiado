@@ -63,10 +63,10 @@ jobs:
         run: bun run pages:build
         env:
           CONVEX_DEPLOY_KEY: ${{ secrets.CONVEX_DEPLOY_KEY }}
-          CONVEX_DEPLOYMENT: ${{ github.event_name == 'push' ? secrets.CONVEX_PROD_DEPLOYMENT : secrets.CONVEX_DEV_DEPLOYMENT }}
-          CONVEX_SITE_URL: ${{ github.event_name == 'push' ? secrets.CONVEX_PROD_SITE_URL : secrets.CONVEX_DEV_SITE_URL }}
+          CONVEX_DEPLOYMENT: ${{ github.event_name == 'push' && secrets.CONVEX_PROD_DEPLOYMENT || secrets.CONVEX_DEV_DEPLOYMENT }}
+          CONVEX_SITE_URL: ${{ github.event_name == 'push' && secrets.CONVEX_PROD_SITE_URL || secrets.CONVEX_DEV_SITE_URL }}
           NEXT_PUBLIC_AHREFS_ANALYTICS_KEY: ${{ secrets.AHREFS_ANALYTICS_KEY }}
-          NEXT_PUBLIC_CONVEX_DEPLOYMENT_URL: ${{ github.event_name == 'push' ? secrets.CONVEX_PROD_DEPLOYMENT_URL : secrets.CONVEX_DEV_DEPLOYMENT_URL }}
+          NEXT_PUBLIC_CONVEX_DEPLOYMENT_URL: ${{ github.event_name == 'push' && secrets.CONVEX_PROD_DEPLOYMENT_URL || secrets.CONVEX_DEV_DEPLOYMENT_URL }}
           NEXT_PUBLIC_POSTHOG_KEY: ${{ secrets.POSTHOG_KEY }}
           NEXT_PUBLIC_POSTHOG_HOST: "https://us.i.posthog.com"
           NEXT_PUBLIC_POSTHOG_STATIC_ASSETS_HOST: "https://us-assets.i.posthog.com/static"
@@ -85,7 +85,7 @@ jobs:
         run: bunx convex deploy
         env:
           CONVEX_DEPLOY_KEY: ${{ secrets.CONVEX_DEPLOY_KEY }}
-          CONVEX_DEPLOYMENT: ${{ github.event_name == 'push' ? secrets.CONVEX_PROD_DEPLOYMENT : secrets.CONVEX_DEV_DEPLOYMENT }}
+          CONVEX_DEPLOYMENT: ${{ github.event_name == 'push' && secrets.CONVEX_PROD_DEPLOYMENT || secrets.CONVEX_DEV_DEPLOYMENT }}
 
   accessibility:
     name: Accessibility Review
