@@ -17,7 +17,7 @@ updates:
       time: "16:00"
 
   - package-ecosystem: "github-actions"
-    directory: "/"
+    directory: ".github/workflows"
     schedule:
       interval: "daily"
       time: "16:00"
