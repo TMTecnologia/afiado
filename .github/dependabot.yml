@@ -14,3 +14,10 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "daily"
+      time: "16:00"
+
+  - package-ecosystem: "github-actions"
+    directory: ".github/workflows"
+    schedule:
+      interval: "daily"
+      time: "16:00"
