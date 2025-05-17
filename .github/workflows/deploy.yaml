@@ -62,6 +62,7 @@ jobs:
       - name: 👷 Build
         run: bun run pages:build
         env:
+          CONVEX_DEPLOYMENT: ${{ github.event_name == 'push' && secrets.CONVEX_PROD_DEPLOYMENT || secrets.CONVEX_DEV_DEPLOYMENT }}
           CONVEX_SITE_URL: ${{ github.event_name == 'push' && secrets.CONVEX_PROD_SITE_URL || secrets.CONVEX_DEV_SITE_URL }}
           NEXT_PUBLIC_AHREFS_ANALYTICS_KEY: ${{ secrets.AHREFS_ANALYTICS_KEY }}
           NEXT_PUBLIC_CONVEX_DEPLOYMENT_URL: ${{ github.event_name == 'push' && secrets.CONVEX_PROD_DEPLOYMENT_URL || secrets.CONVEX_DEV_DEPLOYMENT_URL }}

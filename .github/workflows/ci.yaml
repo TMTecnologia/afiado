@@ -60,6 +60,8 @@ jobs:
             echo "Unknown task: ${{ matrix.task }}"
             exit 1
           fi
+        env:
+          CONVEX_DEPLOYMENT: ${{ secrets.CONVEX_DEV_DEPLOYMENT }}
 
   inclusive-language:
     name: Inclusive Language
