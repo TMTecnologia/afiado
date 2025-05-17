@@ -30,9 +30,7 @@
   "dependencies": {
     "@cloudflare/next-on-pages": "1.13.12",
     "@convex-dev/rate-limiter": "0.2.6",
-    "@radix-ui/react-accordion": "1.2.6",
     "@t3-oss/env-nextjs": "0.13.4",
-    "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",
     "convex": "1.23.0",
     "convex-helpers": "0.1.85",
