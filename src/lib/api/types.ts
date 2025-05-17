@@ -1,37 +1,36 @@
+import type { Prettify } from "../utils";
 import type { ErrorCode } from "./constants";
+import { z } from "zod";
 
-/**
- * Represents a successful API response
- */
-export type SuccessResponse = {
-  success: true;
-  message: string;
-  code?: never;
-  errors?: never;
-};
+export const successResponseSchema = z.object({
+  success: z.literal(true),
+  message: z.string(),
+  code: z.never().optional(),
+  errors: z.never().optional(),
+});
 
-/**
- * Represents an error API response
- */
-export type ErrorResponse = {
-  success: false;
-  message: string;
-  code: ErrorCode;
-  errors: Array<{ path: string; message: string }>;
-};
+export const errorResponseSchema = z.object({
+  success: z.literal(false),
+  message: z.string(),
+  // The error code types are already being enforced on the API createResponse
+  // So they will not be enforced manually here, for the time being
+  code: z.string() as z.ZodType<ErrorCode>,
+  errors: z.array(z.object({
+    path: z.string(),
+    message: z.string(),
+  })),
+});
 
-/**
- * Catalog of possible response types
- */
-export type ApiResponseCatalog = {
-  success: SuccessResponse;
-  error: ErrorResponse;
-};
+export const apiResponseSchema = z.discriminatedUnion("success", [
+  successResponseSchema,
+  errorResponseSchema,
+]);
 
-/**
- * Union type of all possible API responses
- */
-export type ApiResponse = ApiResponseCatalog[keyof ApiResponseCatalog];
+type SuccessResponse = Prettify<z.infer<typeof successResponseSchema>>;
+
+type ErrorResponse = Prettify<z.infer<typeof errorResponseSchema>>;
+
+export type ApiResponse = Prettify<z.infer<typeof apiResponseSchema>>;
 
 /**
  * Determines whether the given API response represents a successful result.
