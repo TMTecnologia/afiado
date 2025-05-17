@@ -61,6 +61,7 @@ jobs:
             exit 1
           fi
         env:
+          CONVEX_DEPLOY_KEY: ${{ secrets.CONVEX_DEPLOY_KEY }}
           CONVEX_DEPLOYMENT: ${{ secrets.CONVEX_DEV_DEPLOYMENT }}
 
   inclusive-language:
