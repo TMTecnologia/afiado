@@ -46,7 +46,7 @@
     "react-dom": "19.1.0",
     "tailwind-merge": "3.2.0",
     "tw-animate-css": "1.2.5",
-    "zod": "3.25.0-beta.20250517T081109"
+    "zod": "3.24.3"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
