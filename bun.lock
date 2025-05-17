@@ -5,6 +5,7 @@
       "name": "afiado",
       "dependencies": {
         "@cloudflare/next-on-pages": "1.13.12",
+        "@convex-dev/rate-limiter": "^0.2.6",
         "@radix-ui/react-accordion": "1.2.6",
         "@t3-oss/env-nextjs": "0.12.0",
         "class-variance-authority": "0.7.1",
@@ -73,6 +74,8 @@
     "@cloudflare/workerd-linux-arm64": ["@cloudflare/workerd-linux-arm64@1.20250416.0", "", { "os": "linux", "cpu": "arm64" }, "sha512-U6oVW0d9w1fpnDYNrjPJ9SFkDlGJWJWbXHlTBObXl6vccP16WewvuxyHkKqyUhUc8hyBaph7sxeKzKmuCFQ4SA=="],
 
     "@cloudflare/workerd-windows-64": ["@cloudflare/workerd-windows-64@1.20250416.0", "", { "os": "win32", "cpu": "x64" }, "sha512-YAjjTzL1z9YYeN4sqYfj1dtQXd2Bblj+B+hl4Rz2aOhblpZEZAdhapZlOCRvLLkOJshKJUnRD3mDlytAdgwybQ=="],
+
+    "@convex-dev/rate-limiter": ["@convex-dev/rate-limiter@0.2.6", "", { "peerDependencies": { "convex": "~1.16.5 || >=1.17.0 <1.25.0" } }, "sha512-QcuLpUBHL8S34BgU4Xvbjzkqf4sw5KWNlnvIR0qZ8qhDxbxrjJBRnbiSJDYqUYccyCXpRJe4YnzmPnDefoPYHg=="],
 
     "@cspotcode/source-map-support": ["@cspotcode/source-map-support@0.8.1", "", { "dependencies": { "@jridgewell/trace-mapping": "0.3.9" } }, "sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw=="],
 

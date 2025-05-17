@@ -87,7 +87,7 @@ export default function WaitListForm() {
       setFormErrors({ ...errors, form: data.message });
     } catch (error) {
       setFormErrors({
-        form: "Erro ao adicionar email. Tente novamente mais tarde.",
+        form: "Erro ao adicionar email",
       });
     } finally {
       setIsSubmitting(false);
