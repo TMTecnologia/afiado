@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "@cloudflare/next-on-pages": "1.13.12",
-    "@convex-dev/rate-limiter": "0.2.6",
+    "@convex-dev/rate-limiter": "0.2.7",
     "@t3-oss/env-nextjs": "0.13.4",
     "clsx": "2.1.1",
     "convex": "1.24.1",
