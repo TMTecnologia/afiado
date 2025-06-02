@@ -15,7 +15,7 @@ export default function HomePage() {
     <main className="min-h-screen w-full bg-white text-black transition-colors dark:bg-black dark:text-white">
       {/* Hero Section */}
       <section className="flex min-h-[60vh] flex-col items-center justify-center px-4 py-20 text-center">
-        <h1 className="mb-4 font-black text-4xl md:text-6xl">
+        <h1 className="mb-4 max-w-2xl text-balance font-black text-4xl/relaxed">
           {"Controle financeiro "}
           <span className="text-blue-400">{"Afiado"}</span>
           {" para negócios inteligentes"}
