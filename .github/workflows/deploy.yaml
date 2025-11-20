@@ -30,7 +30,7 @@ jobs:
 
     steps:
       - name: 📥 Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: 📦 Cache Bun
         uses: actions/cache@v4
@@ -118,7 +118,7 @@ jobs:
     steps:
       # This is needed to upload the results
       - name: 📥 Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: ⚡ Performance Testing
         uses: treosh/lighthouse-ci-action@v12
